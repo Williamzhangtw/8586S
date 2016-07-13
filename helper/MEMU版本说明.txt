@@ -1,0 +1,27 @@
+MEMU(REV1.0)
+	1.完成模块搭接。包含 
+		A.单片机模块
+		B.旋转编码器模块
+		C.数码管显示模块
+		D.UART模块
+		E.STLINK下载器
+	2.基本完成相关单片机资源底层驱动(src)开发
+		A.GPIO设置		gpio.c
+		B.usart设置		usart.c
+	3.基本完成各模块底层驱动(BSP)开发
+		A.旋转编码器按键	key.c
+		B.旋转编码器旋钮	rotary.c
+		C.数码显示		TM1651.c
+	4.基本完成各功能高层驱动(APP)开发
+		A.模块配置文件		config.h
+		B.显示字体文件		font.c
+		C.图形显示文件		GUI.c
+		D.发热芯控温程序文件	hoter1321.c
+		E.菜单文件		menu.c
+		F.输入控制文件		PointerInput.c
+
+MEMU(REV1.1)
+	1.新增加一个概念，底层驱动开发包（HAL)开发	备注：cube生产的源文件不需多少改动，直接add HAL开发包中相应的文件进去即可。
+		A:完成了HAL_MAIN.C的设计，内容包括 SYSTICK定义，时间全局变量的定义 Error_Handler()函数用于调试
+	2.增加单片机资源底层驱动(SRC)
+		A:adc设置		adc.c	备注：软件ADC，单通道

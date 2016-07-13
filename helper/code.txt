@@ -1,0 +1,13 @@
+//if(GUI_PID_IsPressed())
+//{   printf("4");
+//   GUI_DispDecMin(j++);
+//}  HAL_GPIO_WritePin(ERROR_GPIO_Port,ERROR_Pin,GPIO_PIN_SET);
+//  HAL_GPIO_WritePin(ERROR_GPIO_Port,ERROR_Pin,GPIO_PIN_RESET);
+
+HAL_GPIO_TogglePin(ERROR_GPIO_Port,ERROR_Pin);
+__HAL_TIM_SET_AUTORELOAD(&htim14,n);
+//        HAL_TIM_OC_Stop (&htim14,TIM_C     
+if(hal_10ms_flag)
+    { }
+
+ printf("V=%d\n", HAL_ADC_GetValue(&hadc));
