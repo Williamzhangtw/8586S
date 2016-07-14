@@ -16,6 +16,8 @@ static uint16_t solder_adc_array[128];
  
 /* USER CODE BEGIN EV */
 HOTER_CTRL_TypeDef hotter1321 ;
+
+
 /* USER CODE END EV */
 
 /*
@@ -38,7 +40,7 @@ void  Filter_hotter1321_adc_ISR (void)
 
 void  Hotter1321_realTemp_ISR (void)
 {
-	hotter1321.real_temperature   = hotter1321 .adc2temp  (hotter1321.real_adc) ;
+	hotter1321.real_temperature   = hotter1321 .adc2temp  (hotter1321.real_adc);
 }
 
 
@@ -62,7 +64,7 @@ void Heat_hotter1321(BOOL  en)
 uint16_t Hotter1321Adc2temp(uint16_t adc)
 {
 	uint16_t temp ;
-  temp = adc *0.3 + 30;
+  temp = adc *hotter1321.Ks+hotter1321 .Bs-hotter1321 .adjust_temperature;
   return  temp;
 }
 
@@ -111,7 +113,7 @@ void 		Hotter1321WorkingState_ISR(void )
 	switch(hotter1321 .work_state )
 	{
 		case 1: //加热
-			if ( minus >0 )
+			if ( minus >=0 )
 			{
 				 hotter1321 .work_state =2;
 			
@@ -120,7 +122,7 @@ void 		Hotter1321WorkingState_ISR(void )
 
 		case 2 : //过热
 
-			if (  minus <=0 )
+			if (  minus <0 )
 			{
 				
 				 hotter1321 .work_state =3;
@@ -155,13 +157,18 @@ void 		Hotter1321WorkingState_ISR(void )
 void Hotter1321_init(void)
 {
 	hotter1321.Lmax =480;
-	hotter1321.Lmin =200,
-	hotter1321.Cmin =100;
-	hotter1321.Cmax =600;
+	hotter1321.Lmin =0,
+	hotter1321.Cmin =-99;
+	hotter1321.Cmax =99;
+	hotter1321 .Ks = 0.37;
+	hotter1321 .Bs =-220;
+	
+	
+	
 	hotter1321.real_adc = 0;
 	hotter1321.real_temperature = 25;
 //	hotter1321.target_temperature = 300;
-	hotter1321.adjust_temperature = 0;
+//	hotter1321.adjust_temperature = 0;
 	hotter1321.reset_position_time = 0;
 	hotter1321.go_sleep_time = 0;
 	hotter1321 .sensor_err_adc = 2300;
@@ -178,6 +185,7 @@ void Hotter1321_init(void)
 	hotter1321 .adc2temp =Hotter1321Adc2temp;
 	hotter1321 .adc_reflash_ISR = Filter_hotter1321_adc_ISR;
 	hotter1321 .power_on_scan_ISR =Hotter1321_power_on_scan_ISR;
+	hotter1321.heat_en (DISABLE );
 }
 
 /* USER CODE END EFP */

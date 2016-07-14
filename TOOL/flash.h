@@ -11,9 +11,12 @@
 
 typedef struct 
 {
-	uint16_t Bs;
-	uint16_t target_temperature;
-	
+	uint8_t id;	
+	int16_t adjust_temperature;
+	int16_t target_temperature;
+
+
+ 
 }
 Hotter_flash__TypeDef;
 
@@ -29,13 +32,13 @@ Hotter_flash__TypeDef;
 
 
 
-//±äÁ¿
-extern uint16_t data_saved[10];
+
+
 
 //º¯Êı
-extern uint8_t APP_DataSaveIsError(uint32_t start_address, uint16_t *data,uint16_t data_num);
+extern uint8_t APP_DataSaveIsError(uint32_t start_address, uint16_t *data,int16_t data_num);
 
-extern void APP_DataRead(uint32_t  address, uint16_t *data,uint16_t num);
+extern void APP_DataRead(uint32_t  address, uint16_t *data,int16_t num);
 
 
 extern void FlshPara_Save(void);

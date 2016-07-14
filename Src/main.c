@@ -111,7 +111,7 @@ int main(void)
   /* USER CODE BEGIN 3 */
 	
     Msg_delayms_process();
-		Solder_1_Transformation();
+	Solder_1_Transformation();
   }
   /* USER CODE END 3 */
 

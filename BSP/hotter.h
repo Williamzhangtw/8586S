@@ -9,9 +9,9 @@
 
  typedef struct 
  {
-	 int16_t Kl;  // pure, K value of linear equation of the sensing head in the air.
+	 float  Kl;  // pure, K value of linear equation of the sensing head in the air.
 	 int16_t Bl;//
-	 int16_t Ks;//with welding head,the  k value of linear equation of the sensing heed with the welding head outside.
+	 float Ks;//with welding head,the  k value of linear equation of the sensing heed with the welding head outside.
 	 int16_t Bs;
 	 int16_t Fmid;//magnification of circuit settings
 	 int16_t Lmin;//minimum range

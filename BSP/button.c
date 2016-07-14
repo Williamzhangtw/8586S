@@ -29,7 +29,6 @@ uint8_t read_button_1(void)
 void Button_1_init(void)
 {
 	button_1 .read_button = read_button_1;
-	button_1.Is_enable = ENABLE ;
 	button_1.Is_press = NO ;
 	button_1 .Is_click =NO;
 	button_1.Is_support_continue_press= YES ;
@@ -49,36 +48,38 @@ void BUTTON_scan(BUTTON_CTRL_TypeDef *button)
 	static uint8_t dir=1;	
 	static uint8_t continue_dir=1;	
 	button -> state_now = button -> read_button();//获得当前按键状态
-	if(button -> Is_enable)
+
+	//Interference prevention 预防抖动
+	button ->time_count++;
+	if(button ->state_pre ==button -> state_now)//如果上次读取的数值
 	{
-		//Interference prevention 预防抖动
-		button ->time_count++;
-		if(button ->state_pre ==button -> state_now)//如果上次读取的数值
-		{
-			button -> Is_press =button -> state_now;
-		}
-  	else button ->state_pre = button -> state_now; 
+		button -> Is_press =button -> state_now;
+	}
+	else 
+	{
+		button ->state_pre = button -> state_now; 
+	}
+	
+
+	if(button -> Is_support_continue_press)
+	{
+		button -> continue_press_time++;
+	}			
+	if(button -> Is_support_click)
+	{
+			if(dir){if(button -> Is_press)dir=0;}
+			else {if(!(button -> Is_press)){dir=1;button ->Is_click =YES;}}
+
+
 		
-
-		if(button -> Is_support_continue_press)
+		
+		if(button ->Is_support_continue_click)
 		{
-			button -> continue_press_time++;
-		}			
-		if(button -> Is_support_click)
-		{
-				if(dir){if(button -> Is_press)dir=0;}
-				else {if(!(button -> Is_press)){dir=1;button ->Is_click =YES;}}
-
-
-			
-			
-			if(button ->Is_support_continue_click)
-			{
-				if(continue_dir){if(button -> Is_click)continue_dir=0;}
-				else {if(!(button -> Is_click)){continue_dir=1;button ->continue_click_count ++;}}
-			}
+			if(continue_dir){if(button -> Is_click)continue_dir=0;}
+			else {if(!(button -> Is_click)){continue_dir=1;button ->continue_click_count ++;}}
 		}
-	}	
+	}
+		
 }
 
 

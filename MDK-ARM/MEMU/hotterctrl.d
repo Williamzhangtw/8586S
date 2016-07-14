@@ -40,3 +40,5 @@ memu\hotterctrl.o: ..\cantor\../tool/msg_task.h
 memu\hotterctrl.o: ..\cantor\../bsp/tm1650.h
 memu\hotterctrl.o: ..\cantor\../tool/flash.h
 memu\hotterctrl.o: ..\cantor\../tool/../bsp/hotter.h
+memu\hotterctrl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+memu\hotterctrl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

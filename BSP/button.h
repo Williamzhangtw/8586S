@@ -13,7 +13,6 @@
 typedef struct 
 {
 	uint8_t (*read_button)(void);
-	uint8_t Is_enable;//if button is disable,nothing will be done wiht the data below.
 	uint8_t state_pre;
 	uint8_t state_now;
 	uint8_t Is_press;

@@ -58,8 +58,8 @@ extern const uint8_t  _1_[4];
 extern const uint8_t  _2_[4];
 extern const uint8_t _888[4] ;
 extern const uint8_t xianfu[4] ;
-
-
+extern const uint8_t CODE_Clean_Dot[4] ;
+extern const uint8_t  _null[4];
 
 
 
@@ -70,25 +70,18 @@ typedef struct
 	void (*dio)(GPIO_PinState);
 	void (*init)(void);
 	uint8_t (*read_dio)(void);
-	
-	uint8_t disp_type;
-	uint16_t num;
-const	uint8_t *word;
+	uint8_t disp_count;
+	uint8_t dot_run_en;
+	uint8_t bottom_dot_en;
+	uint8_t blink_en;
+	uint8_t Is_num;
+	int16_t num;
+	const	uint8_t *word;
 	
 }TM1650_STRUCT;
 
 
-typedef enum
-{
-	 num,
-	word,
-	numblink,
-	wordblink,
-	numrun,
-	dot,
-	
-	
-}TM1650_DispType_ENUM;
+
 
 
 

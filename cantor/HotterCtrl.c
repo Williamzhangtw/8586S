@@ -5,7 +5,8 @@ Data:            2016/06/30
 #include "../tool/msg_task.h"
 #include "../bsp/tm1650.h"
 #include "../tool/flash.h"
-
+#include <string.h>
+#include <math.h>
 
 
 HOTTER_CTRL_Typedef solder1;
@@ -33,9 +34,13 @@ void SOLDER_POWERON_operate(void)
 	delaymsTask_CTRL(hotter1321_realTemp_msg ,ENABLE );	
 	delaymsTask_CTRL(hotter1321_heated_count_msg ,ENABLE );
 	delaymsTask_CTRL(hotter1321_hotter_state_msg ,ENABLE );
-	
 	delaymsTask_CTRL(hotterctrl_poweron_msg ,ENABLE );
-	solder1 .state =IDLE   ;	
+	solder1 .state =IDLE ;
+	tm1650_1.Is_num =NO;
+	tm1650_1.dot_run_en =DISABLE ;	
+	tm1650_1.blink_en  =DISABLE ;
+	tm1650_1.bottom_dot_en =DISABLE ;
+	tm1650_1 .word =CODE_Clean ;
 }
 
 
@@ -43,13 +48,53 @@ void SOLDER_POWERON_operate(void)
 
 void SOLDER_IDLE_operate(void)
 {
-	hotter1321 .heat_en(DISABLE );
-	tm1650_1.disp_type = word ;
-	tm1650_1.word = OFF ;
-	if(hotter1321.Is_power_on)//solder switch checking
-	solder1 .state = TempCTRL  ;
-}
 
+	static uint8_t dir =0;
+	if(hotter1321.Is_power_on)//solder switch checking
+	{
+		if (!dir)
+		{
+			tm1650_1.disp_count=0;
+			dir=~dir;
+			tm1650_1.Is_num = YES ;
+			tm1650_1.dot_run_en =DISABLE ;	
+			tm1650_1.blink_en  =ENABLE ;
+			tm1650_1.bottom_dot_en =DISABLE ;
+			tm1650_1.num =hotter1321 .target_temperature ;
+		}
+		else
+		{	
+			
+			if(tm1650_1.disp_count>20)
+			{
+				tm1650_1.Is_num = YES ;
+				tm1650_1.dot_run_en =DISABLE ;	
+				tm1650_1.blink_en  =DISABLE ;
+				tm1650_1.bottom_dot_en =DISABLE ;
+				solder1 .state = TempCTRL  ;
+				hotter1321 .work_state = 0;//初始化H-E检查
+				tm1650_1.disp_count =0;
+				dir =~dir;
+			}
+		}			
+		
+	}
+	else
+	{
+		 
+		if(HalTimeDelaySimple (&hal_100ms_flag ,1))
+		{
+			hotter1321 .heat_en(DISABLE );
+			dir =0;
+			tm1650_1 .word =OFF;
+			tm1650_1.dot_run_en =DISABLE ;	
+			tm1650_1.blink_en  = NO ;
+			tm1650_1.Is_num = NO ;
+			tm1650_1 .bottom_dot_en =NO;
+			tm1650_1.disp_count=0;
+		}
+	}
+}
 
 
 
@@ -58,9 +103,17 @@ void SOLDER_TempCTRL_operate(void)
 	static uint8_t dir = 1;//用于校准温度按键 
 	
 	static uint8_t dir_1 = 1;//用于H-E检查
-	static uint16_t temperature_pre ;
+	
+	
+	static uint8_t check_time = 0;
+	static int16_t minus_pre ;
+	int16_t minus;
 	//显示
-		
+	
+	
+//	
+
+	
 	if(hotter1321 .work_state ==3)
 		tm1650_1.num = hotter1321.target_temperature;
 	else tm1650_1.num = hotter1321.real_temperature;
@@ -71,18 +124,21 @@ void SOLDER_TempCTRL_operate(void)
 		if( hotter1321 .real_temperature< hotter1321 .target_temperature)
 		{
 			hotter1321 .heat_en(ENABLE );
-			
-			tm1650_1.disp_type =dot ;//表示加热中
+		 		
+			tm1650_1.bottom_dot_en =ENABLE  ;//表示加热中
 		}
 		else
 		{
-			tm1650_1.disp_type =num ;//表示不加热
+			tm1650_1.bottom_dot_en =DISABLE  ;//表示不加热
 			hotter1321 .heat_en(DISABLE );
 		}
 	}
 	else 
 	{
 		solder1 .state = ALARM ;
+		tm1650_1.Is_num = NO ;
+    	tm1650_1.dot_run_en =DISABLE ;	
+		tm1650_1.blink_en  =ENABLE ;
 		hotter1321 .sensor_err =1;
 	}
 	//H-E检查
@@ -91,7 +147,8 @@ void SOLDER_TempCTRL_operate(void)
 		if(	hotter1321 .work_state==1)
 		{
 			hotter1321 .heated_time_count=0;
-			temperature_pre = hotter1321 .real_temperature;
+			
+			minus_pre =  hotter1321.target_temperature -   hotter1321 .real_temperature;
 			dir_1 = 0;
 		}
 	}
@@ -99,19 +156,49 @@ void SOLDER_TempCTRL_operate(void)
 	{
 		if(	hotter1321 .work_state!=1)
 		{
-				dir_1 = 1;
+		    dir_1 = 1;
+			 
 		}
 		else
 		{
-			if(hotter1321 .heated_time_count>100)
+			if((hotter1321 .heated_time_count>10))
 			{
-				if ((__fabs (hotter1321 .real_temperature - temperature_pre)<2))
-				{
-					solder1 .state = ALARM ;
-					hotter1321 .hotter_err=1;
-					
-				}
 				dir_1 = 1;
+				minus = hotter1321.target_temperature-hotter1321 .real_temperature ;
+				
+				if((minus_pre -minus )<2)
+				{
+					if(hotter1321 .real_temperature <80)
+					{		
+						if(check_time++>12)
+						{
+							check_time =0;
+							solder1 .state = ALARM ;
+							hotter1321 .heat_en(DISABLE );
+							hotter1321 .hotter_err=1;
+							tm1650_1.Is_num = NO ;
+							tm1650_1.dot_run_en =DISABLE ;	
+							tm1650_1.blink_en  =ENABLE ;
+						}
+					}
+					else
+					{
+							
+						if(check_time++>1)
+						{
+							check_time =0;
+						
+							tm1650_1.blink_en  =ENABLE ;
+						}							;
+					}
+						
+						
+				}
+				else
+				{
+					tm1650_1.blink_en  =DISABLE   ;
+					check_time = 0;
+				}
 			}	
 		}
 	}
@@ -120,7 +207,14 @@ void SOLDER_TempCTRL_operate(void)
 	if(rotary_1.Is_press == YES)
 	{
 		rotary_1.Is_press =NO;
-		solder1 .state = TempSET ;	
+		hotter1321 .heat_en(DISABLE );
+		solder1 .state = TempSET ;
+		tm1650_1.Is_num = YES  ;
+    	tm1650_1.dot_run_en =DISABLE ;	
+		tm1650_1.blink_en  =DISABLE ;
+		tm1650_1.bottom_dot_en=DISABLE ;
+		button_1 .time_count=0;
+		
 
 	}	
 	//校温按键检查	
@@ -128,16 +222,25 @@ void SOLDER_TempCTRL_operate(void)
 	{
 		if (button_1.Is_press == YES)
 		{
-			dir =0;button_1.continue_press_time = NO;
+			dir =0;button_1.continue_press_time = 0;
 		}
 	}
 	else
 	{
 		if (button_1.Is_press == YES)
 		{
-			if (button_1.continue_press_time>500)
+			if ((button_1.continue_press_time>300)&&(hotter1321 .work_state ==3))
 			{
+				
+				
+				hotter1321 .heat_en(DISABLE );
+				tm1650_1.Is_num = NO  ;
+				tm1650_1.word = CAL;
+				tm1650_1.dot_run_en =ENABLE ;	
+				tm1650_1.blink_en  =DISABLE ;
+				tm1650_1.bottom_dot_en=DISABLE ;
 				solder1 .state = TempADJUST ;
+				button_1 .time_count =0;
 				dir=1;
 			}
 		}
@@ -152,15 +255,14 @@ void SOLDER_TempCTRL_operate(void)
 
 void SOLDER_TempSET_operate(void)
 {
-	static uint8_t reset_flag = 0;
-	tm1650_1.disp_type = num ;
+
 	tm1650_1.num = hotter1321.target_temperature;
 	/*
 	如果左旋，温度做减法运算
 	*/
 	if(rotary_1.Spin_direction == Spin_left)
 	{
-		reset_flag =1;
+		button_1 .time_count=0;
 		rotary_1.Spin_direction = no_direction ;
 		if(--hotter1321.target_temperature<=hotter1321 .Lmin)
 			hotter1321.target_temperature=hotter1321 .Lmin;
@@ -170,7 +272,7 @@ void SOLDER_TempSET_operate(void)
 	*/
 	if(rotary_1.Spin_direction == Spin_right)
 	{
-		reset_flag =1;
+		button_1 .time_count=0;
 		rotary_1.Spin_direction = no_direction ;
 		if(++hotter1321.target_temperature >hotter1321 .Lmax )
 		{
@@ -182,6 +284,10 @@ void SOLDER_TempSET_operate(void)
 	*/
 	if(button_1 .Is_press == YES )
 	{
+		tm1650_1.blink_en  = NO ;
+		tm1650_1 .bottom_dot_en =NO;
+		tm1650_1.dot_run_en=NO;
+		tm1650_1.Is_num = YES ;
 		FlshPara_Save();
 		solder1 .state = TempCTRL ;
 	}
@@ -190,11 +296,21 @@ void SOLDER_TempSET_operate(void)
 //	如果持续未按并且持续时间超过xx秒，温度设定完成
 //	*/
 	
-	if(HalTimeDelay(&hal_100ms_flag,30,&reset_flag))
-	{	
+	if(button_1 .time_count>250)
+	{
 		FlshPara_Save();
+		tm1650_1.blink_en  = NO ;
+		tm1650_1 .bottom_dot_en =NO;
+		tm1650_1.dot_run_en=NO;
+		tm1650_1.Is_num = YES ;
 		solder1 .state = TempCTRL ;
-	}		
+		
+		
+		
+	}
+	
+	
+ 	
 }
 
 
@@ -202,64 +318,77 @@ void SOLDER_TempSET_operate(void)
 
 void SOLDER_TempADJUST_operate(void)
 {
-	static uint8_t n = 0;
-	static uint8_t dir =1;
-	switch (n)
+	static uint8_t dir = 0;
+	static int16_t number=0;
+	Hotter_flash__TypeDef hotter_flash;
+	if(!dir)
 	{
-		case 0:
- 		tm1650_1.disp_type = word ;
-	  tm1650_1.word = CAL;
-		if(dir){button_1 .time_count =0;dir =0;}
-		else {if (button_1 .time_count>100){hotter1321 .adjust_temperature = hotter1321 .target_temperature;
-			n =1;dir=1;button_1 .time_count =0;}}
-		break ;
-		case 1:
-     tm1650_1.disp_type = numrun ;
-	   tm1650_1.num =  hotter1321.adjust_temperature ;
-
-	/*
-	如果左旋，温度做减法运算
-	*/
-	if(rotary_1.Spin_direction == Spin_left)
-	{
-		button_1 .time_count =0;
-		rotary_1.Spin_direction = no_direction;
-		++hotter1321.adjust_temperature;
-		if(hotter1321.adjust_temperature > hotter1321 .Cmax) hotter1321.adjust_temperature  =  hotter1321 .Cmax;
+		if (button_1 .time_count>100)
+		{ 
+			memcpy(&hotter_flash,(Hotter_flash__TypeDef *)PARA_START_ADDR,sizeof (Hotter_flash__TypeDef)); 
+			number = hotter_flash.adjust_temperature;		
+			tm1650_1.Is_num = YES ;
+			tm1650_1.dot_run_en =DISABLE ;	
+			tm1650_1.blink_en  =ENABLE ;
+			tm1650_1.bottom_dot_en =DISABLE ;
+			dir =~dir;
+		}
 	}
-	
-	/*
-	如果右旋，温度做加法运算
-	*/
-	if(rotary_1.Spin_direction == Spin_right)
-	{	button_1 .time_count =0;
-		rotary_1.Spin_direction = no_direction;
-		--hotter1321.adjust_temperature;
-		if(hotter1321.adjust_temperature < hotter1321 .Cmin) hotter1321.adjust_temperature  =  hotter1321 .Cmin;
+	else
+	{
+		tm1650_1.num =  number  ;
+		/*
+		如果左旋，温度做减法运算
+		*/
+		if(rotary_1.Spin_direction == Spin_left)
+		{
+			
+			button_1 .time_count =0;
+			rotary_1.Spin_direction = no_direction;
+			--number;
+			if(number<hotter1321 .Cmin) number  =  hotter1321 .Cmin;
+		}
 		
-	}
-	
-	
-	/*
-	如果确定，温度设定完成
-	*/
-	if(button_1 .Is_press == YES )
-	{
-		n =0;
-		hotter1321.Bs= hotter1321.Bs + hotter1321.adjust_temperature - hotter1321.real_temperature;
-		FlshPara_Save();
-		solder1 .state =TempCTRL ;
+		/*
+		如果右旋，温度做加法运算
+		*/
+		if(rotary_1.Spin_direction == Spin_right)
+		{	button_1 .time_count =0;
+			rotary_1.Spin_direction = no_direction;
+			++number;
+			if(number > hotter1321 .Cmax) number =  hotter1321 .Cmax;
+			
+		}
+		
+		
+		/*
+		如果确定，温度设定完成
+		*/
+		if(button_1 .Is_press == YES )
+		{
+			tm1650_1.dot_run_en =NO ;
+			tm1650_1.bottom_dot_en =NO;
+			tm1650_1.blink_en  =DISABLE ;
+			tm1650_1.Is_num = YES ;
+			hotter1321 .adjust_temperature =number;
+			dir=~dir;
+			FlshPara_Save();
+			solder1 .state =TempCTRL ;
+			
+		}
+			
+	//	如果持续未按并且持续时间超过xx秒
+		if(button_1 .time_count>500)
+		{	
+			tm1650_1.dot_run_en =NO ;
+			tm1650_1.bottom_dot_en =NO;
+			tm1650_1.blink_en  =DISABLE ;
+			tm1650_1.Is_num = YES  ;
+			dir=~dir;
+			solder1 .state = TempCTRL ;
+		}
 	}
 		
-//	如果持续未按并且持续时间超过xx秒
-	if(button_1 .time_count>300)
-	{	 n =0;
-		solder1 .state = TempCTRL ;
-	}		
-			break;
-		default :
-			break ;
-	}
 }
 
 
@@ -267,15 +396,19 @@ void SOLDER_TempADJUST_operate(void)
 
 void SOLDER_ALARM_operate(void)
 {
-	tm1650_1.disp_type = word ;
-	
-	
 	if(hotter1321 .sensor_err )
 	{
+		hotter1321 .heat_en (DISABLE );
 		tm1650_1.word = S_E;
+		tm1650_1.Is_num = NO ;
+		tm1650_1.blink_en = NO;
+		tm1650_1.bottom_dot_en  = NO ;
+		tm1650_1.dot_run_en  = NO;
 		if(hotter1321 .real_adc <hotter1321 .sensor_err_adc )
 		{
 			solder1 .state =TempCTRL ;
+			tm1650_1.Is_num = YES ;
+			tm1650_1.blink_en = NO;
 			hotter1321 .sensor_err =0 ;
 		}
 	}
@@ -283,7 +416,16 @@ void SOLDER_ALARM_operate(void)
 	{
 		if(hotter1321 .hotter_err )
 		{
+			hotter1321 .heat_en (ENABLE );
+			tm1650_1.bottom_dot_en= ENABLE ;
 			tm1650_1.word = H_E;
+			if(hotter1321 .real_temperature  >90)
+			{
+				solder1 .state =TempCTRL ;
+				tm1650_1.Is_num = YES ;
+				tm1650_1.blink_en = NO;
+				hotter1321 .hotter_err =0;
+			}
 		}
 		
 	}
@@ -323,6 +465,7 @@ void Solder_1_Transformation(void)//状态转换
 		case TempADJUST:
 			SOLDER_TempADJUST_operate();
 			break;
+
 		default:
 			break;
 	}

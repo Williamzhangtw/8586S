@@ -12,10 +12,11 @@ verify:2016/07/01
 #include "../bsp/tm1650.h"
 
 typedef   enum 
-	{
+{
     POWERON ,
     IDLE,
     TempCTRL,
+	TargetTempShow,
     TempSET,
     ALARM,
     TempADJUST ,

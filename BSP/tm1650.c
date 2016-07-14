@@ -8,6 +8,9 @@ the reflash is update in the ISR.
 
 const uint8_t CODE00[10]={0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};// 0-9
 const uint8_t  CODE_Clean[4]={0x00,0x00,0x00};//
+
+const uint8_t  CODE_Clean_Dot[4]={0x80,0x00,0x00};
+
 const uint8_t  CODE01[4]={0x40,0x40,0x40};//" - - - "
 const uint8_t  S_E[4]={0x79,0x40,0x6D};//" S - E(0xF5) " 
 const uint8_t  H_E[4]={0x79,0x40,0x76};//" H - E(0xF5) " 
@@ -29,6 +32,7 @@ const uint8_t _888[4] = {0x7F,0x7F,0x7F};//"888"
 const uint8_t xianfu[4] = {0x09,0x09,0x09};//
 const uint8_t huxi[4] ={0x37,0x0E,0x01};
 const uint8_t hui[4] = {0x39,0x09,0x0f};//
+const uint8_t  _null[4]={0x00,0x00,0x40};//"-  "
 
  
 void tm1650_dio_1(GPIO_PinState en)
@@ -46,9 +50,6 @@ uint8_t tm1650_read_dio_1(void)
 	HAL_GPIO_WritePin(TM1651_DIO_GPIO_Port,TM1651_DIO_Pin,GPIO_PIN_SET );
 	return  HAL_GPIO_ReadPin(TM1651_DIO_GPIO_Port ,TM1651_DIO_Pin);
 }
-
-
-
 
 
 
@@ -131,104 +132,9 @@ void FD650_send(TM1650_STRUCT *tm1650,uint8_t date1,uint8_t date2)
 
 
 
-/************Number Display************/
-void disp_value(TM1650_STRUCT *tm1650,uint8_t number,uint8_t bit)	                      
-{
- switch (bit)
- {
-	case 0:FD650_send(tm1650,0X68,number);break;
-	case 1:FD650_send(tm1650,0X6A,number);break;
-	case 2:FD650_send(tm1650,0X6C,number);break;
-	default :break ;
- }
-}
-
 
 
 /************Number Display************/
-
-void TM1650_DispDecMin(TM1650_STRUCT *tm1650,int16_t v)
-{	
-	disp_value( tm1650,CODE00[v %10],0);
-	disp_value(tm1650, CODE00[v /10%10],1);
-	disp_value(tm1650, CODE00[v /100%10],2);
-}
- 
-
-void TM1650_DispDecHeat(TM1650_STRUCT *tm1650,int16_t v)
-{	
-	disp_value( tm1650,CODE00[(v %10)]|0x80,0);
-	disp_value(tm1650, CODE00[v /10%10],1);
-	disp_value(tm1650, CODE00[v /100%10],2);
-}
-
-
-void TM1650_dot(TM1650_STRUCT *tm1650,uint8_t number,uint8_t bit)	                      
-{
-	static uint16_t count=0;
-	if(count ++>=3)
-	{
-		count =0;
-		number =  number|0x80;
-	}
- switch (bit)
- {
-	case 0:FD650_send(tm1650,0X68,number);break;
-	case 1:FD650_send(tm1650,0X6A,number);break;
-	case 2:FD650_send(tm1650,0X6C,number);break;
-	default :break ;
- }
-}
-
-void TM1650_DispDecMin_dot(TM1650_STRUCT *tm1650,int16_t v)
-{	
-	TM1650_dot(tm1650, CODE00[v %10],0);
-	TM1650_dot( tm1650,CODE00[v /10%10],1);
-	TM1650_dot( tm1650,CODE00[v /100%10],2);
-}
-
- void TM1650_DispChar(TM1650_STRUCT *tm1650,const uint8_t *p)	                      
-{
- 	FD650_send(tm1650,0X68,*p);  //GID1
-	FD650_send(tm1650,0X6A,*++p);  //GID2
-	FD650_send(tm1650,0X6C,*++p);  //GID3 
-}
-
-void TM1650_DispDecMin_blink(TM1650_STRUCT *tm1650,uint16_t number)
-{
-  static uint8_t N = 0 ;
-  N++ ;
-  if(N<5)  
-  {      
-   TM1650_DispDecMin(tm1650,number); 
-  }
-  else if (N <6)
-		TM1650_DispChar(tm1650,CODE_Clean);
-  else
-		N = 0 ;
-}
-
-
-
-
-void TM1650_Disp_Pic_blink(TM1650_STRUCT *tm1650,const uint8_t  *p)
-{
-	static uint8_t N = 0 ;
-		N++ ;
-	if(N<5)  
-	{      
-		TM1650_DispChar(tm1650,p);
-	}
-	else if (N <6)
-		TM1650_DispChar(tm1650,CODE_Clean);
-	else
-		N = 0 ;
-}
-
-
-
-
-
 uint16_t  TM1650_BreathLightPWM(void)
 {
   static uint16_t led0pwmval=0;
@@ -251,24 +157,85 @@ uint16_t  TM1650_BreathLightPWM(void)
 
 
 
-
-void Tm1650_show(TM1650_STRUCT *tm1650)
-{
-	switch (tm1650->disp_type)
-	{
-		case num :	TM1650_DispDecMin(tm1650,tm1650->num);break ;
-		case numrun :TM1650_DispDecMin_dot(tm1650,tm1650->num);break ;
-		case numblink:TM1650_DispDecMin_blink(tm1650,tm1650->num);break ;
-		case word : TM1650_DispChar(tm1650,tm1650->word);break ;
-		case wordblink :TM1650_Disp_Pic_blink(tm1650,tm1650->word);break ;
-		case dot: TM1650_DispDecHeat(tm1650,tm1650->num);break ;
-		default :break ;
-	}
-}
+ 
 
 void Tm1650_1_show_ISR(void)
 {
-	Tm1650_show (&tm1650_1);
+	uint8_t disp_value[3];
+	static uint8_t dir =0;
+	uint8_t *p;
+	uint8_t i;
+	static uint8_t n=0;
+
+	
+	
+	if(tm1650_1.blink_en && dir ==0 )
+	{
+
+		p =(uint8_t *)CODE_Clean ;
+		for( i=0;i<3;i++)
+		{
+			disp_value[i] = *p++;
+		}
+	}
+
+	else
+	{
+		if(tm1650_1.Is_num ==YES)
+		{
+			if(tm1650_1.num>=0)
+			{		 
+				disp_value[0] = CODE00[ tm1650_1.num %10];
+				disp_value[1] = CODE00[  tm1650_1.num /10%10];
+				disp_value[2] =CODE00[  tm1650_1.num /100%10];
+			}
+			else
+			{
+				
+				uint16_t 	v_temp = __fabs (tm1650_1.num);
+				disp_value[0] = CODE00[  v_temp %10];
+				disp_value[1]= CODE00[ v_temp /10%10];
+				disp_value[2] =0x40;
+			}
+		}
+		else
+		{
+			p=  (uint8_t *)tm1650_1.word;
+			for( i=0;i<3;i++)
+			{
+				disp_value[i] = *p++;
+			}
+		}
+		
+	}
+
+	if(tm1650_1 .bottom_dot_en )
+	{
+		disp_value[0] |=0x80;
+	}
+	else
+	{
+		if(tm1650_1 .dot_run_en )
+		{
+			if(tm1650_1.disp_count %2==0)
+			{
+				if((n++)>2)
+				n=0;
+			}
+			disp_value [n]|=0x80;
+		}
+	}
+	tm1650_1.disp_count++;
+	if(tm1650_1.disp_count%3==0)
+	{
+		dir =~dir;
+	}
+	
+	
+	FD650_send(&tm1650_1,0X68,disp_value[0] ); //GID1
+	FD650_send(&tm1650_1,0X6A,disp_value[1]);  //GID2
+	FD650_send(&tm1650_1,0X6C,disp_value[2]);  //GID3
+	
 }
 
 
