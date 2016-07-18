@@ -1,7 +1,3 @@
-/*
-Author :ztw
-verify:2016/07/01   
-*/
 #include "stm32f0xx_hal.h"
 #ifndef _HOTTERCTRL_H
 #define _HOTTERCTRL_H
@@ -16,7 +12,6 @@ typedef   enum
     POWERON ,
     IDLE,
     TempCTRL,
-	TargetTempShow,
     TempSET,
     ALARM,
     TempADJUST ,
@@ -25,7 +20,8 @@ typedef   enum
 typedef struct 
 {
 	HOTTER_STATUS_ENUM state;
-	void(*state_trans)(void);
+	
+//	void(*state_trans)(void);
 }HOTTER_CTRL_Typedef;
 
 extern void Solder_1_Transformation(void);

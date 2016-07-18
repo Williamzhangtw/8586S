@@ -1,4 +1,4 @@
-
+//data 2016-7-15
 #include "flash.h"
 #include <string.h>
 #include <math.h>
@@ -10,8 +10,9 @@
 
 
 
-//function:存数据 
+/*function:存数据 
 //返回值 存储是否正常，NO表示 没有出错，yes 表示异常
+*/
 uint8_t APP_DataSaveIsError(uint32_t start_address, uint16_t *data,int16_t data_num)
 {
 	
@@ -35,8 +36,9 @@ uint8_t APP_DataSaveIsError(uint32_t start_address, uint16_t *data,int16_t data_
 	return return_value;
 }
 
-//function： 读数据，从一个地址读取N个数据。
+/*function： 读数据，从一个地址读取N个数据。
 //参数：address 表示 读取数的地址，*data表示 存放的地址，num表示存放的个数
+*/
 void APP_DataRead(uint32_t address, uint16_t *data,int16_t num)
 {
 
@@ -84,7 +86,8 @@ void FlshPara_Save(void)
  
  	HAL_FLASH_Lock();
 }
-//----------------------------------------------------
+
+
 void FlshPara_Init(void)
 {
 	

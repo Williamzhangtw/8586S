@@ -373,7 +373,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F030x6</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;                                                                   ../Drivers/STM32F0xx_HAL_Driver/Inc;                                                                   ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy;                                                                   ../Drivers/CMSIS/Include;                                                                   ../Drivers/CMSIS/Device/ST/STM32F0xx/Include</IncludePath>
+              <IncludePath>../Inc;                                                                     ../Drivers/STM32F0xx_HAL_Driver/Inc;                                                                     ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy;                                                                     ../Drivers/CMSIS/Include;                                                                     ../Drivers/CMSIS/Device/ST/STM32F0xx/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -549,7 +549,7 @@
             <File>
               <FileName>system_stm32f0xx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/system_stm32f0xx.c</FilePath>
+              <FilePath>../Drivers/CMSIS//Device/ST/STM32F0xx/Source/Templates/system_stm32f0xx.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -557,9 +557,9 @@
           <GroupName>BSP</GroupName>
           <Files>
             <File>
-              <FileName>hotter.c</FileName>
+              <FileName>rotary.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BSP\hotter.c</FilePath>
+              <FilePath>..\bsp\rotary.c</FilePath>
             </File>
             <File>
               <FileName>button.c</FileName>
@@ -567,14 +567,14 @@
               <FilePath>..\BSP\button.c</FilePath>
             </File>
             <File>
-              <FileName>rotary.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\bsp\rotary.c</FilePath>
-            </File>
-            <File>
               <FileName>tm1650.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\bsp\tm1650.c</FilePath>
+            </File>
+            <File>
+              <FileName>hotter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\hotter.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -605,11 +605,6 @@
               <FileName>flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\TOOL\flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_ADC.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\TOOL\HAL_ADC.c</FilePath>
             </File>
             <File>
               <FileName>PID.c</FileName>

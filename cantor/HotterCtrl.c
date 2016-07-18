@@ -1,5 +1,4 @@
-/*
-Data:            2016/06/30
+/*            2016/07/16
 */
 #include "../cantor/hotterctrl.h"
 #include "../tool/msg_task.h"
@@ -16,10 +15,6 @@ void solder1_init(void)
 	solder1 .state =  POWERON   ;
 	
 }
-
-
-
-
 
 
 void SOLDER_POWERON_operate(void)
@@ -40,7 +35,7 @@ void SOLDER_POWERON_operate(void)
 	tm1650_1.dot_run_en =DISABLE ;	
 	tm1650_1.blink_en  =DISABLE ;
 	tm1650_1.bottom_dot_en =DISABLE ;
-	tm1650_1 .word =CODE_Clean ;
+	tm1650_1 .word =(uint8_t*)CODE_Clean ;
 }
 
 
@@ -54,7 +49,7 @@ void SOLDER_IDLE_operate(void)
 	{
 		if (!dir)
 		{
-			tm1650_1.disp_count=0;
+			tm1650_1.times_100ms=0;
 			dir=~dir;
 			tm1650_1.Is_num = YES ;
 			tm1650_1.dot_run_en =DISABLE ;	
@@ -65,15 +60,15 @@ void SOLDER_IDLE_operate(void)
 		else
 		{	
 			
-			if(tm1650_1.disp_count>20)
+			if(tm1650_1.times_100ms>20)
 			{
 				tm1650_1.Is_num = YES ;
 				tm1650_1.dot_run_en =DISABLE ;	
 				tm1650_1.blink_en  =DISABLE ;
 				tm1650_1.bottom_dot_en =DISABLE ;
 				solder1 .state = TempCTRL  ;
-				hotter1321 .work_state = 0;//初始化H-E检查
-				tm1650_1.disp_count =0;
+				hotter1321 .work_state = notheating;//初始化H-E检查
+				tm1650_1.times_100ms =0;
 				dir =~dir;
 			}
 		}			
@@ -86,12 +81,12 @@ void SOLDER_IDLE_operate(void)
 		{
 			hotter1321 .heat_en(DISABLE );
 			dir =0;
-			tm1650_1 .word =OFF;
+			tm1650_1 .word =(uint8_t*)OFF;
 			tm1650_1.dot_run_en =DISABLE ;	
 			tm1650_1.blink_en  = NO ;
 			tm1650_1.Is_num = NO ;
 			tm1650_1 .bottom_dot_en =NO;
-			tm1650_1.disp_count=0;
+			tm1650_1.times_100ms=0;
 		}
 	}
 }
@@ -106,15 +101,16 @@ void SOLDER_TempCTRL_operate(void)
 	
 	
 	static uint8_t check_time = 0;
-	static int16_t minus_pre ;
-	int16_t minus;
+
+	
+	 
 	//显示
 	
 	
 //	
 
 	
-	if(hotter1321 .work_state ==3)
+	if(hotter1321 .work_state ==balance)
 		tm1650_1.num = hotter1321.target_temperature;
 	else tm1650_1.num = hotter1321.real_temperature;
 // 	//加热控制-ADC超出范围
@@ -144,17 +140,17 @@ void SOLDER_TempCTRL_operate(void)
 	//H-E检查
 	if(dir_1)
 	{
-		if(	hotter1321 .work_state==1)
+		if(	hotter1321 .work_state==heating)
 		{
 			hotter1321 .heated_time_count=0;
 			
-			minus_pre =  hotter1321.target_temperature -   hotter1321 .real_temperature;
+			hotter1321.minus_pre =  hotter1321.target_temperature -   hotter1321 .real_temperature;
 			dir_1 = 0;
 		}
 	}
 	else 
 	{
-		if(	hotter1321 .work_state!=1)
+		if(	hotter1321 .work_state!=heating)
 		{
 		    dir_1 = 1;
 			 
@@ -164,9 +160,9 @@ void SOLDER_TempCTRL_operate(void)
 			if((hotter1321 .heated_time_count>10))
 			{
 				dir_1 = 1;
-				minus = hotter1321.target_temperature-hotter1321 .real_temperature ;
+				hotter1321.minus_now = hotter1321.target_temperature-hotter1321 .real_temperature ;
 				
-				if((minus_pre -minus )<2)
+				if((hotter1321.minus_pre -hotter1321.minus_now )<2)
 				{
 					if(hotter1321 .real_temperature <80)
 					{		
@@ -204,16 +200,15 @@ void SOLDER_TempCTRL_operate(void)
 	}
 			
 	//调温按键检查	
-	if(rotary_1.Is_press == YES)
+	if(rotary_1.Spin_direction)
 	{
-		rotary_1.Is_press =NO;
 		hotter1321 .heat_en(DISABLE );
 		solder1 .state = TempSET ;
 		tm1650_1.Is_num = YES  ;
     	tm1650_1.dot_run_en =DISABLE ;	
 		tm1650_1.blink_en  =DISABLE ;
 		tm1650_1.bottom_dot_en=DISABLE ;
-		button_1 .time_count=0;
+		button_1 .times_10ms=0;
 		
 
 	}	
@@ -222,25 +217,25 @@ void SOLDER_TempCTRL_operate(void)
 	{
 		if (button_1.Is_press == YES)
 		{
-			dir =0;button_1.continue_press_time = 0;
+			dir =0;button_1.times_10ms = 0;
 		}
 	}
 	else
 	{
 		if (button_1.Is_press == YES)
 		{
-			if ((button_1.continue_press_time>300)&&(hotter1321 .work_state ==3))
+			if ((button_1.times_10ms>300)&&(hotter1321 .work_state ==balance))
 			{
 				
 				
 				hotter1321 .heat_en(DISABLE );
 				tm1650_1.Is_num = NO  ;
-				tm1650_1.word = CAL;
+				tm1650_1.word = (uint8_t*)CAL;
 				tm1650_1.dot_run_en =ENABLE ;	
 				tm1650_1.blink_en  =DISABLE ;
 				tm1650_1.bottom_dot_en=DISABLE ;
 				solder1 .state = TempADJUST ;
-				button_1 .time_count =0;
+				button_1 .times_10ms =0;
 				dir=1;
 			}
 		}
@@ -262,7 +257,7 @@ void SOLDER_TempSET_operate(void)
 	*/
 	if(rotary_1.Spin_direction == Spin_left)
 	{
-		button_1 .time_count=0;
+		button_1 .times_10ms=0;
 		rotary_1.Spin_direction = no_direction ;
 		if(--hotter1321.target_temperature<=hotter1321 .Lmin)
 			hotter1321.target_temperature=hotter1321 .Lmin;
@@ -272,7 +267,7 @@ void SOLDER_TempSET_operate(void)
 	*/
 	if(rotary_1.Spin_direction == Spin_right)
 	{
-		button_1 .time_count=0;
+		button_1 .times_10ms=0;
 		rotary_1.Spin_direction = no_direction ;
 		if(++hotter1321.target_temperature >hotter1321 .Lmax )
 		{
@@ -296,7 +291,7 @@ void SOLDER_TempSET_operate(void)
 //	如果持续未按并且持续时间超过xx秒，温度设定完成
 //	*/
 	
-	if(button_1 .time_count>250)
+	if(button_1 .times_10ms>250)
 	{
 		FlshPara_Save();
 		tm1650_1.blink_en  = NO ;
@@ -323,7 +318,7 @@ void SOLDER_TempADJUST_operate(void)
 	Hotter_flash__TypeDef hotter_flash;
 	if(!dir)
 	{
-		if (button_1 .time_count>100)
+		if (button_1 .times_10ms>100)
 		{ 
 			memcpy(&hotter_flash,(Hotter_flash__TypeDef *)PARA_START_ADDR,sizeof (Hotter_flash__TypeDef)); 
 			number = hotter_flash.adjust_temperature;		
@@ -343,7 +338,7 @@ void SOLDER_TempADJUST_operate(void)
 		if(rotary_1.Spin_direction == Spin_left)
 		{
 			
-			button_1 .time_count =0;
+			button_1 .times_10ms =0;
 			rotary_1.Spin_direction = no_direction;
 			--number;
 			if(number<hotter1321 .Cmin) number  =  hotter1321 .Cmin;
@@ -353,7 +348,7 @@ void SOLDER_TempADJUST_operate(void)
 		如果右旋，温度做加法运算
 		*/
 		if(rotary_1.Spin_direction == Spin_right)
-		{	button_1 .time_count =0;
+		{	button_1 .times_10ms =0;
 			rotary_1.Spin_direction = no_direction;
 			++number;
 			if(number > hotter1321 .Cmax) number =  hotter1321 .Cmax;
@@ -378,7 +373,7 @@ void SOLDER_TempADJUST_operate(void)
 		}
 			
 	//	如果持续未按并且持续时间超过xx秒
-		if(button_1 .time_count>500)
+		if(button_1 .times_10ms>500)
 		{	
 			tm1650_1.dot_run_en =NO ;
 			tm1650_1.bottom_dot_en =NO;
@@ -399,7 +394,7 @@ void SOLDER_ALARM_operate(void)
 	if(hotter1321 .sensor_err )
 	{
 		hotter1321 .heat_en (DISABLE );
-		tm1650_1.word = S_E;
+		tm1650_1.word = (uint8_t*)S_E;
 		tm1650_1.Is_num = NO ;
 		tm1650_1.blink_en = NO;
 		tm1650_1.bottom_dot_en  = NO ;
@@ -418,7 +413,7 @@ void SOLDER_ALARM_operate(void)
 		{
 			hotter1321 .heat_en (ENABLE );
 			tm1650_1.bottom_dot_en= ENABLE ;
-			tm1650_1.word = H_E;
+			tm1650_1.word =(uint8_t*) H_E;
 			if(hotter1321 .real_temperature  >90)
 			{
 				solder1 .state =TempCTRL ;
