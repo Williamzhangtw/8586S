@@ -31,7 +31,7 @@ Hotter_flash__TypeDef;
 
 
 
-
+extern Hotter_flash__TypeDef hotter_flash;
 
 
 

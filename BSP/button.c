@@ -9,8 +9,7 @@ pay attention:用完了要清零
 #include "button.h"
 
 
-/*该函数用在ISR中，按键侦测间隔为10ms
-更新参数
+/*该函数用在ISR中，按键侦测间隔为10ms更新参数
 time_10ms
 state_now
 state_pre
@@ -21,8 +20,7 @@ Is_click
 void BUTTON_scan(BUTTON_CTRL_TypeDef *button)
 {
 	button ->times_10ms++;
-	
-/*Interference prevention 带按键消抖获取按键状态*/
+	/*Interference prevention 带按键消抖获取按键状态*/
 	button -> state_now = button -> read_button();//获得当前按键状态
 	if(button ->state_pre ==button -> state_now)//如果上次读取的数值
 	{
@@ -34,9 +32,10 @@ void BUTTON_scan(BUTTON_CTRL_TypeDef *button)
 	}
 	
  
-/*按击检查*/	
+
 	if(button -> Is_support_click)
 	{
+		/*按击检测功能*/	
 		if(!button -> click_dir)
 		{
 			if(button -> Is_press)button -> click_dir=~button -> click_dir;
@@ -48,9 +47,32 @@ void BUTTON_scan(BUTTON_CTRL_TypeDef *button)
 				button ->Is_click =YES;
 				button -> click_dir=~button -> click_dir;
 			}
+		}		
+	}
+	
+
+	
+	/*连按时间计数功能*/
+	if(!button -> continue_press_dir)
+	{
+		if(button -> Is_press)
+		{
+			button -> continue_press_times =0;
+			button -> continue_press_dir=~button -> continue_press_dir;
 		}
 	}
+	else
+	{
+		if(button -> Is_press)
+		{
+			button -> continue_press_times++;
+		}
+		else
+		{
+			button -> continue_press_dir=~button -> continue_press_dir;
+		}
 		
+	}
 }
 
 

@@ -12,11 +12,18 @@ typedef struct
 	uint8_t (*read_button)(void);
 	uint8_t state_pre;
 	uint8_t state_now;
+	
 	uint8_t Is_press;
-	uint8_t Is_click;
+	
 	uint8_t Is_support_click;
 	uint8_t click_dir;
-//	uint16_t continue_press_time;//
+	uint8_t Is_click;
+	
+	
+	uint16_t continue_press_times;
+	uint8_t continue_press_dir;
+	
+
 	uint16_t times_10ms;
 
 }BUTTON_CTRL_TypeDef;

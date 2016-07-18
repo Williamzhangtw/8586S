@@ -22,12 +22,17 @@
 	 int16_t real_temperature;
 	 int16_t target_temperature;
 	 int16_t adjust_temperature;
+	 
+	 
+	 
+	 
 //	 uint16_t reset_position_time;//minute per uint 
 //	 uint16_t go_sleep_time;
 //	 uint16_t power_off_time;
 	 uint8_t hz50_count;
 	 uint16_t sensor_err_adc;
-	 uint16_t heated_time_count;
+	 uint16_t heated_times;
+	 uint8_t heated_check_dir;
 //	 uint8_t Hoter_alarm_update_flag;
 	 uint8_t sensor_err;
 	 uint8_t hotter_err;
@@ -35,6 +40,8 @@
 //	 uint8_t Is_reset_position;
 	 uint8_t Is_power_on;//dev control switch on
 //	 uint8_t Is_supply_eletric;// supply the power for heating or cooling
+	int16_t temperature_pre;
+
 	 int16_t minus_pre;//real_temperature -.target_temperature ;
 	 int16_t minus_now;//real_temperature -.target_temperature ;
 	 uint8_t temp_distinguish_dif;

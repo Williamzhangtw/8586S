@@ -6,30 +6,28 @@
 
 
 
- const Hotter_flash__TypeDef hotter_flash_default ={88,0,300};
+const Hotter_flash__TypeDef hotter_flash_default ={88,0,300};
 
-
+Hotter_flash__TypeDef hotter_flash;
 
 /*function:存数据 
 //返回值 存储是否正常，NO表示 没有出错，yes 表示异常
 */
 uint8_t APP_DataSaveIsError(uint32_t start_address, uint16_t *data,int16_t data_num)
 {
-	
 	static FLASH_EraseInitTypeDef EraseInitStruct;
 	uint8_t return_value = 0;
-  uint32_t page_error = 0;
+	uint32_t page_error = 0;
 	HAL_FLASH_Unlock();
 	EraseInitStruct.TypeErase   = FLASH_TYPEERASE_PAGES;
-  EraseInitStruct.PageAddress = start_address;
-  EraseInitStruct.NbPages     =1; // FLASH_PAGE_SIZE;
-	 if (HAL_FLASHEx_Erase(&EraseInitStruct, &page_error) != HAL_OK)
-  {
+	EraseInitStruct.PageAddress = start_address;
+	EraseInitStruct.NbPages     =1; // FLASH_PAGE_SIZE;
+	if (HAL_FLASHEx_Erase(&EraseInitStruct, &page_error) != HAL_OK)
+	{
 		return_value = 1;
 	}
 	for(uint16_t  number_count = 0; number_count <data_num ;number_count ++)
 	{
-
 		HAL_FLASH_Program (FLASH_TYPEPROGRAM_HALFWORD, start_address+ (number_count<<1),*(data+number_count));
 	}
 	
@@ -63,7 +61,7 @@ void FlshPara_Save(void)
 
 	uint32_t page_error = 0;
 	uint16_t   size; 
-	Hotter_flash__TypeDef hotter_flash;
+	
 	
 	uint16_t *ptemp  = (uint16_t*)&hotter_flash;
 	size = sizeof(Hotter_flash__TypeDef);
@@ -95,9 +93,7 @@ void FlshPara_Init(void)
 
     uint32_t page_error = 0;
 	uint16_t   size; 
-	;	
-   Hotter_flash__TypeDef hotter_flash;
-	
+
 	uint16_t *ptemp  = (uint16_t*)&hotter_flash;
     size = sizeof(Hotter_flash__TypeDef);
 

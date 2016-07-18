@@ -4,11 +4,12 @@
 /* USER CODE BEGIN Includes */
  #include "adc.h"
  #include "../tool/adc_filter.h"
+ #include "../tool/flash.h"
 
 
 void Hotter_heated_time_count_ISR(HOTER_CTRL_TypeDef * hotter)
 {
-	hotter->heated_time_count ++;
+	hotter->heated_times ++;
 }
 
 
@@ -97,7 +98,7 @@ void  Filter_hotter1321_adc_ISR (void)
 
 void  Hotter1321_realTemp_ISR (void)
 {
-	hotter1321.real_temperature   = hotter1321.real_adc *hotter1321.Ks+hotter1321 .Bs-hotter1321 .adjust_temperature; 
+	hotter1321.real_temperature   = hotter1321.real_adc *hotter1321.Ks+hotter1321 .Bs-hotter_flash.adjust_temperature ; 
 }
 
 
@@ -117,7 +118,7 @@ void Hotter1321_init(void)
 //	hotter1321.adjust_temperature = 0;
 	hotter1321.hz50_count =0;
 	hotter1321 .sensor_err_adc = 2300;
-	hotter1321 .heated_time_count =0;
+	hotter1321 .heated_times =0;
 	
 	hotter1321.sensor_err =0;
 	hotter1321.hotter_err =0;

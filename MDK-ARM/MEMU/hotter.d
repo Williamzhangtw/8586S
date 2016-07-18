@@ -34,3 +34,5 @@ memu\hotter.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h
 memu\hotter.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h
 memu\hotter.o: ../Inc/adc.h
 memu\hotter.o: ..\BSP\../tool/adc_filter.h
+memu\hotter.o: ..\BSP\../tool/flash.h
+memu\hotter.o: ..\BSP\../tool/../bsp/hotter.h
