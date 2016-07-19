@@ -21,7 +21,7 @@ Msg_Delayms Msg_delayms[Msg_delayms_ID_Num] =      //消息，消息处理函数
 	hotter1321_adc_msg,							NO,					NO,			1,					Filter_hotter1321_adc_ISR,
 	hotter1321_poweron_msg,						NO,					NO,			50,					Hotter1321_power_on_scan_ISR,
 	hotter1321_realTemp_msg,					NO,					NO,			100,				Hotter1321_realTemp_ISR,
-	hotterctrl_poweron_msg, 					NO,					NO,			50,					Solder_1_poweron_ISR,
+//	hotterctrl_poweron_msg, 					NO,					NO,			50,					Solder_1_poweron_ISR,
 	hotter1321_heated_count_msg ,				NO,    				NO,         100,        		Hotter1321_heated_time_count_ISR,
 	hotter1321_hotter_state_msg,				NO,     			NO,         50,         		Hotter1321WorkingState_ISR,
 	

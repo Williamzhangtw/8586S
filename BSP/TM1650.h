@@ -39,18 +39,22 @@ typedef struct
 	void (*dio)(GPIO_PinState);
 	uint8_t (*read_dio)(void);
 
+	//显示类型
 	uint8_t Is_num;
+	
+	//显示内容
 	int16_t num;
 	uint8_t *word;
 	
 	uint8_t times_100ms;
 	
+	//显示样式控制
 	uint8_t dot_run_en;
 	uint8_t bottom_dot_en;
 	uint8_t blink_en;
 	
 	
-	
+	//显示控制
 	uint8_t disp_value[3];
 	uint8_t blink_dir;
 	uint8_t dot_run_bit;

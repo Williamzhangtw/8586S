@@ -512,7 +512,7 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h)(0x5784B46A)
-F (../Src/main.c)(0x5789DF9F)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\main.o --omf_browse memu\main.crf --depend memu\main.d)
+F (../Src/main.c)(0x578DC3F2)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\main.o --omf_browse memu\main.crf --depend memu\main.d)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5784B46A)
 I (../Inc/stm32f0xx_hal_conf.h)(0x5789DF9F)
 I (../Inc/mxconstants.h)(0x5789DFA0)
@@ -548,11 +548,11 @@ I (../Inc/adc.h)(0x5789DF9F)
 I (../Inc/tim.h)(0x5789DF9F)
 I (../Inc/gpio.h)(0x5789DF9E)
 I (../Src/../tool/msg_task.h)(0x57834EC5)
-I (../Src/../cantor/hotterctrl.h)(0x5789F20D)
+I (../Src/../cantor/hotterctrl.h)(0x578DC725)
 I (../Src/../cantor/../bsp/hotter.h)(0x578C9AAF)
 I (../Src/../cantor/../bsp/button.h)(0x578C8B07)
-I (../Src/../cantor/../bsp/rotary.h)(0x5789840F)
-I (../Src/../cantor/../bsp/tm1650.h)(0x5789D4ED)
+I (../Src/../cantor/../bsp/rotary.h)(0x578D9AC7)
+I (../Src/../cantor/../bsp/tm1650.h)(0x578D92AE)
 F (../Src/stm32f0xx_it.c)(0x5789DF9F)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\stm32f0xx_it.o --omf_browse memu\stm32f0xx_it.crf --depend memu\stm32f0xx_it.d)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5784B46A)
 I (../Inc/stm32f0xx_hal_conf.h)(0x5789DF9F)
@@ -653,7 +653,7 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h)(0x5784B46A)
 I (../Src/../bsp/hotter.h)(0x578C9AAF)
-I (../Src/../bsp/rotary.h)(0x5789840F)
+I (../Src/../bsp/rotary.h)(0x578D9AC7)
 F (../Src/adc.c)(0x5789DF9F)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\adc.o --omf_browse memu\adc.crf --depend memu\adc.d)
 I (../Inc/adc.h)(0x5789DF9F)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5784B46A)
@@ -754,8 +754,8 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h)(0x5784B46A)
-F (..\bsp\rotary.c)(0x5789A39E)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\rotary.o --omf_browse memu\rotary.crf --depend memu\rotary.d)
-I (..\bsp\rotary.h)(0x5789840F)
+F (..\bsp\rotary.c)(0x578DBD52)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\rotary.o --omf_browse memu\rotary.crf --depend memu\rotary.d)
+I (..\bsp\rotary.h)(0x578D9AC7)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5784B46A)
 I (../Inc/stm32f0xx_hal_conf.h)(0x5789DF9F)
 I (../Inc/mxconstants.h)(0x5789DFA0)
@@ -787,7 +787,7 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h)(0x5784B46A)
-F (..\BSP\button.c)(0x578C8B07)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\button.o --omf_browse memu\button.crf --depend memu\button.d)
+F (..\BSP\button.c)(0x578DCFE2)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\button.o --omf_browse memu\button.crf --depend memu\button.d)
 I (..\BSP\button.h)(0x578C8B07)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5784B46A)
 I (../Inc/stm32f0xx_hal_conf.h)(0x5789DF9F)
@@ -820,8 +820,8 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h)(0x5784B46A)
-F (..\bsp\tm1650.c)(0x5789D6BE)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\tm1650.o --omf_browse memu\tm1650.crf --depend memu\tm1650.d)
-I (..\bsp\tm1650.h)(0x5789D4ED)
+F (..\bsp\tm1650.c)(0x578DDAB9)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\tm1650.o --omf_browse memu\tm1650.crf --depend memu\tm1650.d)
+I (..\bsp\tm1650.h)(0x578D92AE)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5784B46A)
 I (../Inc/stm32f0xx_hal_conf.h)(0x5789DF9F)
 I (../Inc/mxconstants.h)(0x5789DFA0)
@@ -890,8 +890,8 @@ I (../Inc/adc.h)(0x5789DF9F)
 I (..\BSP\../tool/adc_filter.h)(0x5779A822)
 I (..\BSP\../tool/flash.h)(0x578C9AAF)
 I (..\BSP\../tool/../bsp/hotter.h)(0x578C9AAF)
-F (..\cantor\hotterctrl.c)(0x578CA1A8)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\hotterctrl.o --omf_browse memu\hotterctrl.crf --depend memu\hotterctrl.d)
-I (..\cantor\../cantor/hotterctrl.h)(0x5789F20D)
+F (..\cantor\hotterctrl.c)(0x578DDC91)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\hotterctrl.o --omf_browse memu\hotterctrl.crf --depend memu\hotterctrl.d)
+I (..\cantor\../cantor/hotterctrl.h)(0x578DC725)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5784B46A)
 I (../Inc/stm32f0xx_hal_conf.h)(0x5789DF9F)
 I (../Inc/mxconstants.h)(0x5789DFA0)
@@ -925,15 +925,15 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h)(0x5784B46A)
 I (..\cantor\../cantor/../bsp/hotter.h)(0x578C9AAF)
 I (..\cantor\../cantor/../bsp/button.h)(0x578C8B07)
-I (..\cantor\../cantor/../bsp/rotary.h)(0x5789840F)
-I (..\cantor\../cantor/../bsp/tm1650.h)(0x5789D4ED)
+I (..\cantor\../cantor/../bsp/rotary.h)(0x578D9AC7)
+I (..\cantor\../cantor/../bsp/tm1650.h)(0x578D92AE)
 I (..\cantor\../tool/msg_task.h)(0x57834EC5)
-I (..\cantor\../bsp/tm1650.h)(0x5789D4ED)
+I (..\cantor\../bsp/tm1650.h)(0x578D92AE)
 I (..\cantor\../tool/flash.h)(0x578C9AAF)
 I (..\cantor\../tool/../bsp/hotter.h)(0x578C9AAF)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x55DB2B78)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x55DB2B7E)
-F (..\tool\msg_task.c)(0x57898DA5)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\msg_task.o --omf_browse memu\msg_task.crf --depend memu\msg_task.d)
+F (..\tool\msg_task.c)(0x578DCAF0)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\msg_task.o --omf_browse memu\msg_task.crf --depend memu\msg_task.d)
 I (..\tool\../tool/msg_task.h)(0x57834EC5)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5784B46A)
 I (../Inc/stm32f0xx_hal_conf.h)(0x5789DF9F)
@@ -966,12 +966,12 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h)(0x5784B46A)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h)(0x5784B46A)
-I (..\tool\../bsp/tm1650.h)(0x5789D4ED)
-I (..\tool\../cantor/hotterctrl.h)(0x5789F20D)
+I (..\tool\../bsp/tm1650.h)(0x578D92AE)
+I (..\tool\../cantor/hotterctrl.h)(0x578DC725)
 I (..\tool\../cantor/../bsp/hotter.h)(0x578C9AAF)
 I (..\tool\../cantor/../bsp/button.h)(0x578C8B07)
-I (..\tool\../cantor/../bsp/rotary.h)(0x5789840F)
-I (..\tool\../cantor/../bsp/tm1650.h)(0x5789D4ED)
+I (..\tool\../cantor/../bsp/rotary.h)(0x578D9AC7)
+I (..\tool\../cantor/../bsp/tm1650.h)(0x578D92AE)
 I (..\tool\../bsp/hotter.h)(0x578C9AAF)
 F (..\TOOL\adc_filter.c)(0x57883206)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\adc_filter.o --omf_browse memu\adc_filter.crf --depend memu\adc_filter.d)
 I (..\TOOL\adc_filter.h)(0x5779A822)

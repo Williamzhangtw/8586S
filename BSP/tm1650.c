@@ -104,6 +104,8 @@ void FD650_send(TM1650_STRUCT *tm1650,uint8_t date1,uint8_t date2)
 
 void Tm1650_show_ISR(TM1650_STRUCT *tm1650)
 {
+	tm1650->times_100ms++;
+	
 	if(tm1650->blink_en && (tm1650->blink_dir ==0 ))
 	{
 
@@ -115,7 +117,7 @@ void Tm1650_show_ISR(TM1650_STRUCT *tm1650)
 
 	else
 	{
-		if(tm1650->Is_num ==YES)
+		if(tm1650->Is_num ==YES)//整数显示
 		{
 			if(tm1650->num>=0)
 			{		 
@@ -123,7 +125,7 @@ void Tm1650_show_ISR(TM1650_STRUCT *tm1650)
 				tm1650->disp_value[1] = CODE00[  tm1650->num /10%10];
 				tm1650->disp_value[2] =CODE00[  tm1650->num /100%10];
 			}
-			else
+			else//负数显示
 			{
 				
 				tm1650->num = __fabs (tm1650->num);
@@ -132,7 +134,7 @@ void Tm1650_show_ISR(TM1650_STRUCT *tm1650)
 				tm1650->disp_value[2] =0x40;
 			}
 		}
-		else
+		else//文字显示
 		{
 			tm1650->word =  (uint8_t *)tm1650->word;
 			tm1650->disp_value[0] = *tm1650->word ++;
@@ -141,6 +143,15 @@ void Tm1650_show_ISR(TM1650_STRUCT *tm1650)
 		}
 		
 	}
+	if(tm1650->times_100ms%3==0)
+	{
+		if(tm1650->blink_dir==0)
+			tm1650->blink_dir=1;
+		else
+			tm1650->blink_dir=0;
+	}
+	
+	
 
 	if(tm1650->bottom_dot_en )
 	{
@@ -158,13 +169,8 @@ void Tm1650_show_ISR(TM1650_STRUCT *tm1650)
 			tm1650->disp_value [tm1650->dot_run_bit]|=0x80;
 		}
 	}
-	tm1650->times_100ms++;
-	if(tm1650->times_100ms%3==0)
-	{
-		tm1650->blink_dir =~tm1650->blink_dir;
-	}
-	
-	
+
+		
 	FD650_send(tm1650,0X68,tm1650->disp_value[0] ); //GID1
 	FD650_send(tm1650,0X6A,tm1650->disp_value[1]);  //GID2
 	FD650_send(tm1650,0X6C,tm1650->disp_value[2]);  //GID3
@@ -215,8 +221,9 @@ void Tm1650_1_init(void)
 	tm1650_1 .dio = tm1650_dio_1;
 	tm1650_1 .read_dio = tm1650_read_dio_1;	
 	
-	
-	
+	tm1650_1.times_100ms=0;
+	tm1650_1 .blink_dir =0;
+	tm1650_1 .dot_run_bit=0;
 	
 	//函数
 	FD650_send(&tm1650_1,0x48,0x11);//设定8段显示，设定显示亮度0xab;a(1-7-0亮度依次递增)

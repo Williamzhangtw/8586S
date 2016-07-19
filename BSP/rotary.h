@@ -27,6 +27,7 @@ typedef struct
 	uint8_t  elec_leval_a_now;
 	uint8_t  elec_leval_b_now;
 	uint8_t  temple;
+	uint16_t times_1ms;
 	uint8_t  N;
 	
 }R0TARY_CTRL_TypeDef;

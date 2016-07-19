@@ -36,16 +36,16 @@ void BUTTON_scan(BUTTON_CTRL_TypeDef *button)
 	if(button -> Is_support_click)
 	{
 		/*按击检测功能*/	
-		if(!button -> click_dir)
+		if(button -> click_dir==0)
 		{
-			if(button -> Is_press)button -> click_dir=~button -> click_dir;
+			if(button -> Is_press)button -> click_dir=1;
 		}
 		else 
 		{
 			if(!(button -> Is_press))
 			{
 				button ->Is_click =YES;
-				button -> click_dir=~button -> click_dir;
+				button -> click_dir=0;
 			}
 		}		
 	}
@@ -53,12 +53,12 @@ void BUTTON_scan(BUTTON_CTRL_TypeDef *button)
 
 	
 	/*连按时间计数功能*/
-	if(!button -> continue_press_dir)
+	if(button -> continue_press_dir==0)
 	{
 		if(button -> Is_press)
 		{
 			button -> continue_press_times =0;
-			button -> continue_press_dir=~button -> continue_press_dir;
+			button -> continue_press_dir=1;
 		}
 	}
 	else
@@ -69,7 +69,8 @@ void BUTTON_scan(BUTTON_CTRL_TypeDef *button)
 		}
 		else
 		{
-			button -> continue_press_dir=~button -> continue_press_dir;
+			button -> continue_press_dir=0;
+			button -> continue_press_times =0;
 		}
 		
 	}
@@ -120,6 +121,9 @@ void Button_1_init(void)
 	button_1 .Is_click =NO;
 	button_1.Is_support_click = NO ;
 	button_1. click_dir = 0;
+	
+	button_1 .continue_press_times =0;
+	button_1 .continue_press_dir =0;
 	button_1. times_10ms =0;
 }
 

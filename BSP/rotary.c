@@ -18,7 +18,9 @@ void Rotary_scan(R0TARY_CTRL_TypeDef *rotary)
 {
 	rotary->elec_leval_a_now= rotary->read_rotary_a() ;
 	rotary->elec_leval_b_now= rotary->read_rotary_b();
-		
+	
+	rotary->times_1ms ++;
+	
 	if((rotary->elec_leval_a_now!= rotary->elec_leval_a_pre)||(rotary->elec_leval_b_now!=rotary->elec_leval_b_pre))
 	{
 		switch(rotary->N)
@@ -76,8 +78,13 @@ void Rotary_1_init(void)
 	rotary_1.read_rotary_a = read_rotary_a;
 	rotary_1.read_rotary_b = read_rotary_b;
 	rotary_1 .Spin_direction = no_direction ;
+	
 	rotary_1 .elec_leval_a_pre =1;
 	rotary_1 .elec_leval_b_pre =1;
+	rotary_1 .elec_leval_a_now =0;
+	rotary_1 .elec_leval_b_now =0;
+	rotary_1 .temple =0;
+	rotary_1.N  =0;
 }
 
 void Rotary_1_scan_ISR(void)
