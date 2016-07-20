@@ -7,28 +7,30 @@
 #include <string.h>
 #include <math.h>
 
-void Idle_operate(HOTTER_CTRL_Typedef *hotterCtrl)
-{	
+
+void TEMP_IDLE_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+{
 	hotterCtrl -> hotter ->heat_en(DISABLE );//不加热
-	
 	hotterCtrl -> tm1650 ->Is_num = NO ;//显示文字
 	hotterCtrl -> tm1650 ->word =(uint8_t*)OFF;//内容OFF
 	hotterCtrl -> tm1650 ->dot_run_en =DISABLE ;	//不跑灯
 	hotterCtrl -> tm1650 ->blink_en  = NO ;//不闪
 	hotterCtrl -> tm1650 ->bottom_dot_en =NO;//不显示加热点
-	if(hotterCtrl->hotter->Is_power_on)//solder开关检查
-	{
-		hotterCtrl ->  state = TEMP_TARGET_SHOW  ;
-		hal_100ms_flag =0;//用于后面程序计时用
-	}
+	hotterCtrl ->  state = TEMP_IDLE  ;	
 }
 
 
-
-void TargetShow_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+void TEMP_IDLE_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+{	
+	if(hotterCtrl->hotter->Is_power_on)//solder开关检查
+	{
+		hotterCtrl ->  state = TEMP_TARGET_SHOW_READY  ;
+	}
+}
+void TEMP_TARGET_SHOW_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 {
+	hal_100ms_flag =0;//用于后面程序计时用
 	hotterCtrl -> hotter->heat_en(DISABLE );//不加热
-	
 	//显示
 	hotterCtrl->tm1650->Is_num = YES ;//显示数字
 	hotterCtrl->tm1650->num =hotterCtrl->hotter->target_temperature ;//内容：目标温度
@@ -36,20 +38,35 @@ void TargetShow_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	hotterCtrl->tm1650->blink_en  =ENABLE ;//闪烁
 	hotterCtrl->tm1650->bottom_dot_en =DISABLE ;//不显示加热点
 	//显示
-	
-	//2S后进入CTRL（进入此函数hal_100ms_flag被清零）
-	if(hal_100ms_flag>20)
-	{
-		hotterCtrl->state = TEMP_CTRL  ;
-		hal_100ms_flag =0;//用于后面程序计时用
-	}
+	hotterCtrl->state = TEMP_TARGET_SHOW ;
 }
 
 
-void Ctrl_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+void TEMP_TARGET_SHOW_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 {
+	//2S后进入CTRL
+	if(hal_100ms_flag>20)
+	{
+		hotterCtrl->state = TEMP_CTRL_READY  ;
+	}
+}
+void TEMP_CTRL_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+{
+	hotterCtrl->hotter->sensor_err =0;
+	hotterCtrl->hotter->hotter_err =0;
+	hotterCtrl->hotter->heated_check_dir = 0;
 	//显示
 	hotterCtrl->tm1650->Is_num = YES ;//显示数字类型
+	hotterCtrl->tm1650->dot_run_en =DISABLE ;	//不跑灯
+
+	//显示
+	hotterCtrl->state = TEMP_CTRL ;
+}
+
+
+void TEMP_CTRL_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+{
+	
 	//显示内容
 	if(hotterCtrl->hotter->work_state ==TEMP_BALANCE )
 	{
@@ -60,8 +77,8 @@ void Ctrl_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 		hotterCtrl->tm1650->num =hotterCtrl-> hotter->real_temperature;
 	}
 	//显示内容
-	hotterCtrl->tm1650->dot_run_en =DISABLE ;	//不跑灯
-	//显示
+	
+	
 	
  	//加热控制
 	if(hotterCtrl->hotter->real_adc	<	hotterCtrl->hotter->sensor_err_adc)
@@ -81,8 +98,7 @@ void Ctrl_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	{
 		
 		hotterCtrl->hotter->sensor_err =1;
-		hotterCtrl->state = TEMP_ALARM ;
-		 hotterCtrl->hotter->heated_check_dir=0; 
+		hotterCtrl->state = TEMP_ALARM_READY ; 
 	}
 	//加热控制	
 	
@@ -116,33 +132,25 @@ void Ctrl_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 				
 			if((hotterCtrl->hotter->real_temperature <90)&&(hotterCtrl->hotter->heated_times>10000)&&(__fabs (hotterCtrl->hotter->temperature_pre -hotterCtrl->hotter->real_temperature )<4))
 			{		
-				hotterCtrl-> state = TEMP_ALARM ;
-				hotterCtrl->hotter->heated_check_dir=0;
+				hotterCtrl-> state = TEMP_ALARM_READY ;
 				hotterCtrl->hotter->hotter_err=1;
 			}
 		}	
 		
 	}
-	
-	
-	
 	//温度上不去检查
 	
 	//调温按键检查	
 	if(hotterCtrl->rotary->Spin_direction)
 	{ 
-		hotterCtrl-> state = TEMP_TARGET_SET ;	
-		hal_100ms_flag =0;
-		hotterCtrl->hotter->heated_check_dir=0; 
+		hotterCtrl-> state = TEMP_TARGET_SET_READY ;	
 	}
 	//调温按键检查	
 	
 	//校温按键检查	
 	if ((hotterCtrl->button->continue_press_times>300)&&(hotterCtrl->hotter->work_state ==TEMP_BALANCE ))
 	{
-		hotterCtrl->state = TEMP_ADJUST_WARNING  ;
-		hal_100ms_flag =0;//用于后面程序计时用
-		hotterCtrl->hotter->heated_check_dir=0; 
+		hotterCtrl->state = TEMP_ADJUST_WARNING_READY  ;
 	}
 	//校温按键检查
 }
@@ -154,19 +162,25 @@ void Ctrl_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 
 
 
-void TargetSet_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+void TEMP_TARGET_SET_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 {
+	hal_100ms_flag =0;//用于后面程序计时用
+	hotterCtrl -> hotter->heat_en(DISABLE );//不加热
 	//显示
 	hotterCtrl -> tm1650 ->Is_num = YES ;
 	hotterCtrl -> tm1650 ->num =hotterCtrl ->hotter->target_temperature; 
 	hotterCtrl -> tm1650 ->dot_run_en =DISABLE ;	//不跑灯
-	hotterCtrl -> tm1650 ->blink_en  =ENABLE  ;//不闪
+	hotterCtrl -> tm1650 ->blink_en  =DISABLE  ;//不闪
 	hotterCtrl -> tm1650 ->bottom_dot_en =NO;//不显示加热点
 	hotterCtrl -> hotter ->heat_en(DISABLE );//不加热
 	//显示
-	
-	hotterCtrl -> hotter ->heat_en(DISABLE );//不加热	
-	
+	hotterCtrl ->state = TEMP_TARGET_SET ;
+}
+
+
+void TEMP_TARGET_SET_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+{
+
 	
 	//如果左旋，温度做减法运算
 	if(hotterCtrl ->rotary->Spin_direction == Spin_left)
@@ -198,20 +212,22 @@ void TargetSet_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	if(hotterCtrl ->button->Is_press == YES )
 	{
 		FlshPara_Save();
-		hotterCtrl ->state = TEMP_CTRL ;
+		hotterCtrl ->state = TEMP_CTRL_READY ;
 	}
 	
 //如果持续未按并且持续时间超过xx秒，温度设定完成
 	if(hal_100ms_flag>25)
 	{
 		FlshPara_Save();
-		hotterCtrl ->state = TEMP_CTRL ;
+		hotterCtrl ->state = TEMP_CTRL_READY ;
 	}
 }
 
 
-void AdjustWarning_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+
+void TEMP_ADJUST_WARNING_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 {
+	hotterCtrl -> hotter ->heat_en(DISABLE );//不加热
 	//显示
 	hotterCtrl -> tm1650 ->Is_num = NO ;
 	hotterCtrl -> tm1650 ->word =(uint8_t*)CAL ; 
@@ -219,21 +235,22 @@ void AdjustWarning_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	hotterCtrl -> tm1650 ->blink_en  = NO ;//不闪
 	hotterCtrl -> tm1650 ->bottom_dot_en =NO;//不显示加热点
 	//显示
-	
-	hotterCtrl -> hotter ->heat_en(DISABLE );//不加热
+	hotterCtrl ->state = TEMP_ADJUST_WARNING ;
+}
 
-	
+
+void TEMP_ADJUST_WARNING_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+{
 	if (hal_100ms_flag >15)
-	{ 
-//		memcpy(&hotter_flash,(Hotter_flash__TypeDef *)PARA_START_ADDR,sizeof (Hotter_flash__TypeDef)); 		
-		hotterCtrl ->state = TEMP_ADJUST ;
-		hal_100ms_flag =0;//用于后面程序计时用
-		hotterCtrl ->hotter ->adjust_temperature =hotter_flash.adjust_temperature; 
+	{ 		
+		hotterCtrl ->state = TEMP_ADJUST_READY ;
 	}
 }
 
 
-void Adjust_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+
+
+void TEMP_ADJUST_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 {
 	//显示
 	hotterCtrl -> tm1650 ->Is_num = YES ;
@@ -241,13 +258,17 @@ void Adjust_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	hotterCtrl -> tm1650 ->dot_run_en =DISABLE   ;//不跑灯
 	hotterCtrl -> tm1650 ->blink_en  = ENABLE ;//不闪
 	hotterCtrl -> tm1650 ->bottom_dot_en =NO;//不显示加热点
- 
 	//显示
-
+	hotterCtrl -> hotter ->heat_en(DISABLE );//不加热
+	hotterCtrl ->hotter ->adjust_temperature =hotter_flash.adjust_temperature; 
+	hal_100ms_flag =0;//用于后面程序计时用
+	hotterCtrl -> state = TEMP_ADJUST ;
+}
+void TEMP_ADJUST_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+{
 	//如果左旋，温度做减法运算
 	if(hotterCtrl -> rotary->Spin_direction == Spin_left)
 	{
-		
 		hal_100ms_flag =0;//用于后面程序计时用
 		hotterCtrl -> rotary->Spin_direction = no_direction;
 		-- hotterCtrl ->hotter ->adjust_temperature ;
@@ -269,22 +290,19 @@ void Adjust_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 		{
 			hotterCtrl -> hotter ->adjust_temperature  =  hotterCtrl -> hotter ->Cmax;
 		}
-		
 	}
 	
 	//如果确定，温度设定完成
 	if(hotterCtrl -> button ->Is_press == YES )
 	{
 		FlshPara_Save();
-		hotterCtrl -> state =TEMP_CTRL ;
-		hal_100ms_flag =0;
+		hotterCtrl -> state =TEMP_CTRL_READY ;
 	}
 		
 //	如果持续未按并且持续时间超过xx秒
 	if(hal_100ms_flag >50)
 	{	
-		hotterCtrl -> state = TEMP_CTRL ;
-		hal_100ms_flag =0;
+		hotterCtrl -> state = TEMP_CTRL_READY ;
 	}	
 }
 
@@ -292,10 +310,21 @@ void Adjust_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 
 
 
-void Alarm_operate(HOTTER_CTRL_Typedef *hotterCtrl)
-{
+
+
+void TEMP_ALARM_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+{	
 	//显示
 	hotterCtrl -> tm1650 ->Is_num = NO ;
+	hotterCtrl -> tm1650 ->dot_run_en =NO  ;	//不跑灯
+	hotterCtrl -> tm1650 ->blink_en  = ENABLE ;//闪
+	//显示
+	
+	hotterCtrl -> state = TEMP_ALARM ;
+}
+void TEMP_ALARM_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+{
+
 	if(hotterCtrl->hotter ->sensor_err )
 	{
 		hotterCtrl -> tm1650 ->word =(uint8_t *)S_E  ; 
@@ -304,9 +333,7 @@ void Alarm_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	{
 		hotterCtrl -> tm1650 ->word =(uint8_t *)H_E  ; 
 	}
-	hotterCtrl -> tm1650 ->dot_run_en =NO  ;	//不跑灯
-	hotterCtrl -> tm1650 ->blink_en  = ENABLE ;//闪
-	//显示
+
 	
 	if(hotterCtrl->hotter ->hotter_err )
 	{
@@ -315,10 +342,7 @@ void Alarm_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 		hotterCtrl -> hotter ->heat_en(ENABLE );//加热
 		if(hotterCtrl -> hotter->real_temperature  >90)
 		{
-			hal_100ms_flag =0;
-			hotterCtrl ->  state =TEMP_CTRL ;
-			hotterCtrl -> hotter ->hotter_err =0;
-			hotterCtrl->hotter->work_state=NOT_HEAT ;
+			hotterCtrl ->  state =TEMP_CTRL_READY ;
 		}
 	}
 	else
@@ -327,10 +351,7 @@ void Alarm_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 		hotterCtrl -> hotter ->heat_en(DISABLE );//不加热
 		if(hotterCtrl -> hotter->real_adc <hotterCtrl -> hotter->sensor_err_adc )
 		{
-			hotterCtrl ->  state =TEMP_CTRL ;
-			hotterCtrl->hotter->work_state=NOT_HEAT ;
-			hotterCtrl -> hotter->sensor_err =0 ;
-			hal_100ms_flag =0;
+			hotterCtrl ->  state =TEMP_CTRL_READY ;
 		}
 	}
 }
@@ -345,34 +366,57 @@ void HotterCtrl(HOTTER_CTRL_Typedef *hotterCtrl)
 	switch (hotterCtrl->state) 
 	{
 		case TEMP_IDLE:
-			Idle_operate(hotterCtrl);
+			TEMP_IDLE_operate(hotterCtrl);
 			break;
 		case TEMP_TARGET_SHOW :
-			TargetShow_operate(hotterCtrl);
+			TEMP_TARGET_SHOW_operate(hotterCtrl);
 			break ;
 		case TEMP_CTRL:
-			Ctrl_operate(hotterCtrl);
+			TEMP_CTRL_operate(hotterCtrl);
 			break;
 		case TEMP_TARGET_SET:
-			 TargetSet_operate(hotterCtrl);
+			 TEMP_TARGET_SET_operate(hotterCtrl);
 			break;
 		case TEMP_ALARM:
-			Alarm_operate(hotterCtrl);
+			TEMP_ALARM_operate(hotterCtrl);
 			break;	 
 	
 		case TEMP_ADJUST_WARNING :
-			AdjustWarning_operate(hotterCtrl);
+			TEMP_ADJUST_WARNING_operate(hotterCtrl);
 			break ;
 		case TEMP_ADJUST:
-			Adjust_operate(hotterCtrl);
+			TEMP_ADJUST_operate(hotterCtrl);
 			break;
-
+		
+		case TEMP_IDLE_READY:
+			TEMP_IDLE_READY_operate(hotterCtrl);
+			break;
+		case TEMP_TARGET_SHOW_READY :
+			TEMP_TARGET_SHOW_READY_operate(hotterCtrl);
+			break ;
+		case TEMP_CTRL_READY:
+			TEMP_CTRL_READY_operate(hotterCtrl);
+			break;
+		case TEMP_TARGET_SET_READY:
+			 TEMP_TARGET_SET_READY_operate(hotterCtrl);
+			break;
+		case TEMP_ALARM_READY:
+			TEMP_ALARM_READY_operate(hotterCtrl);
+			break;	 
+	
+		case TEMP_ADJUST_WARNING_READY :
+			TEMP_ADJUST_WARNING_READY_operate(hotterCtrl);
+			break ;
+		case TEMP_ADJUST_READY:
+			TEMP_ADJUST_READY_operate(hotterCtrl);
+			break;
+		
 		default:
 			break;
 	}
 	if(!hotterCtrl->hotter->Is_power_on)
 	{
-		solder1321 .state =TEMP_IDLE ;
+		hotterCtrl->state =TEMP_IDLE_READY ;
 	}
 }
 
@@ -383,7 +427,7 @@ HOTTER_CTRL_Typedef solder1321;
 
 void solder1321_init(void)	
 {	
-	solder1321 .state = TEMP_TARGET_SET; 
+	solder1321 .state = TEMP_IDLE_READY; 
 	solder1321 .button = 	&button_1 ;
 	solder1321 .rotary =	&rotary_1 ;
 	solder1321 .hotter =	&hotter1321 ;

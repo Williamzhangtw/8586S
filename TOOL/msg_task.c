@@ -93,9 +93,9 @@ uint16_t  	hal_1s_flag 	= 	0;
 
 void HAL_SYSTICK_Callback()
 {
-	static  	uint8_t 	StaticFlag_1ms		=0;
-	static  	uint8_t 	StaticFlag_10ms		=0;
-	static 	uint8_t 	StaticFlag_100ms	=0;
+	static	uint8_t 	StaticFlag_1ms		=0;
+	static	uint8_t 	StaticFlag_10ms		=0;
+	static	uint8_t 	StaticFlag_100ms	=0;
 	
 	delaymsTask_ISR();
 	hotter1321 .heated_times ++;

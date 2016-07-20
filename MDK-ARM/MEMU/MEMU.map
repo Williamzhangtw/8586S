@@ -556,30 +556,37 @@ Section Cross References
     hotter.o(i.Hotter1321_realTemp_ISR) refers to ffixi.o(.text) for __aeabi_f2iz
     hotter.o(i.Hotter1321_realTemp_ISR) refers to flash.o(.data) for hotter_flash
     hotter.o(i.Hotter1321_realTemp_ISR) refers to hotter.o(.bss) for .bss
-    hotterctrl.o(i.AdjustWarning_operate) refers to tm1650.o(.constdata) for CAL
-    hotterctrl.o(i.AdjustWarning_operate) refers to msg_task.o(.data) for hal_100ms_flag
-    hotterctrl.o(i.AdjustWarning_operate) refers to flash.o(.data) for hotter_flash
-    hotterctrl.o(i.Adjust_operate) refers to flash.o(i.FlshPara_Save) for FlshPara_Save
-    hotterctrl.o(i.Adjust_operate) refers to msg_task.o(.data) for hal_100ms_flag
-    hotterctrl.o(i.Alarm_operate) refers to tm1650.o(.constdata) for S_E
-    hotterctrl.o(i.Alarm_operate) refers to tm1650.o(.constdata) for H_E
-    hotterctrl.o(i.Alarm_operate) refers to hotter.o(.bss) for hotter1321
-    hotterctrl.o(i.Ctrl_operate) refers to dflti.o(.text) for __aeabi_i2d
-    hotterctrl.o(i.Ctrl_operate) refers to cdcmple.o(.text) for __aeabi_cdcmple
-    hotterctrl.o(i.Ctrl_operate) refers to msg_task.o(.data) for hal_100ms_flag
     hotterctrl.o(i.HotterCtrl) refers to stm32f0xx_hal_tim.o(i.__ARM_common_switch8) for __ARM_common_switch8
-    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.Idle_operate) for Idle_operate
-    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TargetShow_operate) for TargetShow_operate
-    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.Ctrl_operate) for Ctrl_operate
-    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TargetSet_operate) for TargetSet_operate
-    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.Alarm_operate) for Alarm_operate
-    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.AdjustWarning_operate) for AdjustWarning_operate
-    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.Adjust_operate) for Adjust_operate
-    hotterctrl.o(i.Idle_operate) refers to tm1650.o(.constdata) for OFF
-    hotterctrl.o(i.Idle_operate) refers to msg_task.o(.data) for hal_100ms_flag
-    hotterctrl.o(i.TargetSet_operate) refers to flash.o(i.FlshPara_Save) for FlshPara_Save
-    hotterctrl.o(i.TargetSet_operate) refers to msg_task.o(.data) for hal_100ms_flag
-    hotterctrl.o(i.TargetShow_operate) refers to msg_task.o(.data) for hal_100ms_flag
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_IDLE_operate) for TEMP_IDLE_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_TARGET_SHOW_operate) for TEMP_TARGET_SHOW_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_CTRL_operate) for TEMP_CTRL_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_TARGET_SET_operate) for TEMP_TARGET_SET_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_ALARM_operate) for TEMP_ALARM_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_ADJUST_WARNING_operate) for TEMP_ADJUST_WARNING_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_ADJUST_operate) for TEMP_ADJUST_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_IDLE_READY_operate) for TEMP_IDLE_READY_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_TARGET_SHOW_READY_operate) for TEMP_TARGET_SHOW_READY_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_CTRL_READY_operate) for TEMP_CTRL_READY_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_TARGET_SET_READY_operate) for TEMP_TARGET_SET_READY_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_ALARM_READY_operate) for TEMP_ALARM_READY_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_ADJUST_WARNING_READY_operate) for TEMP_ADJUST_WARNING_READY_operate
+    hotterctrl.o(i.HotterCtrl) refers to hotterctrl.o(i.TEMP_ADJUST_READY_operate) for TEMP_ADJUST_READY_operate
+    hotterctrl.o(i.TEMP_ADJUST_READY_operate) refers to flash.o(.data) for hotter_flash
+    hotterctrl.o(i.TEMP_ADJUST_READY_operate) refers to msg_task.o(.data) for hal_100ms_flag
+    hotterctrl.o(i.TEMP_ADJUST_WARNING_READY_operate) refers to tm1650.o(.constdata) for CAL
+    hotterctrl.o(i.TEMP_ADJUST_WARNING_operate) refers to msg_task.o(.data) for hal_100ms_flag
+    hotterctrl.o(i.TEMP_ADJUST_operate) refers to flash.o(i.FlshPara_Save) for FlshPara_Save
+    hotterctrl.o(i.TEMP_ADJUST_operate) refers to msg_task.o(.data) for hal_100ms_flag
+    hotterctrl.o(i.TEMP_ALARM_operate) refers to tm1650.o(.constdata) for S_E
+    hotterctrl.o(i.TEMP_ALARM_operate) refers to tm1650.o(.constdata) for H_E
+    hotterctrl.o(i.TEMP_CTRL_operate) refers to dflti.o(.text) for __aeabi_i2d
+    hotterctrl.o(i.TEMP_CTRL_operate) refers to cdcmple.o(.text) for __aeabi_cdcmple
+    hotterctrl.o(i.TEMP_IDLE_READY_operate) refers to tm1650.o(.constdata) for OFF
+    hotterctrl.o(i.TEMP_TARGET_SET_READY_operate) refers to msg_task.o(.data) for hal_100ms_flag
+    hotterctrl.o(i.TEMP_TARGET_SET_operate) refers to flash.o(i.FlshPara_Save) for FlshPara_Save
+    hotterctrl.o(i.TEMP_TARGET_SET_operate) refers to msg_task.o(.data) for hal_100ms_flag
+    hotterctrl.o(i.TEMP_TARGET_SHOW_READY_operate) refers to msg_task.o(.data) for hal_100ms_flag
+    hotterctrl.o(i.TEMP_TARGET_SHOW_operate) refers to msg_task.o(.data) for hal_100ms_flag
     hotterctrl.o(i.solder1321_init) refers to rotary.o(i.Rotary_1_init) for Rotary_1_init
     hotterctrl.o(i.solder1321_init) refers to msg_task.o(i.delaymsTask_CTRL) for delaymsTask_CTRL
     hotterctrl.o(i.solder1321_init) refers to button.o(i.Button_1_init) for Button_1_init
@@ -1111,34 +1118,34 @@ Image Symbol Table
     ../Src/stm32f0xx_hal_msp.c               0x00000000   Number         0  stm32f0xx_hal_msp.o ABSOLUTE
     ../Src/stm32f0xx_it.c                    0x00000000   Number         0  stm32f0xx_it.o ABSOLUTE
     ../Src/tim.c                             0x00000000   Number         0  tim.o ABSOLUTE
-    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  idiv.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  fadd.o ABSOLUTE
-    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  fepilogue.o ABSOLUTE
-    ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixi.o ABSOLUTE
+    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
     ../fplib/microlib/fpfix.c                0x00000000   Number         0  ffixi.o ABSOLUTE
-    ../fplib/microlib/fpflt.c                0x00000000   Number         0  dflti.o ABSOLUTE
+    ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixi.o ABSOLUTE
     ../fplib/microlib/fpflt.c                0x00000000   Number         0  fflti.o ABSOLUTE
+    ../fplib/microlib/fpflt.c                0x00000000   Number         0  dflti.o ABSOLUTE
     ../fplib/microlib/fpmul.c                0x00000000   Number         0  fmul.o ABSOLUTE
     ..\BSP\button.c                          0x00000000   Number         0  button.o ABSOLUTE
     ..\BSP\hotter.c                          0x00000000   Number         0  hotter.o ABSOLUTE
@@ -1216,124 +1223,131 @@ Image Symbol Table
     .text                                    0x080004ec   Section        0  llshl.o(.text)
     i.ADC_Enable                             0x0800050c   Section        0  stm32f0xx_hal_adc.o(i.ADC_Enable)
     ADC_Enable                               0x0800050d   Thumb Code   120  stm32f0xx_hal_adc.o(i.ADC_Enable)
-    i.AdjustWarning_operate                  0x08000590   Section        0  hotterctrl.o(i.AdjustWarning_operate)
-    i.Adjust_operate                         0x080005e0   Section        0  hotterctrl.o(i.Adjust_operate)
-    i.Alarm_operate                          0x0800069c   Section        0  hotterctrl.o(i.Alarm_operate)
-    i.BUTTON_1_ISR                           0x08000728   Section        0  button.o(i.BUTTON_1_ISR)
-    i.BUTTON_scan                            0x08000738   Section        0  button.o(i.BUTTON_scan)
-    i.Button_1_init                          0x08000798   Section        0  button.o(i.Button_1_init)
-    i.Ctrl_operate                           0x080007bc   Section        0  hotterctrl.o(i.Ctrl_operate)
-    i.EXTI0_1_IRQHandler                     0x08000900   Section        0  stm32f0xx_it.o(i.EXTI0_1_IRQHandler)
-    i.Error_Handler                          0x0800090a   Section        0  main.o(i.Error_Handler)
-    i.FD650_START                            0x0800090c   Section        0  tm1650.o(i.FD650_START)
-    i.FD650_STOP                             0x0800092a   Section        0  tm1650.o(i.FD650_STOP)
-    i.FD650_send                             0x08000942   Section        0  tm1650.o(i.FD650_send)
-    i.FD650_write                            0x08000966   Section        0  tm1650.o(i.FD650_write)
-    i.FLASH_MassErase                        0x080009a8   Section        0  stm32f0xx_hal_flash_ex.o(i.FLASH_MassErase)
-    FLASH_MassErase                          0x080009a9   Thumb Code    26  stm32f0xx_hal_flash_ex.o(i.FLASH_MassErase)
-    i.FLASH_PageErase                        0x080009cc   Section        0  stm32f0xx_hal_flash_ex.o(i.FLASH_PageErase)
-    i.FLASH_Program_HalfWord                 0x080009f0   Section        0  stm32f0xx_hal_flash.o(i.FLASH_Program_HalfWord)
-    FLASH_Program_HalfWord                   0x080009f1   Thumb Code    22  stm32f0xx_hal_flash.o(i.FLASH_Program_HalfWord)
-    i.FLASH_SetErrorCode                     0x08000a10   Section        0  stm32f0xx_hal_flash.o(i.FLASH_SetErrorCode)
-    FLASH_SetErrorCode                       0x08000a11   Thumb Code    46  stm32f0xx_hal_flash.o(i.FLASH_SetErrorCode)
-    i.FLASH_WaitForLastOperation             0x08000a48   Section        0  stm32f0xx_hal_flash.o(i.FLASH_WaitForLastOperation)
-    i.Filter_hotter1321_adc_ISR              0x08000a98   Section        0  hotter.o(i.Filter_hotter1321_adc_ISR)
-    i.FlshPara_Init                          0x08000ab4   Section        0  flash.o(i.FlshPara_Init)
-    i.FlshPara_Save                          0x08000b38   Section        0  flash.o(i.FlshPara_Save)
-    i.Get_hotter1321_adc                     0x08000ba0   Section        0  hotter.o(i.Get_hotter1321_adc)
-    i.HAL_ADCEx_Calibration_Start            0x08000bc0   Section        0  stm32f0xx_hal_adc_ex.o(i.HAL_ADCEx_Calibration_Start)
-    i.HAL_ADC_ConfigChannel                  0x08000c54   Section        0  stm32f0xx_hal_adc.o(i.HAL_ADC_ConfigChannel)
-    i.HAL_ADC_GetValue                       0x08000d64   Section        0  stm32f0xx_hal_adc.o(i.HAL_ADC_GetValue)
-    i.HAL_ADC_Init                           0x08000d6c   Section        0  stm32f0xx_hal_adc.o(i.HAL_ADC_Init)
-    i.HAL_ADC_MspInit                        0x08000ee0   Section        0  adc.o(i.HAL_ADC_MspInit)
-    i.HAL_ADC_PollForConversion              0x08000f20   Section        0  stm32f0xx_hal_adc.o(i.HAL_ADC_PollForConversion)
-    i.HAL_ADC_Start                          0x08000fe0   Section        0  stm32f0xx_hal_adc.o(i.HAL_ADC_Start)
-    i.HAL_FLASHEx_Erase                      0x0800103c   Section        0  stm32f0xx_hal_flash_ex.o(i.HAL_FLASHEx_Erase)
-    i.HAL_FLASH_Lock                         0x080010dc   Section        0  stm32f0xx_hal_flash.o(i.HAL_FLASH_Lock)
-    i.HAL_FLASH_Program                      0x080010f0   Section        0  stm32f0xx_hal_flash.o(i.HAL_FLASH_Program)
-    i.HAL_FLASH_Unlock                       0x0800116c   Section        0  stm32f0xx_hal_flash.o(i.HAL_FLASH_Unlock)
-    i.HAL_GPIO_EXTI_Callback                 0x08001190   Section        0  gpio.o(i.HAL_GPIO_EXTI_Callback)
-    i.HAL_GPIO_EXTI_IRQHandler               0x080011a4   Section        0  stm32f0xx_hal_gpio.o(i.HAL_GPIO_EXTI_IRQHandler)
-    i.HAL_GPIO_Init                          0x080011bc   Section        0  stm32f0xx_hal_gpio.o(i.HAL_GPIO_Init)
-    i.HAL_GPIO_ReadPin                       0x08001304   Section        0  stm32f0xx_hal_gpio.o(i.HAL_GPIO_ReadPin)
-    i.HAL_GPIO_WritePin                      0x0800130e   Section        0  stm32f0xx_hal_gpio.o(i.HAL_GPIO_WritePin)
-    i.HAL_GetTick                            0x0800131c   Section        0  stm32f0xx_hal.o(i.HAL_GetTick)
-    i.HAL_IncTick                            0x08001328   Section        0  stm32f0xx_hal.o(i.HAL_IncTick)
-    i.HAL_Init                               0x08001338   Section        0  stm32f0xx_hal.o(i.HAL_Init)
-    i.HAL_InitTick                           0x08001358   Section        0  stm32f0xx_hal.o(i.HAL_InitTick)
-    i.HAL_MspInit                            0x0800137c   Section        0  stm32f0xx_hal_msp.o(i.HAL_MspInit)
-    i.HAL_NVIC_EnableIRQ                     0x080013b4   Section        0  stm32f0xx_hal_cortex.o(i.HAL_NVIC_EnableIRQ)
-    i.HAL_NVIC_SetPriority                   0x080013c8   Section        0  stm32f0xx_hal_cortex.o(i.HAL_NVIC_SetPriority)
-    i.HAL_RCC_ClockConfig                    0x080013d0   Section        0  stm32f0xx_hal_rcc.o(i.HAL_RCC_ClockConfig)
-    i.HAL_RCC_GetHCLKFreq                    0x080014fc   Section        0  stm32f0xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq)
-    i.HAL_RCC_GetSysClockFreq                0x08001508   Section        0  stm32f0xx_hal_rcc.o(i.HAL_RCC_GetSysClockFreq)
-    i.HAL_RCC_OscConfig                      0x08001584   Section        0  stm32f0xx_hal_rcc.o(i.HAL_RCC_OscConfig)
-    i.HAL_SYSTICK_CLKSourceConfig            0x080018d8   Section        0  stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_CLKSourceConfig)
-    i.HAL_SYSTICK_Callback                   0x080018f0   Section        0  msg_task.o(i.HAL_SYSTICK_Callback)
-    i.HAL_SYSTICK_Config                     0x08001950   Section        0  stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_Config)
-    i.HAL_SYSTICK_IRQHandler                 0x08001980   Section        0  stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_IRQHandler)
-    i.HAL_TIMEx_BreakCallback                0x08001988   Section        0  stm32f0xx_hal_tim_ex.o(i.HAL_TIMEx_BreakCallback)
-    i.HAL_TIMEx_CommutationCallback          0x0800198a   Section        0  stm32f0xx_hal_tim_ex.o(i.HAL_TIMEx_CommutationCallback)
-    i.HAL_TIM_Base_Init                      0x0800198c   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_Base_Init)
-    i.HAL_TIM_Base_MspInit                   0x080019c0   Section        0  tim.o(i.HAL_TIM_Base_MspInit)
-    i.HAL_TIM_Base_Start                     0x080019f4   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_Base_Start)
-    i.HAL_TIM_IC_CaptureCallback             0x08001a0c   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_IC_CaptureCallback)
-    i.HAL_TIM_IRQHandler                     0x08001a0e   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_IRQHandler)
-    i.HAL_TIM_OC_DelayElapsedCallback        0x08001b70   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_OC_DelayElapsedCallback)
-    i.HAL_TIM_PWM_PulseFinishedCallback      0x08001b72   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_PWM_PulseFinishedCallback)
-    i.HAL_TIM_PeriodElapsedCallback          0x08001b74   Section        0  tim.o(i.HAL_TIM_PeriodElapsedCallback)
-    i.HAL_TIM_TriggerCallback                0x08001b76   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_TriggerCallback)
-    i.Heat_hotter1321                        0x08001b78   Section        0  hotter.o(i.Heat_hotter1321)
-    i.Hotter1321WorkingState_ISR             0x08001b94   Section        0  hotter.o(i.Hotter1321WorkingState_ISR)
-    i.Hotter1321_heated_time_count_ISR       0x08001ba4   Section        0  hotter.o(i.Hotter1321_heated_time_count_ISR)
-    i.Hotter1321_init                        0x08001ba8   Section        0  hotter.o(i.Hotter1321_init)
-    i.Hotter1321_power_on_scan_ISR           0x08001c08   Section        0  hotter.o(i.Hotter1321_power_on_scan_ISR)
-    i.Hotter1321_realTemp_ISR                0x08001c2c   Section        0  hotter.o(i.Hotter1321_realTemp_ISR)
-    i.HotterCtrl                             0x08001c70   Section        0  hotterctrl.o(i.HotterCtrl)
-    i.HotterWorkingState_ISR                 0x08001cc4   Section        0  hotter.o(i.HotterWorkingState_ISR)
-    i.Idle_operate                           0x08001d10   Section        0  hotterctrl.o(i.Idle_operate)
-    i.MX_ADC_Init                            0x08001d54   Section        0  adc.o(i.MX_ADC_Init)
-    i.MX_GPIO_Init                           0x08001dac   Section        0  gpio.o(i.MX_GPIO_Init)
-    i.MX_TIM14_Init                          0x08001e68   Section        0  tim.o(i.MX_TIM14_Init)
-    i.Msg_delayms_process                    0x08001e94   Section        0  msg_task.o(i.Msg_delayms_process)
-    i.NVIC_SetPriority                       0x08001ec0   Section        0  stm32f0xx_hal_cortex.o(i.NVIC_SetPriority)
-    NVIC_SetPriority                         0x08001ec1   Thumb Code    60  stm32f0xx_hal_cortex.o(i.NVIC_SetPriority)
-    i.Rotary_1_init                          0x08001f04   Section        0  rotary.o(i.Rotary_1_init)
-    i.Rotary_1_scan_ISR                      0x08001f30   Section        0  rotary.o(i.Rotary_1_scan_ISR)
-    i.Rotary_scan                            0x08001f40   Section        0  rotary.o(i.Rotary_scan)
-    i.SysTick_Handler                        0x08002020   Section        0  stm32f0xx_it.o(i.SysTick_Handler)
-    i.SystemClock_Config                     0x0800202c   Section        0  main.o(i.SystemClock_Config)
-    i.SystemInit                             0x0800208c   Section        0  system_stm32f0xx_1.o(i.SystemInit)
-    i.TIM14_IRQHandler                       0x080020e8   Section        0  stm32f0xx_it.o(i.TIM14_IRQHandler)
-    i.TIM_Base_SetConfig                     0x080020f8   Section        0  stm32f0xx_hal_tim.o(i.TIM_Base_SetConfig)
-    i.TargetSet_operate                      0x0800216c   Section        0  hotterctrl.o(i.TargetSet_operate)
-    i.TargetShow_operate                     0x0800222c   Section        0  hotterctrl.o(i.TargetShow_operate)
-    i.Tm1650_1_init                          0x08002274   Section        0  tm1650.o(i.Tm1650_1_init)
-    i.Tm1650_1_show_ISR                      0x080022a4   Section        0  tm1650.o(i.Tm1650_1_show_ISR)
-    i.Tm1650_show_ISR                        0x080022b4   Section        0  tm1650.o(i.Tm1650_show_ISR)
-    i.__ARM_clz                              0x080023d0   Section        0  depilogue.o(i.__ARM_clz)
-    i.__ARM_common_switch8                   0x080023fe   Section        0  stm32f0xx_hal_tim.o(i.__ARM_common_switch8)
-    i.__scatterload_copy                     0x08002418   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x08002426   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x08002428   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.avg_filter                             0x08002438   Section        0  adc_filter.o(i.avg_filter)
-    i.delaymsTask_CTRL                       0x08002470   Section        0  msg_task.o(i.delaymsTask_CTRL)
-    i.delaymsTask_ISR                        0x08002494   Section        0  msg_task.o(i.delaymsTask_ISR)
-    i.main                                   0x080024d0   Section        0  main.o(i.main)
-    i.read_button_1                          0x08002514   Section        0  button.o(i.read_button_1)
-    i.read_rotary_a                          0x0800252c   Section        0  rotary.o(i.read_rotary_a)
-    i.read_rotary_b                          0x0800253a   Section        0  rotary.o(i.read_rotary_b)
-    i.solder1321_init                        0x08002548   Section        0  hotterctrl.o(i.solder1321_init)
-    i.tm1650_clk_1                           0x080025f8   Section        0  tm1650.o(i.tm1650_clk_1)
-    i.tm1650_dio_1                           0x0800260a   Section        0  tm1650.o(i.tm1650_dio_1)
-    i.tm1650_read_dio_1                      0x0800261c   Section        0  tm1650.o(i.tm1650_read_dio_1)
-    .constdata                               0x08002638   Section       16  system_stm32f0xx_1.o(.constdata)
-    .constdata                               0x08002648   Section       14  tm1650.o(.constdata)
-    .constdata                               0x08002656   Section        4  tm1650.o(.constdata)
-    .constdata                               0x0800265a   Section        4  tm1650.o(.constdata)
-    .constdata                               0x0800265e   Section        4  tm1650.o(.constdata)
-    .constdata                               0x08002662   Section        4  tm1650.o(.constdata)
-    .constdata                               0x08002666   Section        6  flash.o(.constdata)
+    i.BUTTON_1_ISR                           0x08000590   Section        0  button.o(i.BUTTON_1_ISR)
+    i.BUTTON_scan                            0x080005a0   Section        0  button.o(i.BUTTON_scan)
+    i.Button_1_init                          0x08000600   Section        0  button.o(i.Button_1_init)
+    i.EXTI0_1_IRQHandler                     0x08000624   Section        0  stm32f0xx_it.o(i.EXTI0_1_IRQHandler)
+    i.Error_Handler                          0x0800062e   Section        0  main.o(i.Error_Handler)
+    i.FD650_START                            0x08000630   Section        0  tm1650.o(i.FD650_START)
+    i.FD650_STOP                             0x0800064e   Section        0  tm1650.o(i.FD650_STOP)
+    i.FD650_send                             0x08000666   Section        0  tm1650.o(i.FD650_send)
+    i.FD650_write                            0x0800068a   Section        0  tm1650.o(i.FD650_write)
+    i.FLASH_MassErase                        0x080006cc   Section        0  stm32f0xx_hal_flash_ex.o(i.FLASH_MassErase)
+    FLASH_MassErase                          0x080006cd   Thumb Code    26  stm32f0xx_hal_flash_ex.o(i.FLASH_MassErase)
+    i.FLASH_PageErase                        0x080006f0   Section        0  stm32f0xx_hal_flash_ex.o(i.FLASH_PageErase)
+    i.FLASH_Program_HalfWord                 0x08000714   Section        0  stm32f0xx_hal_flash.o(i.FLASH_Program_HalfWord)
+    FLASH_Program_HalfWord                   0x08000715   Thumb Code    22  stm32f0xx_hal_flash.o(i.FLASH_Program_HalfWord)
+    i.FLASH_SetErrorCode                     0x08000734   Section        0  stm32f0xx_hal_flash.o(i.FLASH_SetErrorCode)
+    FLASH_SetErrorCode                       0x08000735   Thumb Code    46  stm32f0xx_hal_flash.o(i.FLASH_SetErrorCode)
+    i.FLASH_WaitForLastOperation             0x0800076c   Section        0  stm32f0xx_hal_flash.o(i.FLASH_WaitForLastOperation)
+    i.Filter_hotter1321_adc_ISR              0x080007bc   Section        0  hotter.o(i.Filter_hotter1321_adc_ISR)
+    i.FlshPara_Init                          0x080007d8   Section        0  flash.o(i.FlshPara_Init)
+    i.FlshPara_Save                          0x0800085c   Section        0  flash.o(i.FlshPara_Save)
+    i.Get_hotter1321_adc                     0x080008c4   Section        0  hotter.o(i.Get_hotter1321_adc)
+    i.HAL_ADCEx_Calibration_Start            0x080008e4   Section        0  stm32f0xx_hal_adc_ex.o(i.HAL_ADCEx_Calibration_Start)
+    i.HAL_ADC_ConfigChannel                  0x08000978   Section        0  stm32f0xx_hal_adc.o(i.HAL_ADC_ConfigChannel)
+    i.HAL_ADC_GetValue                       0x08000a88   Section        0  stm32f0xx_hal_adc.o(i.HAL_ADC_GetValue)
+    i.HAL_ADC_Init                           0x08000a90   Section        0  stm32f0xx_hal_adc.o(i.HAL_ADC_Init)
+    i.HAL_ADC_MspInit                        0x08000c04   Section        0  adc.o(i.HAL_ADC_MspInit)
+    i.HAL_ADC_PollForConversion              0x08000c44   Section        0  stm32f0xx_hal_adc.o(i.HAL_ADC_PollForConversion)
+    i.HAL_ADC_Start                          0x08000d04   Section        0  stm32f0xx_hal_adc.o(i.HAL_ADC_Start)
+    i.HAL_FLASHEx_Erase                      0x08000d60   Section        0  stm32f0xx_hal_flash_ex.o(i.HAL_FLASHEx_Erase)
+    i.HAL_FLASH_Lock                         0x08000e00   Section        0  stm32f0xx_hal_flash.o(i.HAL_FLASH_Lock)
+    i.HAL_FLASH_Program                      0x08000e14   Section        0  stm32f0xx_hal_flash.o(i.HAL_FLASH_Program)
+    i.HAL_FLASH_Unlock                       0x08000e90   Section        0  stm32f0xx_hal_flash.o(i.HAL_FLASH_Unlock)
+    i.HAL_GPIO_EXTI_Callback                 0x08000eb4   Section        0  gpio.o(i.HAL_GPIO_EXTI_Callback)
+    i.HAL_GPIO_EXTI_IRQHandler               0x08000ec8   Section        0  stm32f0xx_hal_gpio.o(i.HAL_GPIO_EXTI_IRQHandler)
+    i.HAL_GPIO_Init                          0x08000ee0   Section        0  stm32f0xx_hal_gpio.o(i.HAL_GPIO_Init)
+    i.HAL_GPIO_ReadPin                       0x08001028   Section        0  stm32f0xx_hal_gpio.o(i.HAL_GPIO_ReadPin)
+    i.HAL_GPIO_WritePin                      0x08001032   Section        0  stm32f0xx_hal_gpio.o(i.HAL_GPIO_WritePin)
+    i.HAL_GetTick                            0x08001040   Section        0  stm32f0xx_hal.o(i.HAL_GetTick)
+    i.HAL_IncTick                            0x0800104c   Section        0  stm32f0xx_hal.o(i.HAL_IncTick)
+    i.HAL_Init                               0x0800105c   Section        0  stm32f0xx_hal.o(i.HAL_Init)
+    i.HAL_InitTick                           0x0800107c   Section        0  stm32f0xx_hal.o(i.HAL_InitTick)
+    i.HAL_MspInit                            0x080010a0   Section        0  stm32f0xx_hal_msp.o(i.HAL_MspInit)
+    i.HAL_NVIC_EnableIRQ                     0x080010d8   Section        0  stm32f0xx_hal_cortex.o(i.HAL_NVIC_EnableIRQ)
+    i.HAL_NVIC_SetPriority                   0x080010ec   Section        0  stm32f0xx_hal_cortex.o(i.HAL_NVIC_SetPriority)
+    i.HAL_RCC_ClockConfig                    0x080010f4   Section        0  stm32f0xx_hal_rcc.o(i.HAL_RCC_ClockConfig)
+    i.HAL_RCC_GetHCLKFreq                    0x08001220   Section        0  stm32f0xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq)
+    i.HAL_RCC_GetSysClockFreq                0x0800122c   Section        0  stm32f0xx_hal_rcc.o(i.HAL_RCC_GetSysClockFreq)
+    i.HAL_RCC_OscConfig                      0x080012a8   Section        0  stm32f0xx_hal_rcc.o(i.HAL_RCC_OscConfig)
+    i.HAL_SYSTICK_CLKSourceConfig            0x080015fc   Section        0  stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_CLKSourceConfig)
+    i.HAL_SYSTICK_Callback                   0x08001614   Section        0  msg_task.o(i.HAL_SYSTICK_Callback)
+    i.HAL_SYSTICK_Config                     0x08001674   Section        0  stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_Config)
+    i.HAL_SYSTICK_IRQHandler                 0x080016a4   Section        0  stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_IRQHandler)
+    i.HAL_TIMEx_BreakCallback                0x080016ac   Section        0  stm32f0xx_hal_tim_ex.o(i.HAL_TIMEx_BreakCallback)
+    i.HAL_TIMEx_CommutationCallback          0x080016ae   Section        0  stm32f0xx_hal_tim_ex.o(i.HAL_TIMEx_CommutationCallback)
+    i.HAL_TIM_Base_Init                      0x080016b0   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_Base_Init)
+    i.HAL_TIM_Base_MspInit                   0x080016e4   Section        0  tim.o(i.HAL_TIM_Base_MspInit)
+    i.HAL_TIM_Base_Start                     0x08001718   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_Base_Start)
+    i.HAL_TIM_IC_CaptureCallback             0x08001730   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_IC_CaptureCallback)
+    i.HAL_TIM_IRQHandler                     0x08001732   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_IRQHandler)
+    i.HAL_TIM_OC_DelayElapsedCallback        0x08001894   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_OC_DelayElapsedCallback)
+    i.HAL_TIM_PWM_PulseFinishedCallback      0x08001896   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_PWM_PulseFinishedCallback)
+    i.HAL_TIM_PeriodElapsedCallback          0x08001898   Section        0  tim.o(i.HAL_TIM_PeriodElapsedCallback)
+    i.HAL_TIM_TriggerCallback                0x0800189a   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_TriggerCallback)
+    i.Heat_hotter1321                        0x0800189c   Section        0  hotter.o(i.Heat_hotter1321)
+    i.Hotter1321WorkingState_ISR             0x080018b8   Section        0  hotter.o(i.Hotter1321WorkingState_ISR)
+    i.Hotter1321_heated_time_count_ISR       0x080018c8   Section        0  hotter.o(i.Hotter1321_heated_time_count_ISR)
+    i.Hotter1321_init                        0x080018cc   Section        0  hotter.o(i.Hotter1321_init)
+    i.Hotter1321_power_on_scan_ISR           0x0800192c   Section        0  hotter.o(i.Hotter1321_power_on_scan_ISR)
+    i.Hotter1321_realTemp_ISR                0x08001950   Section        0  hotter.o(i.Hotter1321_realTemp_ISR)
+    i.HotterCtrl                             0x08001994   Section        0  hotterctrl.o(i.HotterCtrl)
+    i.HotterWorkingState_ISR                 0x08001a32   Section        0  hotter.o(i.HotterWorkingState_ISR)
+    i.MX_ADC_Init                            0x08001a80   Section        0  adc.o(i.MX_ADC_Init)
+    i.MX_GPIO_Init                           0x08001ad8   Section        0  gpio.o(i.MX_GPIO_Init)
+    i.MX_TIM14_Init                          0x08001b94   Section        0  tim.o(i.MX_TIM14_Init)
+    i.Msg_delayms_process                    0x08001bc0   Section        0  msg_task.o(i.Msg_delayms_process)
+    i.NVIC_SetPriority                       0x08001bec   Section        0  stm32f0xx_hal_cortex.o(i.NVIC_SetPriority)
+    NVIC_SetPriority                         0x08001bed   Thumb Code    60  stm32f0xx_hal_cortex.o(i.NVIC_SetPriority)
+    i.Rotary_1_init                          0x08001c30   Section        0  rotary.o(i.Rotary_1_init)
+    i.Rotary_1_scan_ISR                      0x08001c5c   Section        0  rotary.o(i.Rotary_1_scan_ISR)
+    i.Rotary_scan                            0x08001c6c   Section        0  rotary.o(i.Rotary_scan)
+    i.SysTick_Handler                        0x08001d4c   Section        0  stm32f0xx_it.o(i.SysTick_Handler)
+    i.SystemClock_Config                     0x08001d58   Section        0  main.o(i.SystemClock_Config)
+    i.SystemInit                             0x08001db8   Section        0  system_stm32f0xx_1.o(i.SystemInit)
+    i.TEMP_ADJUST_READY_operate              0x08001e14   Section        0  hotterctrl.o(i.TEMP_ADJUST_READY_operate)
+    i.TEMP_ADJUST_WARNING_READY_operate      0x08001e5c   Section        0  hotterctrl.o(i.TEMP_ADJUST_WARNING_READY_operate)
+    i.TEMP_ADJUST_WARNING_operate            0x08001e90   Section        0  hotterctrl.o(i.TEMP_ADJUST_WARNING_operate)
+    i.TEMP_ADJUST_operate                    0x08001ea4   Section        0  hotterctrl.o(i.TEMP_ADJUST_operate)
+    i.TEMP_ALARM_READY_operate               0x08001f34   Section        0  hotterctrl.o(i.TEMP_ALARM_READY_operate)
+    i.TEMP_ALARM_operate                     0x08001f4c   Section        0  hotterctrl.o(i.TEMP_ALARM_operate)
+    i.TEMP_CTRL_READY_operate                0x08001fb4   Section        0  hotterctrl.o(i.TEMP_CTRL_READY_operate)
+    i.TEMP_CTRL_operate                      0x08001fd4   Section        0  hotterctrl.o(i.TEMP_CTRL_operate)
+    i.TEMP_IDLE_READY_operate                0x080020fc   Section        0  hotterctrl.o(i.TEMP_IDLE_READY_operate)
+    i.TEMP_IDLE_operate                      0x0800212c   Section        0  hotterctrl.o(i.TEMP_IDLE_operate)
+    i.TEMP_TARGET_SET_READY_operate          0x0800213c   Section        0  hotterctrl.o(i.TEMP_TARGET_SET_READY_operate)
+    i.TEMP_TARGET_SET_operate                0x0800217c   Section        0  hotterctrl.o(i.TEMP_TARGET_SET_operate)
+    i.TEMP_TARGET_SHOW_READY_operate         0x0800220c   Section        0  hotterctrl.o(i.TEMP_TARGET_SHOW_READY_operate)
+    i.TEMP_TARGET_SHOW_operate               0x08002248   Section        0  hotterctrl.o(i.TEMP_TARGET_SHOW_operate)
+    i.TIM14_IRQHandler                       0x0800225c   Section        0  stm32f0xx_it.o(i.TIM14_IRQHandler)
+    i.TIM_Base_SetConfig                     0x0800226c   Section        0  stm32f0xx_hal_tim.o(i.TIM_Base_SetConfig)
+    i.Tm1650_1_init                          0x080022e0   Section        0  tm1650.o(i.Tm1650_1_init)
+    i.Tm1650_1_show_ISR                      0x08002310   Section        0  tm1650.o(i.Tm1650_1_show_ISR)
+    i.Tm1650_show_ISR                        0x08002320   Section        0  tm1650.o(i.Tm1650_show_ISR)
+    i.__ARM_clz                              0x0800243c   Section        0  depilogue.o(i.__ARM_clz)
+    i.__ARM_common_switch8                   0x0800246a   Section        0  stm32f0xx_hal_tim.o(i.__ARM_common_switch8)
+    i.__scatterload_copy                     0x08002484   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x08002492   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x08002494   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.avg_filter                             0x080024a4   Section        0  adc_filter.o(i.avg_filter)
+    i.delaymsTask_CTRL                       0x080024dc   Section        0  msg_task.o(i.delaymsTask_CTRL)
+    i.delaymsTask_ISR                        0x08002500   Section        0  msg_task.o(i.delaymsTask_ISR)
+    i.main                                   0x0800253c   Section        0  main.o(i.main)
+    i.read_button_1                          0x08002580   Section        0  button.o(i.read_button_1)
+    i.read_rotary_a                          0x08002598   Section        0  rotary.o(i.read_rotary_a)
+    i.read_rotary_b                          0x080025a6   Section        0  rotary.o(i.read_rotary_b)
+    i.solder1321_init                        0x080025b4   Section        0  hotterctrl.o(i.solder1321_init)
+    i.tm1650_clk_1                           0x08002664   Section        0  tm1650.o(i.tm1650_clk_1)
+    i.tm1650_dio_1                           0x08002676   Section        0  tm1650.o(i.tm1650_dio_1)
+    i.tm1650_read_dio_1                      0x08002688   Section        0  tm1650.o(i.tm1650_read_dio_1)
+    .constdata                               0x080026a4   Section       16  system_stm32f0xx_1.o(.constdata)
+    .constdata                               0x080026b4   Section       14  tm1650.o(.constdata)
+    .constdata                               0x080026c2   Section        4  tm1650.o(.constdata)
+    .constdata                               0x080026c6   Section        4  tm1650.o(.constdata)
+    .constdata                               0x080026ca   Section        4  tm1650.o(.constdata)
+    .constdata                               0x080026ce   Section        4  tm1650.o(.constdata)
+    .constdata                               0x080026d2   Section        6  flash.o(.constdata)
     .data                                    0x20000000   Section        4  stm32f0xx_hal.o(.data)
     .data                                    0x20000004   Section        4  system_stm32f0xx_1.o(.data)
     .data                                    0x20000008   Section        1  hotter.o(.data)
@@ -1434,119 +1448,126 @@ Image Symbol Table
     __scatterload_rt2                        0x080004c9   Thumb Code     0  init.o(.text)
     __aeabi_llsl                             0x080004ed   Thumb Code    32  llshl.o(.text)
     _ll_shift_l                              0x080004ed   Thumb Code     0  llshl.o(.text)
-    AdjustWarning_operate                    0x08000591   Thumb Code    68  hotterctrl.o(i.AdjustWarning_operate)
-    Adjust_operate                           0x080005e1   Thumb Code   182  hotterctrl.o(i.Adjust_operate)
-    Alarm_operate                            0x0800069d   Thumb Code   126  hotterctrl.o(i.Alarm_operate)
-    BUTTON_1_ISR                             0x08000729   Thumb Code    10  button.o(i.BUTTON_1_ISR)
-    BUTTON_scan                              0x08000739   Thumb Code    94  button.o(i.BUTTON_scan)
-    Button_1_init                            0x08000799   Thumb Code    26  button.o(i.Button_1_init)
-    Ctrl_operate                             0x080007bd   Thumb Code   312  hotterctrl.o(i.Ctrl_operate)
-    EXTI0_1_IRQHandler                       0x08000901   Thumb Code    10  stm32f0xx_it.o(i.EXTI0_1_IRQHandler)
-    Error_Handler                            0x0800090b   Thumb Code     2  main.o(i.Error_Handler)
-    FD650_START                              0x0800090d   Thumb Code    30  tm1650.o(i.FD650_START)
-    FD650_STOP                               0x0800092b   Thumb Code    24  tm1650.o(i.FD650_STOP)
-    FD650_send                               0x08000943   Thumb Code    36  tm1650.o(i.FD650_send)
-    FD650_write                              0x08000967   Thumb Code    66  tm1650.o(i.FD650_write)
-    FLASH_PageErase                          0x080009cd   Thumb Code    28  stm32f0xx_hal_flash_ex.o(i.FLASH_PageErase)
-    FLASH_WaitForLastOperation               0x08000a49   Thumb Code    76  stm32f0xx_hal_flash.o(i.FLASH_WaitForLastOperation)
-    Filter_hotter1321_adc_ISR                0x08000a99   Thumb Code    18  hotter.o(i.Filter_hotter1321_adc_ISR)
-    FlshPara_Init                            0x08000ab5   Thumb Code   114  flash.o(i.FlshPara_Init)
-    FlshPara_Save                            0x08000b39   Thumb Code    90  flash.o(i.FlshPara_Save)
-    Get_hotter1321_adc                       0x08000ba1   Thumb Code    26  hotter.o(i.Get_hotter1321_adc)
-    HAL_ADCEx_Calibration_Start              0x08000bc1   Thumb Code   148  stm32f0xx_hal_adc_ex.o(i.HAL_ADCEx_Calibration_Start)
-    HAL_ADC_ConfigChannel                    0x08000c55   Thumb Code   254  stm32f0xx_hal_adc.o(i.HAL_ADC_ConfigChannel)
-    HAL_ADC_GetValue                         0x08000d65   Thumb Code     6  stm32f0xx_hal_adc.o(i.HAL_ADC_GetValue)
-    HAL_ADC_Init                             0x08000d6d   Thumb Code   362  stm32f0xx_hal_adc.o(i.HAL_ADC_Init)
-    HAL_ADC_MspInit                          0x08000ee1   Thumb Code    54  adc.o(i.HAL_ADC_MspInit)
-    HAL_ADC_PollForConversion                0x08000f21   Thumb Code   190  stm32f0xx_hal_adc.o(i.HAL_ADC_PollForConversion)
-    HAL_ADC_Start                            0x08000fe1   Thumb Code    86  stm32f0xx_hal_adc.o(i.HAL_ADC_Start)
-    HAL_FLASHEx_Erase                        0x0800103d   Thumb Code   148  stm32f0xx_hal_flash_ex.o(i.HAL_FLASHEx_Erase)
-    HAL_FLASH_Lock                           0x080010dd   Thumb Code    14  stm32f0xx_hal_flash.o(i.HAL_FLASH_Lock)
-    HAL_FLASH_Program                        0x080010f1   Thumb Code   112  stm32f0xx_hal_flash.o(i.HAL_FLASH_Program)
-    HAL_FLASH_Unlock                         0x0800116d   Thumb Code    24  stm32f0xx_hal_flash.o(i.HAL_FLASH_Unlock)
-    HAL_GPIO_EXTI_Callback                   0x08001191   Thumb Code    14  gpio.o(i.HAL_GPIO_EXTI_Callback)
-    HAL_GPIO_EXTI_IRQHandler                 0x080011a5   Thumb Code    18  stm32f0xx_hal_gpio.o(i.HAL_GPIO_EXTI_IRQHandler)
-    HAL_GPIO_Init                            0x080011bd   Thumb Code   302  stm32f0xx_hal_gpio.o(i.HAL_GPIO_Init)
-    HAL_GPIO_ReadPin                         0x08001305   Thumb Code    10  stm32f0xx_hal_gpio.o(i.HAL_GPIO_ReadPin)
-    HAL_GPIO_WritePin                        0x0800130f   Thumb Code    12  stm32f0xx_hal_gpio.o(i.HAL_GPIO_WritePin)
-    HAL_GetTick                              0x0800131d   Thumb Code     6  stm32f0xx_hal.o(i.HAL_GetTick)
-    HAL_IncTick                              0x08001329   Thumb Code    10  stm32f0xx_hal.o(i.HAL_IncTick)
-    HAL_Init                                 0x08001339   Thumb Code    26  stm32f0xx_hal.o(i.HAL_Init)
-    HAL_InitTick                             0x08001359   Thumb Code    34  stm32f0xx_hal.o(i.HAL_InitTick)
-    HAL_MspInit                              0x0800137d   Thumb Code    50  stm32f0xx_hal_msp.o(i.HAL_MspInit)
-    HAL_NVIC_EnableIRQ                       0x080013b5   Thumb Code    14  stm32f0xx_hal_cortex.o(i.HAL_NVIC_EnableIRQ)
-    HAL_NVIC_SetPriority                     0x080013c9   Thumb Code     8  stm32f0xx_hal_cortex.o(i.HAL_NVIC_SetPriority)
-    HAL_RCC_ClockConfig                      0x080013d1   Thumb Code   280  stm32f0xx_hal_rcc.o(i.HAL_RCC_ClockConfig)
-    HAL_RCC_GetHCLKFreq                      0x080014fd   Thumb Code     6  stm32f0xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq)
-    HAL_RCC_GetSysClockFreq                  0x08001509   Thumb Code    78  stm32f0xx_hal_rcc.o(i.HAL_RCC_GetSysClockFreq)
-    HAL_RCC_OscConfig                        0x08001585   Thumb Code   838  stm32f0xx_hal_rcc.o(i.HAL_RCC_OscConfig)
-    HAL_SYSTICK_CLKSourceConfig              0x080018d9   Thumb Code    20  stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_CLKSourceConfig)
-    HAL_SYSTICK_Callback                     0x080018f1   Thumb Code    86  msg_task.o(i.HAL_SYSTICK_Callback)
-    HAL_SYSTICK_Config                       0x08001951   Thumb Code    38  stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_Config)
-    HAL_SYSTICK_IRQHandler                   0x08001981   Thumb Code     8  stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_IRQHandler)
-    HAL_TIMEx_BreakCallback                  0x08001989   Thumb Code     2  stm32f0xx_hal_tim_ex.o(i.HAL_TIMEx_BreakCallback)
-    HAL_TIMEx_CommutationCallback            0x0800198b   Thumb Code     2  stm32f0xx_hal_tim_ex.o(i.HAL_TIMEx_CommutationCallback)
-    HAL_TIM_Base_Init                        0x0800198d   Thumb Code    52  stm32f0xx_hal_tim.o(i.HAL_TIM_Base_Init)
-    HAL_TIM_Base_MspInit                     0x080019c1   Thumb Code    44  tim.o(i.HAL_TIM_Base_MspInit)
-    HAL_TIM_Base_Start                       0x080019f5   Thumb Code    24  stm32f0xx_hal_tim.o(i.HAL_TIM_Base_Start)
-    HAL_TIM_IC_CaptureCallback               0x08001a0d   Thumb Code     2  stm32f0xx_hal_tim.o(i.HAL_TIM_IC_CaptureCallback)
-    HAL_TIM_IRQHandler                       0x08001a0f   Thumb Code   354  stm32f0xx_hal_tim.o(i.HAL_TIM_IRQHandler)
-    HAL_TIM_OC_DelayElapsedCallback          0x08001b71   Thumb Code     2  stm32f0xx_hal_tim.o(i.HAL_TIM_OC_DelayElapsedCallback)
-    HAL_TIM_PWM_PulseFinishedCallback        0x08001b73   Thumb Code     2  stm32f0xx_hal_tim.o(i.HAL_TIM_PWM_PulseFinishedCallback)
-    HAL_TIM_PeriodElapsedCallback            0x08001b75   Thumb Code     2  tim.o(i.HAL_TIM_PeriodElapsedCallback)
-    HAL_TIM_TriggerCallback                  0x08001b77   Thumb Code     2  stm32f0xx_hal_tim.o(i.HAL_TIM_TriggerCallback)
-    Heat_hotter1321                          0x08001b79   Thumb Code    24  hotter.o(i.Heat_hotter1321)
-    Hotter1321WorkingState_ISR               0x08001b95   Thumb Code    10  hotter.o(i.Hotter1321WorkingState_ISR)
-    Hotter1321_heated_time_count_ISR         0x08001ba5   Thumb Code     2  hotter.o(i.Hotter1321_heated_time_count_ISR)
-    Hotter1321_init                          0x08001ba9   Thumb Code    80  hotter.o(i.Hotter1321_init)
-    Hotter1321_power_on_scan_ISR             0x08001c09   Thumb Code    28  hotter.o(i.Hotter1321_power_on_scan_ISR)
-    Hotter1321_realTemp_ISR                  0x08001c2d   Thumb Code    60  hotter.o(i.Hotter1321_realTemp_ISR)
-    HotterCtrl                               0x08001c71   Thumb Code    84  hotterctrl.o(i.HotterCtrl)
-    HotterWorkingState_ISR                   0x08001cc5   Thumb Code    76  hotter.o(i.HotterWorkingState_ISR)
-    Idle_operate                             0x08001d11   Thumb Code    60  hotterctrl.o(i.Idle_operate)
-    MX_ADC_Init                              0x08001d55   Thumb Code    80  adc.o(i.MX_ADC_Init)
-    MX_GPIO_Init                             0x08001dad   Thumb Code   172  gpio.o(i.MX_GPIO_Init)
-    MX_TIM14_Init                            0x08001e69   Thumb Code    36  tim.o(i.MX_TIM14_Init)
-    Msg_delayms_process                      0x08001e95   Thumb Code    40  msg_task.o(i.Msg_delayms_process)
-    Rotary_1_init                            0x08001f05   Thumb Code    30  rotary.o(i.Rotary_1_init)
-    Rotary_1_scan_ISR                        0x08001f31   Thumb Code    10  rotary.o(i.Rotary_1_scan_ISR)
-    Rotary_scan                              0x08001f41   Thumb Code   224  rotary.o(i.Rotary_scan)
-    SysTick_Handler                          0x08002021   Thumb Code    12  stm32f0xx_it.o(i.SysTick_Handler)
-    SystemClock_Config                       0x0800202d   Thumb Code    96  main.o(i.SystemClock_Config)
-    SystemInit                               0x0800208d   Thumb Code    78  system_stm32f0xx_1.o(i.SystemInit)
-    TIM14_IRQHandler                         0x080020e9   Thumb Code    10  stm32f0xx_it.o(i.TIM14_IRQHandler)
-    TIM_Base_SetConfig                       0x080020f9   Thumb Code    94  stm32f0xx_hal_tim.o(i.TIM_Base_SetConfig)
-    TargetSet_operate                        0x0800216d   Thumb Code   186  hotterctrl.o(i.TargetSet_operate)
-    TargetShow_operate                       0x0800222d   Thumb Code    68  hotterctrl.o(i.TargetShow_operate)
-    Tm1650_1_init                            0x08002275   Thumb Code    32  tm1650.o(i.Tm1650_1_init)
-    Tm1650_1_show_ISR                        0x080022a5   Thumb Code    10  tm1650.o(i.Tm1650_1_show_ISR)
-    Tm1650_show_ISR                          0x080022b5   Thumb Code   278  tm1650.o(i.Tm1650_show_ISR)
-    __ARM_clz                                0x080023d1   Thumb Code    46  depilogue.o(i.__ARM_clz)
-    __ARM_common_switch8                     0x080023ff   Thumb Code    26  stm32f0xx_hal_tim.o(i.__ARM_common_switch8)
-    __scatterload_copy                       0x08002419   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x08002427   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x08002429   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    avg_filter                               0x08002439   Thumb Code    50  adc_filter.o(i.avg_filter)
-    delaymsTask_CTRL                         0x08002471   Thumb Code    30  msg_task.o(i.delaymsTask_CTRL)
-    delaymsTask_ISR                          0x08002495   Thumb Code    50  msg_task.o(i.delaymsTask_ISR)
-    main                                     0x080024d1   Thumb Code    56  main.o(i.main)
-    read_button_1                            0x08002515   Thumb Code    24  button.o(i.read_button_1)
-    read_rotary_a                            0x0800252d   Thumb Code    14  rotary.o(i.read_rotary_a)
-    read_rotary_b                            0x0800253b   Thumb Code    14  rotary.o(i.read_rotary_b)
-    solder1321_init                          0x08002549   Thumb Code   152  hotterctrl.o(i.solder1321_init)
-    tm1650_clk_1                             0x080025f9   Thumb Code    18  tm1650.o(i.tm1650_clk_1)
-    tm1650_dio_1                             0x0800260b   Thumb Code    18  tm1650.o(i.tm1650_dio_1)
-    tm1650_read_dio_1                        0x0800261d   Thumb Code    28  tm1650.o(i.tm1650_read_dio_1)
-    AHBPrescTable                            0x08002638   Data          16  system_stm32f0xx_1.o(.constdata)
-    CODE_Clean                               0x08002648   Data           4  tm1650.o(.constdata)
-    CODE00                                   0x0800264c   Data          10  tm1650.o(.constdata)
-    S_E                                      0x08002656   Data           4  tm1650.o(.constdata)
-    H_E                                      0x0800265a   Data           4  tm1650.o(.constdata)
-    OFF                                      0x0800265e   Data           4  tm1650.o(.constdata)
-    CAL                                      0x08002662   Data           4  tm1650.o(.constdata)
-    hotter_flash_default                     0x08002666   Data           6  flash.o(.constdata)
-    Region$$Table$$Base                      0x0800266c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0800268c   Number         0  anon$$obj.o(Region$$Table)
+    BUTTON_1_ISR                             0x08000591   Thumb Code    10  button.o(i.BUTTON_1_ISR)
+    BUTTON_scan                              0x080005a1   Thumb Code    94  button.o(i.BUTTON_scan)
+    Button_1_init                            0x08000601   Thumb Code    26  button.o(i.Button_1_init)
+    EXTI0_1_IRQHandler                       0x08000625   Thumb Code    10  stm32f0xx_it.o(i.EXTI0_1_IRQHandler)
+    Error_Handler                            0x0800062f   Thumb Code     2  main.o(i.Error_Handler)
+    FD650_START                              0x08000631   Thumb Code    30  tm1650.o(i.FD650_START)
+    FD650_STOP                               0x0800064f   Thumb Code    24  tm1650.o(i.FD650_STOP)
+    FD650_send                               0x08000667   Thumb Code    36  tm1650.o(i.FD650_send)
+    FD650_write                              0x0800068b   Thumb Code    66  tm1650.o(i.FD650_write)
+    FLASH_PageErase                          0x080006f1   Thumb Code    28  stm32f0xx_hal_flash_ex.o(i.FLASH_PageErase)
+    FLASH_WaitForLastOperation               0x0800076d   Thumb Code    76  stm32f0xx_hal_flash.o(i.FLASH_WaitForLastOperation)
+    Filter_hotter1321_adc_ISR                0x080007bd   Thumb Code    18  hotter.o(i.Filter_hotter1321_adc_ISR)
+    FlshPara_Init                            0x080007d9   Thumb Code   114  flash.o(i.FlshPara_Init)
+    FlshPara_Save                            0x0800085d   Thumb Code    90  flash.o(i.FlshPara_Save)
+    Get_hotter1321_adc                       0x080008c5   Thumb Code    26  hotter.o(i.Get_hotter1321_adc)
+    HAL_ADCEx_Calibration_Start              0x080008e5   Thumb Code   148  stm32f0xx_hal_adc_ex.o(i.HAL_ADCEx_Calibration_Start)
+    HAL_ADC_ConfigChannel                    0x08000979   Thumb Code   254  stm32f0xx_hal_adc.o(i.HAL_ADC_ConfigChannel)
+    HAL_ADC_GetValue                         0x08000a89   Thumb Code     6  stm32f0xx_hal_adc.o(i.HAL_ADC_GetValue)
+    HAL_ADC_Init                             0x08000a91   Thumb Code   362  stm32f0xx_hal_adc.o(i.HAL_ADC_Init)
+    HAL_ADC_MspInit                          0x08000c05   Thumb Code    54  adc.o(i.HAL_ADC_MspInit)
+    HAL_ADC_PollForConversion                0x08000c45   Thumb Code   190  stm32f0xx_hal_adc.o(i.HAL_ADC_PollForConversion)
+    HAL_ADC_Start                            0x08000d05   Thumb Code    86  stm32f0xx_hal_adc.o(i.HAL_ADC_Start)
+    HAL_FLASHEx_Erase                        0x08000d61   Thumb Code   148  stm32f0xx_hal_flash_ex.o(i.HAL_FLASHEx_Erase)
+    HAL_FLASH_Lock                           0x08000e01   Thumb Code    14  stm32f0xx_hal_flash.o(i.HAL_FLASH_Lock)
+    HAL_FLASH_Program                        0x08000e15   Thumb Code   112  stm32f0xx_hal_flash.o(i.HAL_FLASH_Program)
+    HAL_FLASH_Unlock                         0x08000e91   Thumb Code    24  stm32f0xx_hal_flash.o(i.HAL_FLASH_Unlock)
+    HAL_GPIO_EXTI_Callback                   0x08000eb5   Thumb Code    14  gpio.o(i.HAL_GPIO_EXTI_Callback)
+    HAL_GPIO_EXTI_IRQHandler                 0x08000ec9   Thumb Code    18  stm32f0xx_hal_gpio.o(i.HAL_GPIO_EXTI_IRQHandler)
+    HAL_GPIO_Init                            0x08000ee1   Thumb Code   302  stm32f0xx_hal_gpio.o(i.HAL_GPIO_Init)
+    HAL_GPIO_ReadPin                         0x08001029   Thumb Code    10  stm32f0xx_hal_gpio.o(i.HAL_GPIO_ReadPin)
+    HAL_GPIO_WritePin                        0x08001033   Thumb Code    12  stm32f0xx_hal_gpio.o(i.HAL_GPIO_WritePin)
+    HAL_GetTick                              0x08001041   Thumb Code     6  stm32f0xx_hal.o(i.HAL_GetTick)
+    HAL_IncTick                              0x0800104d   Thumb Code    10  stm32f0xx_hal.o(i.HAL_IncTick)
+    HAL_Init                                 0x0800105d   Thumb Code    26  stm32f0xx_hal.o(i.HAL_Init)
+    HAL_InitTick                             0x0800107d   Thumb Code    34  stm32f0xx_hal.o(i.HAL_InitTick)
+    HAL_MspInit                              0x080010a1   Thumb Code    50  stm32f0xx_hal_msp.o(i.HAL_MspInit)
+    HAL_NVIC_EnableIRQ                       0x080010d9   Thumb Code    14  stm32f0xx_hal_cortex.o(i.HAL_NVIC_EnableIRQ)
+    HAL_NVIC_SetPriority                     0x080010ed   Thumb Code     8  stm32f0xx_hal_cortex.o(i.HAL_NVIC_SetPriority)
+    HAL_RCC_ClockConfig                      0x080010f5   Thumb Code   280  stm32f0xx_hal_rcc.o(i.HAL_RCC_ClockConfig)
+    HAL_RCC_GetHCLKFreq                      0x08001221   Thumb Code     6  stm32f0xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq)
+    HAL_RCC_GetSysClockFreq                  0x0800122d   Thumb Code    78  stm32f0xx_hal_rcc.o(i.HAL_RCC_GetSysClockFreq)
+    HAL_RCC_OscConfig                        0x080012a9   Thumb Code   838  stm32f0xx_hal_rcc.o(i.HAL_RCC_OscConfig)
+    HAL_SYSTICK_CLKSourceConfig              0x080015fd   Thumb Code    20  stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_CLKSourceConfig)
+    HAL_SYSTICK_Callback                     0x08001615   Thumb Code    86  msg_task.o(i.HAL_SYSTICK_Callback)
+    HAL_SYSTICK_Config                       0x08001675   Thumb Code    38  stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_Config)
+    HAL_SYSTICK_IRQHandler                   0x080016a5   Thumb Code     8  stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_IRQHandler)
+    HAL_TIMEx_BreakCallback                  0x080016ad   Thumb Code     2  stm32f0xx_hal_tim_ex.o(i.HAL_TIMEx_BreakCallback)
+    HAL_TIMEx_CommutationCallback            0x080016af   Thumb Code     2  stm32f0xx_hal_tim_ex.o(i.HAL_TIMEx_CommutationCallback)
+    HAL_TIM_Base_Init                        0x080016b1   Thumb Code    52  stm32f0xx_hal_tim.o(i.HAL_TIM_Base_Init)
+    HAL_TIM_Base_MspInit                     0x080016e5   Thumb Code    44  tim.o(i.HAL_TIM_Base_MspInit)
+    HAL_TIM_Base_Start                       0x08001719   Thumb Code    24  stm32f0xx_hal_tim.o(i.HAL_TIM_Base_Start)
+    HAL_TIM_IC_CaptureCallback               0x08001731   Thumb Code     2  stm32f0xx_hal_tim.o(i.HAL_TIM_IC_CaptureCallback)
+    HAL_TIM_IRQHandler                       0x08001733   Thumb Code   354  stm32f0xx_hal_tim.o(i.HAL_TIM_IRQHandler)
+    HAL_TIM_OC_DelayElapsedCallback          0x08001895   Thumb Code     2  stm32f0xx_hal_tim.o(i.HAL_TIM_OC_DelayElapsedCallback)
+    HAL_TIM_PWM_PulseFinishedCallback        0x08001897   Thumb Code     2  stm32f0xx_hal_tim.o(i.HAL_TIM_PWM_PulseFinishedCallback)
+    HAL_TIM_PeriodElapsedCallback            0x08001899   Thumb Code     2  tim.o(i.HAL_TIM_PeriodElapsedCallback)
+    HAL_TIM_TriggerCallback                  0x0800189b   Thumb Code     2  stm32f0xx_hal_tim.o(i.HAL_TIM_TriggerCallback)
+    Heat_hotter1321                          0x0800189d   Thumb Code    24  hotter.o(i.Heat_hotter1321)
+    Hotter1321WorkingState_ISR               0x080018b9   Thumb Code    10  hotter.o(i.Hotter1321WorkingState_ISR)
+    Hotter1321_heated_time_count_ISR         0x080018c9   Thumb Code     2  hotter.o(i.Hotter1321_heated_time_count_ISR)
+    Hotter1321_init                          0x080018cd   Thumb Code    80  hotter.o(i.Hotter1321_init)
+    Hotter1321_power_on_scan_ISR             0x0800192d   Thumb Code    28  hotter.o(i.Hotter1321_power_on_scan_ISR)
+    Hotter1321_realTemp_ISR                  0x08001951   Thumb Code    60  hotter.o(i.Hotter1321_realTemp_ISR)
+    HotterCtrl                               0x08001995   Thumb Code   158  hotterctrl.o(i.HotterCtrl)
+    HotterWorkingState_ISR                   0x08001a33   Thumb Code    76  hotter.o(i.HotterWorkingState_ISR)
+    MX_ADC_Init                              0x08001a81   Thumb Code    80  adc.o(i.MX_ADC_Init)
+    MX_GPIO_Init                             0x08001ad9   Thumb Code   172  gpio.o(i.MX_GPIO_Init)
+    MX_TIM14_Init                            0x08001b95   Thumb Code    36  tim.o(i.MX_TIM14_Init)
+    Msg_delayms_process                      0x08001bc1   Thumb Code    40  msg_task.o(i.Msg_delayms_process)
+    Rotary_1_init                            0x08001c31   Thumb Code    30  rotary.o(i.Rotary_1_init)
+    Rotary_1_scan_ISR                        0x08001c5d   Thumb Code    10  rotary.o(i.Rotary_1_scan_ISR)
+    Rotary_scan                              0x08001c6d   Thumb Code   224  rotary.o(i.Rotary_scan)
+    SysTick_Handler                          0x08001d4d   Thumb Code    12  stm32f0xx_it.o(i.SysTick_Handler)
+    SystemClock_Config                       0x08001d59   Thumb Code    96  main.o(i.SystemClock_Config)
+    SystemInit                               0x08001db9   Thumb Code    78  system_stm32f0xx_1.o(i.SystemInit)
+    TEMP_ADJUST_READY_operate                0x08001e15   Thumb Code    64  hotterctrl.o(i.TEMP_ADJUST_READY_operate)
+    TEMP_ADJUST_WARNING_READY_operate        0x08001e5d   Thumb Code    46  hotterctrl.o(i.TEMP_ADJUST_WARNING_READY_operate)
+    TEMP_ADJUST_WARNING_operate              0x08001e91   Thumb Code    14  hotterctrl.o(i.TEMP_ADJUST_WARNING_operate)
+    TEMP_ADJUST_operate                      0x08001ea5   Thumb Code   138  hotterctrl.o(i.TEMP_ADJUST_operate)
+    TEMP_ALARM_READY_operate                 0x08001f35   Thumb Code    22  hotterctrl.o(i.TEMP_ALARM_READY_operate)
+    TEMP_ALARM_operate                       0x08001f4d   Thumb Code    96  hotterctrl.o(i.TEMP_ALARM_operate)
+    TEMP_CTRL_READY_operate                  0x08001fb5   Thumb Code    32  hotterctrl.o(i.TEMP_CTRL_READY_operate)
+    TEMP_CTRL_operate                        0x08001fd5   Thumb Code   288  hotterctrl.o(i.TEMP_CTRL_operate)
+    TEMP_IDLE_READY_operate                  0x080020fd   Thumb Code    44  hotterctrl.o(i.TEMP_IDLE_READY_operate)
+    TEMP_IDLE_operate                        0x0800212d   Thumb Code    16  hotterctrl.o(i.TEMP_IDLE_operate)
+    TEMP_TARGET_SET_READY_operate            0x0800213d   Thumb Code    60  hotterctrl.o(i.TEMP_TARGET_SET_READY_operate)
+    TEMP_TARGET_SET_operate                  0x0800217d   Thumb Code   138  hotterctrl.o(i.TEMP_TARGET_SET_operate)
+    TEMP_TARGET_SHOW_READY_operate           0x0800220d   Thumb Code    56  hotterctrl.o(i.TEMP_TARGET_SHOW_READY_operate)
+    TEMP_TARGET_SHOW_operate                 0x08002249   Thumb Code    14  hotterctrl.o(i.TEMP_TARGET_SHOW_operate)
+    TIM14_IRQHandler                         0x0800225d   Thumb Code    10  stm32f0xx_it.o(i.TIM14_IRQHandler)
+    TIM_Base_SetConfig                       0x0800226d   Thumb Code    94  stm32f0xx_hal_tim.o(i.TIM_Base_SetConfig)
+    Tm1650_1_init                            0x080022e1   Thumb Code    32  tm1650.o(i.Tm1650_1_init)
+    Tm1650_1_show_ISR                        0x08002311   Thumb Code    10  tm1650.o(i.Tm1650_1_show_ISR)
+    Tm1650_show_ISR                          0x08002321   Thumb Code   278  tm1650.o(i.Tm1650_show_ISR)
+    __ARM_clz                                0x0800243d   Thumb Code    46  depilogue.o(i.__ARM_clz)
+    __ARM_common_switch8                     0x0800246b   Thumb Code    26  stm32f0xx_hal_tim.o(i.__ARM_common_switch8)
+    __scatterload_copy                       0x08002485   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x08002493   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x08002495   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    avg_filter                               0x080024a5   Thumb Code    50  adc_filter.o(i.avg_filter)
+    delaymsTask_CTRL                         0x080024dd   Thumb Code    30  msg_task.o(i.delaymsTask_CTRL)
+    delaymsTask_ISR                          0x08002501   Thumb Code    50  msg_task.o(i.delaymsTask_ISR)
+    main                                     0x0800253d   Thumb Code    56  main.o(i.main)
+    read_button_1                            0x08002581   Thumb Code    24  button.o(i.read_button_1)
+    read_rotary_a                            0x08002599   Thumb Code    14  rotary.o(i.read_rotary_a)
+    read_rotary_b                            0x080025a7   Thumb Code    14  rotary.o(i.read_rotary_b)
+    solder1321_init                          0x080025b5   Thumb Code   152  hotterctrl.o(i.solder1321_init)
+    tm1650_clk_1                             0x08002665   Thumb Code    18  tm1650.o(i.tm1650_clk_1)
+    tm1650_dio_1                             0x08002677   Thumb Code    18  tm1650.o(i.tm1650_dio_1)
+    tm1650_read_dio_1                        0x08002689   Thumb Code    28  tm1650.o(i.tm1650_read_dio_1)
+    AHBPrescTable                            0x080026a4   Data          16  system_stm32f0xx_1.o(.constdata)
+    CODE_Clean                               0x080026b4   Data           4  tm1650.o(.constdata)
+    CODE00                                   0x080026b8   Data          10  tm1650.o(.constdata)
+    S_E                                      0x080026c2   Data           4  tm1650.o(.constdata)
+    H_E                                      0x080026c6   Data           4  tm1650.o(.constdata)
+    OFF                                      0x080026ca   Data           4  tm1650.o(.constdata)
+    CAL                                      0x080026ce   Data           4  tm1650.o(.constdata)
+    hotter_flash_default                     0x080026d2   Data           6  flash.o(.constdata)
+    Region$$Table$$Base                      0x080026d8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080026f8   Number         0  anon$$obj.o(Region$$Table)
     uwTick                                   0x20000000   Data           4  stm32f0xx_hal.o(.data)
     SystemCoreClock                          0x20000004   Data           4  system_stm32f0xx_1.o(.data)
     hal_1ms_flag                             0x20000010   Data           2  msg_task.o(.data)
@@ -1573,163 +1594,172 @@ Memory Map of the image
 
   Image Entry point : 0x080000b1
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002728, Max: 0x00004000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002794, Max: 0x00004000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0000268c, Max: 0x00004000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x000026f8, Max: 0x00004000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x000000b0   Data   RO            3    RESET               startup_stm32f030x6_1.o
-    0x080000b0   0x00000000   Code   RO         3274  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
-    0x080000b0   0x00000004   Code   RO         3303    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
-    0x080000b4   0x00000004   Code   RO         3306    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
-    0x080000b8   0x00000000   Code   RO         3308    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
-    0x080000b8   0x00000000   Code   RO         3310    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
-    0x080000b8   0x00000008   Code   RO         3311    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
-    0x080000c0   0x00000000   Code   RO         3313    .ARM.Collect$$$$0000000D  mc_p.l(entry10a.o)
-    0x080000c0   0x00000000   Code   RO         3315    .ARM.Collect$$$$0000000F  mc_p.l(entry11a.o)
-    0x080000c0   0x00000004   Code   RO         3304    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
+    0x080000b0   0x00000000   Code   RO         3316  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
+    0x080000b0   0x00000004   Code   RO         3345    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
+    0x080000b4   0x00000004   Code   RO         3348    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
+    0x080000b8   0x00000000   Code   RO         3350    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
+    0x080000b8   0x00000000   Code   RO         3352    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
+    0x080000b8   0x00000008   Code   RO         3353    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
+    0x080000c0   0x00000000   Code   RO         3355    .ARM.Collect$$$$0000000D  mc_p.l(entry10a.o)
+    0x080000c0   0x00000000   Code   RO         3357    .ARM.Collect$$$$0000000F  mc_p.l(entry11a.o)
+    0x080000c0   0x00000004   Code   RO         3346    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
     0x080000c4   0x0000001c   Code   RO            4    .text               startup_stm32f030x6_1.o
-    0x080000e0   0x0000002c   Code   RO         3277    .text               mc_p.l(uidiv.o)
-    0x0800010c   0x00000028   Code   RO         3279    .text               mc_p.l(idiv.o)
-    0x08000134   0x00000022   Code   RO         3281    .text               mc_p.l(llushr.o)
-    0x08000156   0x00000024   Code   RO         3283    .text               mc_p.l(memcpya.o)
-    0x0800017a   0x000000b2   Code   RO         3289    .text               mf_p.l(fadd.o)
-    0x0800022c   0x0000007a   Code   RO         3291    .text               mf_p.l(fmul.o)
-    0x080002a6   0x00000016   Code   RO         3293    .text               mf_p.l(fflti.o)
-    0x080002bc   0x00000028   Code   RO         3295    .text               mf_p.l(dflti.o)
-    0x080002e4   0x00000032   Code   RO         3297    .text               mf_p.l(ffixi.o)
+    0x080000e0   0x0000002c   Code   RO         3319    .text               mc_p.l(uidiv.o)
+    0x0800010c   0x00000028   Code   RO         3321    .text               mc_p.l(idiv.o)
+    0x08000134   0x00000022   Code   RO         3323    .text               mc_p.l(llushr.o)
+    0x08000156   0x00000024   Code   RO         3325    .text               mc_p.l(memcpya.o)
+    0x0800017a   0x000000b2   Code   RO         3331    .text               mf_p.l(fadd.o)
+    0x0800022c   0x0000007a   Code   RO         3333    .text               mf_p.l(fmul.o)
+    0x080002a6   0x00000016   Code   RO         3335    .text               mf_p.l(fflti.o)
+    0x080002bc   0x00000028   Code   RO         3337    .text               mf_p.l(dflti.o)
+    0x080002e4   0x00000032   Code   RO         3339    .text               mf_p.l(ffixi.o)
     0x08000316   0x00000002   PAD
-    0x08000318   0x00000048   Code   RO         3299    .text               mf_p.l(dfixi.o)
-    0x08000360   0x00000028   Code   RO         3301    .text               mf_p.l(cdcmple.o)
-    0x08000388   0x00000000   Code   RO         3317    .text               mc_p.l(iusefp.o)
-    0x08000388   0x00000082   Code   RO         3318    .text               mf_p.l(fepilogue.o)
-    0x0800040a   0x000000be   Code   RO         3320    .text               mf_p.l(depilogue.o)
-    0x080004c8   0x00000024   Code   RO         3324    .text               mc_p.l(init.o)
-    0x080004ec   0x00000020   Code   RO         3326    .text               mc_p.l(llshl.o)
+    0x08000318   0x00000048   Code   RO         3341    .text               mf_p.l(dfixi.o)
+    0x08000360   0x00000028   Code   RO         3343    .text               mf_p.l(cdcmple.o)
+    0x08000388   0x00000000   Code   RO         3359    .text               mc_p.l(iusefp.o)
+    0x08000388   0x00000082   Code   RO         3360    .text               mf_p.l(fepilogue.o)
+    0x0800040a   0x000000be   Code   RO         3362    .text               mf_p.l(depilogue.o)
+    0x080004c8   0x00000024   Code   RO         3366    .text               mc_p.l(init.o)
+    0x080004ec   0x00000020   Code   RO         3368    .text               mc_p.l(llshl.o)
     0x0800050c   0x00000084   Code   RO         2207    i.ADC_Enable        stm32f0xx_hal_adc.o
-    0x08000590   0x00000050   Code   RO         2958    i.AdjustWarning_operate  hotterctrl.o
-    0x080005e0   0x000000bc   Code   RO         2959    i.Adjust_operate    hotterctrl.o
-    0x0800069c   0x0000008c   Code   RO         2960    i.Alarm_operate     hotterctrl.o
-    0x08000728   0x00000010   Code   RO         2704    i.BUTTON_1_ISR      button.o
-    0x08000738   0x0000005e   Code   RO         2705    i.BUTTON_scan       button.o
-    0x08000796   0x00000002   PAD
-    0x08000798   0x00000024   Code   RO         2706    i.Button_1_init     button.o
-    0x080007bc   0x00000144   Code   RO         2961    i.Ctrl_operate      hotterctrl.o
-    0x08000900   0x0000000a   Code   RO         2445    i.EXTI0_1_IRQHandler  stm32f0xx_it.o
-    0x0800090a   0x00000002   Code   RO         2378    i.Error_Handler     main.o
-    0x0800090c   0x0000001e   Code   RO         2749    i.FD650_START       tm1650.o
-    0x0800092a   0x00000018   Code   RO         2750    i.FD650_STOP        tm1650.o
-    0x08000942   0x00000024   Code   RO         2752    i.FD650_send        tm1650.o
-    0x08000966   0x00000042   Code   RO         2753    i.FD650_write       tm1650.o
-    0x080009a8   0x00000024   Code   RO          355    i.FLASH_MassErase   stm32f0xx_hal_flash_ex.o
-    0x080009cc   0x00000024   Code   RO          358    i.FLASH_PageErase   stm32f0xx_hal_flash_ex.o
-    0x080009f0   0x00000020   Code   RO          426    i.FLASH_Program_HalfWord  stm32f0xx_hal_flash.o
-    0x08000a10   0x00000038   Code   RO          427    i.FLASH_SetErrorCode  stm32f0xx_hal_flash.o
-    0x08000a48   0x00000050   Code   RO          428    i.FLASH_WaitForLastOperation  stm32f0xx_hal_flash.o
-    0x08000a98   0x0000001c   Code   RO         2868    i.Filter_hotter1321_adc_ISR  hotter.o
-    0x08000ab4   0x00000084   Code   RO         3184    i.FlshPara_Init     flash.o
-    0x08000b38   0x00000068   Code   RO         3185    i.FlshPara_Save     flash.o
-    0x08000ba0   0x00000020   Code   RO         2869    i.Get_hotter1321_adc  hotter.o
-    0x08000bc0   0x00000094   Code   RO         2182    i.HAL_ADCEx_Calibration_Start  stm32f0xx_hal_adc_ex.o
-    0x08000c54   0x00000110   Code   RO         2209    i.HAL_ADC_ConfigChannel  stm32f0xx_hal_adc.o
-    0x08000d64   0x00000006   Code   RO         2216    i.HAL_ADC_GetValue  stm32f0xx_hal_adc.o
-    0x08000d6a   0x00000002   PAD
-    0x08000d6c   0x00000174   Code   RO         2218    i.HAL_ADC_Init      stm32f0xx_hal_adc.o
-    0x08000ee0   0x00000040   Code   RO         2539    i.HAL_ADC_MspInit   adc.o
-    0x08000f20   0x000000be   Code   RO         2222    i.HAL_ADC_PollForConversion  stm32f0xx_hal_adc.o
-    0x08000fde   0x00000002   PAD
-    0x08000fe0   0x0000005c   Code   RO         2224    i.HAL_ADC_Start     stm32f0xx_hal_adc.o
-    0x0800103c   0x000000a0   Code   RO          359    i.HAL_FLASHEx_Erase  stm32f0xx_hal_flash_ex.o
-    0x080010dc   0x00000014   Code   RO          432    i.HAL_FLASH_Lock    stm32f0xx_hal_flash.o
-    0x080010f0   0x0000007c   Code   RO          437    i.HAL_FLASH_Program  stm32f0xx_hal_flash.o
-    0x0800116c   0x00000024   Code   RO          439    i.HAL_FLASH_Unlock  stm32f0xx_hal_flash.o
-    0x08001190   0x00000014   Code   RO         2504    i.HAL_GPIO_EXTI_Callback  gpio.o
-    0x080011a4   0x00000018   Code   RO          124    i.HAL_GPIO_EXTI_IRQHandler  stm32f0xx_hal_gpio.o
-    0x080011bc   0x00000148   Code   RO          125    i.HAL_GPIO_Init     stm32f0xx_hal_gpio.o
-    0x08001304   0x0000000a   Code   RO          127    i.HAL_GPIO_ReadPin  stm32f0xx_hal_gpio.o
-    0x0800130e   0x0000000c   Code   RO          129    i.HAL_GPIO_WritePin  stm32f0xx_hal_gpio.o
-    0x0800131a   0x00000002   PAD
-    0x0800131c   0x0000000c   Code   RO          660    i.HAL_GetTick       stm32f0xx_hal.o
-    0x08001328   0x00000010   Code   RO          661    i.HAL_IncTick       stm32f0xx_hal.o
-    0x08001338   0x00000020   Code   RO          662    i.HAL_Init          stm32f0xx_hal.o
-    0x08001358   0x00000022   Code   RO          663    i.HAL_InitTick      stm32f0xx_hal.o
-    0x0800137a   0x00000002   PAD
-    0x0800137c   0x00000038   Code   RO         2484    i.HAL_MspInit       stm32f0xx_hal_msp.o
-    0x080013b4   0x00000014   Code   RO          559    i.HAL_NVIC_EnableIRQ  stm32f0xx_hal_cortex.o
-    0x080013c8   0x00000008   Code   RO          563    i.HAL_NVIC_SetPriority  stm32f0xx_hal_cortex.o
-    0x080013d0   0x0000012c   Code   RO          264    i.HAL_RCC_ClockConfig  stm32f0xx_hal_rcc.o
-    0x080014fc   0x0000000c   Code   RO          269    i.HAL_RCC_GetHCLKFreq  stm32f0xx_hal_rcc.o
-    0x08001508   0x0000007c   Code   RO          272    i.HAL_RCC_GetSysClockFreq  stm32f0xx_hal_rcc.o
-    0x08001584   0x00000354   Code   RO          275    i.HAL_RCC_OscConfig  stm32f0xx_hal_rcc.o
-    0x080018d8   0x00000018   Code   RO          565    i.HAL_SYSTICK_CLKSourceConfig  stm32f0xx_hal_cortex.o
-    0x080018f0   0x00000060   Code   RO         3069    i.HAL_SYSTICK_Callback  msg_task.o
-    0x08001950   0x00000030   Code   RO          567    i.HAL_SYSTICK_Config  stm32f0xx_hal_cortex.o
-    0x08001980   0x00000008   Code   RO          568    i.HAL_SYSTICK_IRQHandler  stm32f0xx_hal_cortex.o
-    0x08001988   0x00000002   Code   RO         1485    i.HAL_TIMEx_BreakCallback  stm32f0xx_hal_tim_ex.o
-    0x0800198a   0x00000002   Code   RO         1486    i.HAL_TIMEx_CommutationCallback  stm32f0xx_hal_tim_ex.o
-    0x0800198c   0x00000034   Code   RO          858    i.HAL_TIM_Base_Init  stm32f0xx_hal_tim.o
-    0x080019c0   0x00000034   Code   RO         2577    i.HAL_TIM_Base_MspInit  tim.o
-    0x080019f4   0x00000018   Code   RO          861    i.HAL_TIM_Base_Start  stm32f0xx_hal_tim.o
-    0x08001a0c   0x00000002   Code   RO          887    i.HAL_TIM_IC_CaptureCallback  stm32f0xx_hal_tim.o
-    0x08001a0e   0x00000162   Code   RO          900    i.HAL_TIM_IRQHandler  stm32f0xx_hal_tim.o
-    0x08001b70   0x00000002   Code   RO          903    i.HAL_TIM_OC_DelayElapsedCallback  stm32f0xx_hal_tim.o
-    0x08001b72   0x00000002   Code   RO          930    i.HAL_TIM_PWM_PulseFinishedCallback  stm32f0xx_hal_tim.o
-    0x08001b74   0x00000002   Code   RO         2578    i.HAL_TIM_PeriodElapsedCallback  tim.o
-    0x08001b76   0x00000002   Code   RO          941    i.HAL_TIM_TriggerCallback  stm32f0xx_hal_tim.o
-    0x08001b78   0x0000001c   Code   RO         2870    i.Heat_hotter1321   hotter.o
-    0x08001b94   0x00000010   Code   RO         2871    i.Hotter1321WorkingState_ISR  hotter.o
-    0x08001ba4   0x00000002   Code   RO         2872    i.Hotter1321_heated_time_count_ISR  hotter.o
-    0x08001ba6   0x00000002   PAD
-    0x08001ba8   0x00000060   Code   RO         2873    i.Hotter1321_init   hotter.o
-    0x08001c08   0x00000024   Code   RO         2874    i.Hotter1321_power_on_scan_ISR  hotter.o
-    0x08001c2c   0x00000044   Code   RO         2875    i.Hotter1321_realTemp_ISR  hotter.o
-    0x08001c70   0x00000054   Code   RO         2962    i.HotterCtrl        hotterctrl.o
-    0x08001cc4   0x0000004c   Code   RO         2876    i.HotterWorkingState_ISR  hotter.o
-    0x08001d10   0x00000044   Code   RO         2963    i.Idle_operate      hotterctrl.o
-    0x08001d54   0x00000058   Code   RO         2540    i.MX_ADC_Init       adc.o
-    0x08001dac   0x000000bc   Code   RO         2505    i.MX_GPIO_Init      gpio.o
-    0x08001e68   0x0000002c   Code   RO         2579    i.MX_TIM14_Init     tim.o
-    0x08001e94   0x0000002c   Code   RO         3073    i.Msg_delayms_process  msg_task.o
-    0x08001ec0   0x00000044   Code   RO          569    i.NVIC_SetPriority  stm32f0xx_hal_cortex.o
-    0x08001f04   0x0000002c   Code   RO         2654    i.Rotary_1_init     rotary.o
-    0x08001f30   0x00000010   Code   RO         2655    i.Rotary_1_scan_ISR  rotary.o
-    0x08001f40   0x000000e0   Code   RO         2656    i.Rotary_scan       rotary.o
-    0x08002020   0x0000000c   Code   RO         2446    i.SysTick_Handler   stm32f0xx_it.o
-    0x0800202c   0x00000060   Code   RO         2379    i.SystemClock_Config  main.o
-    0x0800208c   0x0000005c   Code   RO         2621    i.SystemInit        system_stm32f0xx_1.o
-    0x080020e8   0x00000010   Code   RO         2447    i.TIM14_IRQHandler  stm32f0xx_it.o
-    0x080020f8   0x00000074   Code   RO          942    i.TIM_Base_SetConfig  stm32f0xx_hal_tim.o
-    0x0800216c   0x000000c0   Code   RO         2964    i.TargetSet_operate  hotterctrl.o
-    0x0800222c   0x00000048   Code   RO         2965    i.TargetShow_operate  hotterctrl.o
-    0x08002274   0x00000030   Code   RO         2755    i.Tm1650_1_init     tm1650.o
-    0x080022a4   0x00000010   Code   RO         2756    i.Tm1650_1_show_ISR  tm1650.o
-    0x080022b4   0x0000011c   Code   RO         2757    i.Tm1650_show_ISR   tm1650.o
-    0x080023d0   0x0000002e   Code   RO         3322    i.__ARM_clz         mf_p.l(depilogue.o)
-    0x080023fe   0x0000001a   Code   RO         1477    i.__ARM_common_switch8  stm32f0xx_hal_tim.o
-    0x08002418   0x0000000e   Code   RO         3330    i.__scatterload_copy  mc_p.l(handlers.o)
-    0x08002426   0x00000002   Code   RO         3331    i.__scatterload_null  mc_p.l(handlers.o)
-    0x08002428   0x0000000e   Code   RO         3332    i.__scatterload_zeroinit  mc_p.l(handlers.o)
-    0x08002436   0x00000002   PAD
-    0x08002438   0x00000038   Code   RO         3158    i.avg_filter        adc_filter.o
-    0x08002470   0x00000024   Code   RO         3074    i.delaymsTask_CTRL  msg_task.o
-    0x08002494   0x0000003c   Code   RO         3075    i.delaymsTask_ISR   msg_task.o
-    0x080024d0   0x00000044   Code   RO         2380    i.main              main.o
-    0x08002514   0x00000018   Code   RO         2707    i.read_button_1     button.o
-    0x0800252c   0x0000000e   Code   RO         2657    i.read_rotary_a     rotary.o
-    0x0800253a   0x0000000e   Code   RO         2658    i.read_rotary_b     rotary.o
-    0x08002548   0x000000b0   Code   RO         2966    i.solder1321_init   hotterctrl.o
-    0x080025f8   0x00000012   Code   RO         2758    i.tm1650_clk_1      tm1650.o
-    0x0800260a   0x00000012   Code   RO         2759    i.tm1650_dio_1      tm1650.o
-    0x0800261c   0x0000001c   Code   RO         2760    i.tm1650_read_dio_1  tm1650.o
-    0x08002638   0x00000010   Data   RO         2622    .constdata          system_stm32f0xx_1.o
-    0x08002648   0x0000000e   Data   RO         2762    .constdata          tm1650.o
-    0x08002656   0x00000004   Data   RO         2764    .constdata          tm1650.o
-    0x0800265a   0x00000004   Data   RO         2765    .constdata          tm1650.o
-    0x0800265e   0x00000004   Data   RO         2766    .constdata          tm1650.o
-    0x08002662   0x00000004   Data   RO         2767    .constdata          tm1650.o
-    0x08002666   0x00000006   Data   RO         3187    .constdata          flash.o
-    0x0800266c   0x00000020   Data   RO         3328    Region$$Table       anon$$obj.o
+    0x08000590   0x00000010   Code   RO         2704    i.BUTTON_1_ISR      button.o
+    0x080005a0   0x0000005e   Code   RO         2705    i.BUTTON_scan       button.o
+    0x080005fe   0x00000002   PAD
+    0x08000600   0x00000024   Code   RO         2706    i.Button_1_init     button.o
+    0x08000624   0x0000000a   Code   RO         2445    i.EXTI0_1_IRQHandler  stm32f0xx_it.o
+    0x0800062e   0x00000002   Code   RO         2378    i.Error_Handler     main.o
+    0x08000630   0x0000001e   Code   RO         2749    i.FD650_START       tm1650.o
+    0x0800064e   0x00000018   Code   RO         2750    i.FD650_STOP        tm1650.o
+    0x08000666   0x00000024   Code   RO         2752    i.FD650_send        tm1650.o
+    0x0800068a   0x00000042   Code   RO         2753    i.FD650_write       tm1650.o
+    0x080006cc   0x00000024   Code   RO          355    i.FLASH_MassErase   stm32f0xx_hal_flash_ex.o
+    0x080006f0   0x00000024   Code   RO          358    i.FLASH_PageErase   stm32f0xx_hal_flash_ex.o
+    0x08000714   0x00000020   Code   RO          426    i.FLASH_Program_HalfWord  stm32f0xx_hal_flash.o
+    0x08000734   0x00000038   Code   RO          427    i.FLASH_SetErrorCode  stm32f0xx_hal_flash.o
+    0x0800076c   0x00000050   Code   RO          428    i.FLASH_WaitForLastOperation  stm32f0xx_hal_flash.o
+    0x080007bc   0x0000001c   Code   RO         2868    i.Filter_hotter1321_adc_ISR  hotter.o
+    0x080007d8   0x00000084   Code   RO         3226    i.FlshPara_Init     flash.o
+    0x0800085c   0x00000068   Code   RO         3227    i.FlshPara_Save     flash.o
+    0x080008c4   0x00000020   Code   RO         2869    i.Get_hotter1321_adc  hotter.o
+    0x080008e4   0x00000094   Code   RO         2182    i.HAL_ADCEx_Calibration_Start  stm32f0xx_hal_adc_ex.o
+    0x08000978   0x00000110   Code   RO         2209    i.HAL_ADC_ConfigChannel  stm32f0xx_hal_adc.o
+    0x08000a88   0x00000006   Code   RO         2216    i.HAL_ADC_GetValue  stm32f0xx_hal_adc.o
+    0x08000a8e   0x00000002   PAD
+    0x08000a90   0x00000174   Code   RO         2218    i.HAL_ADC_Init      stm32f0xx_hal_adc.o
+    0x08000c04   0x00000040   Code   RO         2539    i.HAL_ADC_MspInit   adc.o
+    0x08000c44   0x000000be   Code   RO         2222    i.HAL_ADC_PollForConversion  stm32f0xx_hal_adc.o
+    0x08000d02   0x00000002   PAD
+    0x08000d04   0x0000005c   Code   RO         2224    i.HAL_ADC_Start     stm32f0xx_hal_adc.o
+    0x08000d60   0x000000a0   Code   RO          359    i.HAL_FLASHEx_Erase  stm32f0xx_hal_flash_ex.o
+    0x08000e00   0x00000014   Code   RO          432    i.HAL_FLASH_Lock    stm32f0xx_hal_flash.o
+    0x08000e14   0x0000007c   Code   RO          437    i.HAL_FLASH_Program  stm32f0xx_hal_flash.o
+    0x08000e90   0x00000024   Code   RO          439    i.HAL_FLASH_Unlock  stm32f0xx_hal_flash.o
+    0x08000eb4   0x00000014   Code   RO         2504    i.HAL_GPIO_EXTI_Callback  gpio.o
+    0x08000ec8   0x00000018   Code   RO          124    i.HAL_GPIO_EXTI_IRQHandler  stm32f0xx_hal_gpio.o
+    0x08000ee0   0x00000148   Code   RO          125    i.HAL_GPIO_Init     stm32f0xx_hal_gpio.o
+    0x08001028   0x0000000a   Code   RO          127    i.HAL_GPIO_ReadPin  stm32f0xx_hal_gpio.o
+    0x08001032   0x0000000c   Code   RO          129    i.HAL_GPIO_WritePin  stm32f0xx_hal_gpio.o
+    0x0800103e   0x00000002   PAD
+    0x08001040   0x0000000c   Code   RO          660    i.HAL_GetTick       stm32f0xx_hal.o
+    0x0800104c   0x00000010   Code   RO          661    i.HAL_IncTick       stm32f0xx_hal.o
+    0x0800105c   0x00000020   Code   RO          662    i.HAL_Init          stm32f0xx_hal.o
+    0x0800107c   0x00000022   Code   RO          663    i.HAL_InitTick      stm32f0xx_hal.o
+    0x0800109e   0x00000002   PAD
+    0x080010a0   0x00000038   Code   RO         2484    i.HAL_MspInit       stm32f0xx_hal_msp.o
+    0x080010d8   0x00000014   Code   RO          559    i.HAL_NVIC_EnableIRQ  stm32f0xx_hal_cortex.o
+    0x080010ec   0x00000008   Code   RO          563    i.HAL_NVIC_SetPriority  stm32f0xx_hal_cortex.o
+    0x080010f4   0x0000012c   Code   RO          264    i.HAL_RCC_ClockConfig  stm32f0xx_hal_rcc.o
+    0x08001220   0x0000000c   Code   RO          269    i.HAL_RCC_GetHCLKFreq  stm32f0xx_hal_rcc.o
+    0x0800122c   0x0000007c   Code   RO          272    i.HAL_RCC_GetSysClockFreq  stm32f0xx_hal_rcc.o
+    0x080012a8   0x00000354   Code   RO          275    i.HAL_RCC_OscConfig  stm32f0xx_hal_rcc.o
+    0x080015fc   0x00000018   Code   RO          565    i.HAL_SYSTICK_CLKSourceConfig  stm32f0xx_hal_cortex.o
+    0x08001614   0x00000060   Code   RO         3111    i.HAL_SYSTICK_Callback  msg_task.o
+    0x08001674   0x00000030   Code   RO          567    i.HAL_SYSTICK_Config  stm32f0xx_hal_cortex.o
+    0x080016a4   0x00000008   Code   RO          568    i.HAL_SYSTICK_IRQHandler  stm32f0xx_hal_cortex.o
+    0x080016ac   0x00000002   Code   RO         1485    i.HAL_TIMEx_BreakCallback  stm32f0xx_hal_tim_ex.o
+    0x080016ae   0x00000002   Code   RO         1486    i.HAL_TIMEx_CommutationCallback  stm32f0xx_hal_tim_ex.o
+    0x080016b0   0x00000034   Code   RO          858    i.HAL_TIM_Base_Init  stm32f0xx_hal_tim.o
+    0x080016e4   0x00000034   Code   RO         2577    i.HAL_TIM_Base_MspInit  tim.o
+    0x08001718   0x00000018   Code   RO          861    i.HAL_TIM_Base_Start  stm32f0xx_hal_tim.o
+    0x08001730   0x00000002   Code   RO          887    i.HAL_TIM_IC_CaptureCallback  stm32f0xx_hal_tim.o
+    0x08001732   0x00000162   Code   RO          900    i.HAL_TIM_IRQHandler  stm32f0xx_hal_tim.o
+    0x08001894   0x00000002   Code   RO          903    i.HAL_TIM_OC_DelayElapsedCallback  stm32f0xx_hal_tim.o
+    0x08001896   0x00000002   Code   RO          930    i.HAL_TIM_PWM_PulseFinishedCallback  stm32f0xx_hal_tim.o
+    0x08001898   0x00000002   Code   RO         2578    i.HAL_TIM_PeriodElapsedCallback  tim.o
+    0x0800189a   0x00000002   Code   RO          941    i.HAL_TIM_TriggerCallback  stm32f0xx_hal_tim.o
+    0x0800189c   0x0000001c   Code   RO         2870    i.Heat_hotter1321   hotter.o
+    0x080018b8   0x00000010   Code   RO         2871    i.Hotter1321WorkingState_ISR  hotter.o
+    0x080018c8   0x00000002   Code   RO         2872    i.Hotter1321_heated_time_count_ISR  hotter.o
+    0x080018ca   0x00000002   PAD
+    0x080018cc   0x00000060   Code   RO         2873    i.Hotter1321_init   hotter.o
+    0x0800192c   0x00000024   Code   RO         2874    i.Hotter1321_power_on_scan_ISR  hotter.o
+    0x08001950   0x00000044   Code   RO         2875    i.Hotter1321_realTemp_ISR  hotter.o
+    0x08001994   0x0000009e   Code   RO         2958    i.HotterCtrl        hotterctrl.o
+    0x08001a32   0x0000004c   Code   RO         2876    i.HotterWorkingState_ISR  hotter.o
+    0x08001a7e   0x00000002   PAD
+    0x08001a80   0x00000058   Code   RO         2540    i.MX_ADC_Init       adc.o
+    0x08001ad8   0x000000bc   Code   RO         2505    i.MX_GPIO_Init      gpio.o
+    0x08001b94   0x0000002c   Code   RO         2579    i.MX_TIM14_Init     tim.o
+    0x08001bc0   0x0000002c   Code   RO         3115    i.Msg_delayms_process  msg_task.o
+    0x08001bec   0x00000044   Code   RO          569    i.NVIC_SetPriority  stm32f0xx_hal_cortex.o
+    0x08001c30   0x0000002c   Code   RO         2654    i.Rotary_1_init     rotary.o
+    0x08001c5c   0x00000010   Code   RO         2655    i.Rotary_1_scan_ISR  rotary.o
+    0x08001c6c   0x000000e0   Code   RO         2656    i.Rotary_scan       rotary.o
+    0x08001d4c   0x0000000c   Code   RO         2446    i.SysTick_Handler   stm32f0xx_it.o
+    0x08001d58   0x00000060   Code   RO         2379    i.SystemClock_Config  main.o
+    0x08001db8   0x0000005c   Code   RO         2621    i.SystemInit        system_stm32f0xx_1.o
+    0x08001e14   0x00000048   Code   RO         2959    i.TEMP_ADJUST_READY_operate  hotterctrl.o
+    0x08001e5c   0x00000034   Code   RO         2960    i.TEMP_ADJUST_WARNING_READY_operate  hotterctrl.o
+    0x08001e90   0x00000014   Code   RO         2961    i.TEMP_ADJUST_WARNING_operate  hotterctrl.o
+    0x08001ea4   0x00000090   Code   RO         2962    i.TEMP_ADJUST_operate  hotterctrl.o
+    0x08001f34   0x00000016   Code   RO         2963    i.TEMP_ALARM_READY_operate  hotterctrl.o
+    0x08001f4a   0x00000002   PAD
+    0x08001f4c   0x00000068   Code   RO         2964    i.TEMP_ALARM_operate  hotterctrl.o
+    0x08001fb4   0x00000020   Code   RO         2965    i.TEMP_CTRL_READY_operate  hotterctrl.o
+    0x08001fd4   0x00000128   Code   RO         2966    i.TEMP_CTRL_operate  hotterctrl.o
+    0x080020fc   0x00000030   Code   RO         2967    i.TEMP_IDLE_READY_operate  hotterctrl.o
+    0x0800212c   0x00000010   Code   RO         2968    i.TEMP_IDLE_operate  hotterctrl.o
+    0x0800213c   0x00000040   Code   RO         2969    i.TEMP_TARGET_SET_READY_operate  hotterctrl.o
+    0x0800217c   0x00000090   Code   RO         2970    i.TEMP_TARGET_SET_operate  hotterctrl.o
+    0x0800220c   0x0000003c   Code   RO         2971    i.TEMP_TARGET_SHOW_READY_operate  hotterctrl.o
+    0x08002248   0x00000014   Code   RO         2972    i.TEMP_TARGET_SHOW_operate  hotterctrl.o
+    0x0800225c   0x00000010   Code   RO         2447    i.TIM14_IRQHandler  stm32f0xx_it.o
+    0x0800226c   0x00000074   Code   RO          942    i.TIM_Base_SetConfig  stm32f0xx_hal_tim.o
+    0x080022e0   0x00000030   Code   RO         2755    i.Tm1650_1_init     tm1650.o
+    0x08002310   0x00000010   Code   RO         2756    i.Tm1650_1_show_ISR  tm1650.o
+    0x08002320   0x0000011c   Code   RO         2757    i.Tm1650_show_ISR   tm1650.o
+    0x0800243c   0x0000002e   Code   RO         3364    i.__ARM_clz         mf_p.l(depilogue.o)
+    0x0800246a   0x0000001a   Code   RO         1477    i.__ARM_common_switch8  stm32f0xx_hal_tim.o
+    0x08002484   0x0000000e   Code   RO         3372    i.__scatterload_copy  mc_p.l(handlers.o)
+    0x08002492   0x00000002   Code   RO         3373    i.__scatterload_null  mc_p.l(handlers.o)
+    0x08002494   0x0000000e   Code   RO         3374    i.__scatterload_zeroinit  mc_p.l(handlers.o)
+    0x080024a2   0x00000002   PAD
+    0x080024a4   0x00000038   Code   RO         3200    i.avg_filter        adc_filter.o
+    0x080024dc   0x00000024   Code   RO         3116    i.delaymsTask_CTRL  msg_task.o
+    0x08002500   0x0000003c   Code   RO         3117    i.delaymsTask_ISR   msg_task.o
+    0x0800253c   0x00000044   Code   RO         2380    i.main              main.o
+    0x08002580   0x00000018   Code   RO         2707    i.read_button_1     button.o
+    0x08002598   0x0000000e   Code   RO         2657    i.read_rotary_a     rotary.o
+    0x080025a6   0x0000000e   Code   RO         2658    i.read_rotary_b     rotary.o
+    0x080025b4   0x000000b0   Code   RO         2973    i.solder1321_init   hotterctrl.o
+    0x08002664   0x00000012   Code   RO         2758    i.tm1650_clk_1      tm1650.o
+    0x08002676   0x00000012   Code   RO         2759    i.tm1650_dio_1      tm1650.o
+    0x08002688   0x0000001c   Code   RO         2760    i.tm1650_read_dio_1  tm1650.o
+    0x080026a4   0x00000010   Data   RO         2622    .constdata          system_stm32f0xx_1.o
+    0x080026b4   0x0000000e   Data   RO         2762    .constdata          tm1650.o
+    0x080026c2   0x00000004   Data   RO         2764    .constdata          tm1650.o
+    0x080026c6   0x00000004   Data   RO         2765    .constdata          tm1650.o
+    0x080026ca   0x00000004   Data   RO         2766    .constdata          tm1650.o
+    0x080026ce   0x00000004   Data   RO         2767    .constdata          tm1650.o
+    0x080026d2   0x00000006   Data   RO         3229    .constdata          flash.o
+    0x080026d8   0x00000020   Data   RO         3370    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x000006e8, Max: 0x00001000, ABSOLUTE)
@@ -1740,9 +1770,9 @@ Memory Map of the image
     0x20000004   0x00000004   Data   RW         2624    .data               system_stm32f0xx_1.o
     0x20000008   0x00000001   Data   RW         2879    .data               hotter.o
     0x20000009   0x00000003   PAD
-    0x2000000c   0x00000088   Data   RW         3077    .data               msg_task.o
-    0x20000094   0x00000002   Data   RW         3159    .data               adc_filter.o
-    0x20000096   0x00000006   Data   RW         3188    .data               flash.o
+    0x2000000c   0x00000088   Data   RW         3119    .data               msg_task.o
+    0x20000094   0x00000002   Data   RW         3201    .data               adc_filter.o
+    0x20000096   0x00000006   Data   RW         3230    .data               flash.o
     0x2000009c   0x00000004   PAD
     0x200000a0   0x00000020   Zero   RW          440    .bss                stm32f0xx_hal_flash.o
     0x200000c0   0x0000004c   Zero   RW         2541    .bss                adc.o
@@ -1751,8 +1781,8 @@ Memory Map of the image
     0x2000015c   0x00000010   Zero   RW         2708    .bss                button.o
     0x2000016c   0x00000020   Zero   RW         2761    .bss                tm1650.o
     0x2000018c   0x00000130   Zero   RW         2878    .bss                hotter.o
-    0x200002bc   0x00000014   Zero   RW         2967    .bss                hotterctrl.o
-    0x200002d0   0x00000014   Zero   RW         3076    .bss                msg_task.o
+    0x200002bc   0x00000014   Zero   RW         2974    .bss                hotterctrl.o
+    0x200002d0   0x00000014   Zero   RW         3118    .bss                msg_task.o
     0x200002e4   0x00000004   PAD
     0x200002e8   0x00000400   Zero   RW            1    STACK               startup_stm32f030x6_1.o
 
@@ -1770,7 +1800,7 @@ Image component sizes
        236         32          6          6          0       2360   flash.o
        208         22          0          0          0       1360   gpio.o
        382         58          0          1        304       5605   hotter.o
-      1324         96          0          0         20       9984   hotterctrl.o
+      1428        106          0          0         20      13546   hotterctrl.o
        166         12          0          0          0       1804   main.o
        236         30          0        136         20       4754   msg_task.o
        312         28          0          0         20       3397   rotary.o
@@ -1793,9 +1823,9 @@ Image component sizes
        568         28         30          0         32       6846   tm1650.o
 
     ----------------------------------------------------------------------
-      8442        712        260        156       1612     344063   Object Totals
+      8550        722        260        156       1612     347625   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        12          0          0          3          8          0   (incl. Padding)
+        16          0          0          3          8          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1848,15 +1878,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      9608        746        260        156       1612     340431   Grand Totals
-      9608        746        260        156       1612     340431   ELF Image Totals
-      9608        746        260        156          0          0   ROM Totals
+      9716        756        260        156       1612     343773   Grand Totals
+      9716        756        260        156       1612     343773   ELF Image Totals
+      9716        756        260        156          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 9868 (   9.64kB)
+    Total RO  Size (Code + RO Data)                 9976 (   9.74kB)
     Total RW  Size (RW Data + ZI Data)              1768 (   1.73kB)
-    Total ROM Size (Code + RO Data + RW Data)      10024 (   9.79kB)
+    Total ROM Size (Code + RO Data + RW Data)      10132 (   9.89kB)
 
 ==============================================================================
 

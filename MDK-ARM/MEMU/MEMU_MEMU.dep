@@ -548,7 +548,7 @@ I (../Inc/adc.h)(0x578DE10F)
 I (../Inc/tim.h)(0x578DE10F)
 I (../Inc/gpio.h)(0x578DE10F)
 I (../Src/../tool/msg_task.h)(0x578ED54B)
-I (../Src/../cantor/hotterctrl.h)(0x578DE110)
+I (../Src/../cantor/hotterctrl.h)(0x578F1D82)
 I (../Src/../cantor/../bsp/hotter.h)(0x578EF149)
 I (../Src/../cantor/../bsp/button.h)(0x578ECF19)
 I (../Src/../cantor/../bsp/rotary.h)(0x578DE10C)
@@ -890,8 +890,8 @@ I (../Inc/adc.h)(0x578DE10F)
 I (..\BSP\../tool/adc_filter.h)(0x578DE110)
 I (..\BSP\../tool/flash.h)(0x578DE110)
 I (..\BSP\../tool/../bsp/hotter.h)(0x578EF149)
-F (..\cantor\hotterctrl.c)(0x578EF200)(-c --cpu Cortex-M0 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\hotterctrl.o --omf_browse memu\hotterctrl.crf --depend memu\hotterctrl.d)
-I (..\cantor\../cantor/hotterctrl.h)(0x578DE110)
+F (..\cantor\hotterctrl.c)(0x578F2596)(-c --cpu Cortex-M0 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\hotterctrl.o --omf_browse memu\hotterctrl.crf --depend memu\hotterctrl.d)
+I (..\cantor\../cantor/hotterctrl.h)(0x578F1D82)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x578DE10E)
 I (../Inc/stm32f0xx_hal_conf.h)(0x578DE10F)
 I (../Inc/mxconstants.h)(0x578DE10F)
@@ -933,7 +933,7 @@ I (..\cantor\../tool/flash.h)(0x578DE110)
 I (..\cantor\../tool/../bsp/hotter.h)(0x578EF149)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x55DB2B78)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x55DB2B7E)
-F (..\tool\msg_task.c)(0x578EF149)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\msg_task.o --omf_browse memu\msg_task.crf --depend memu\msg_task.d)
+F (..\tool\msg_task.c)(0x578F20DB)(-c --cpu Cortex-M0 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include --C99-I C:\Users\wolf\Desktop\8586S\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F030x6 -DUSE_HAL_DRIVER -DSTM32F030x6-o memu\msg_task.o --omf_browse memu\msg_task.crf --depend memu\msg_task.d)
 I (..\tool\../tool/msg_task.h)(0x578ED54B)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x578DE10E)
 I (../Inc/stm32f0xx_hal_conf.h)(0x578DE10F)
@@ -967,7 +967,7 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h)(0x578DE10E)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h)(0x578DE10E)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h)(0x578DE10E)
 I (..\tool\../bsp/tm1650.h)(0x578ED573)
-I (..\tool\../cantor/hotterctrl.h)(0x578DE110)
+I (..\tool\../cantor/hotterctrl.h)(0x578F1D82)
 I (..\tool\../cantor/../bsp/hotter.h)(0x578EF149)
 I (..\tool\../cantor/../bsp/button.h)(0x578ECF19)
 I (..\tool\../cantor/../bsp/rotary.h)(0x578DE10C)
