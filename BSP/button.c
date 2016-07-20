@@ -19,7 +19,7 @@ Is_click
 */
 void BUTTON_scan(BUTTON_CTRL_TypeDef *button)
 {
-	button ->times_10ms++;
+//	button ->times_10ms++;
 	/*Interference prevention 带按键消抖获取按键状态*/
 	button -> state_now = button -> read_button();//获得当前按键状态
 	if(button ->state_pre ==button -> state_now)//如果上次读取的数值
@@ -124,7 +124,7 @@ void Button_1_init(void)
 	
 	button_1 .continue_press_times =0;
 	button_1 .continue_press_dir =0;
-	button_1. times_10ms =0;
+
 }
 
 

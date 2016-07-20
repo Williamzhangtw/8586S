@@ -1,17 +1,11 @@
 #ifndef __MSG_TASK_API_H_
 #define __MSG_TASK_API_H_
 
-
 #include "stm32f0xx_hal.h"
-
-
-
 
 #define  ArrayNum(a)     (sizeof(a)/sizeof(a[0]))
  
-
 /**************delayms_task*****************************/
-
 
 //1 定义消息
 typedef enum          //在这里定义系统消息
@@ -60,10 +54,10 @@ void mainTask_ISR(void);
 
 
 
-extern uint8_t 	hal_1ms_flag;
-extern uint8_t  hal_10ms_flag ;
-extern uint8_t  hal_100ms_flag ;
-extern uint8_t  hal_1s_flag ;
+extern	uint16_t	hal_1ms_flag;
+extern 	uint16_t	hal_10ms_flag ;
+extern 	uint16_t	hal_100ms_flag ;
+extern 	uint16_t	hal_1s_flag ;
 
 extern void HAL_SYSTICK_Callback(void);
 extern BOOL HalTimeDelay (uint8_t *p,uint16_t count,BOOL *data_reset);

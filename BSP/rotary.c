@@ -19,7 +19,7 @@ void Rotary_scan(R0TARY_CTRL_TypeDef *rotary)
 	rotary->elec_leval_a_now= rotary->read_rotary_a() ;
 	rotary->elec_leval_b_now= rotary->read_rotary_b();
 	
-	rotary->times_1ms ++;
+//	rotary->times_1ms ++;
 	
 	if((rotary->elec_leval_a_now!= rotary->elec_leval_a_pre)||(rotary->elec_leval_b_now!=rotary->elec_leval_b_pre))
 	{
@@ -42,8 +42,8 @@ void Rotary_scan(R0TARY_CTRL_TypeDef *rotary)
 					case 0x78:rotary->Spin_direction =Spin_right ;break;//120---
 					default :rotary->Spin_direction =no_direction  ;break ;
 				}
-			rotary->temple = 0;rotary->N = 0;  break ;
-			default :rotary->temple = 0;rotary->N = 0;  break ;
+				rotary->N = 0; rotary->temple = 0; break ;//
+			default :rotary->N = 0; rotary->temple = 0; break ;//
 		}
 	}
 }

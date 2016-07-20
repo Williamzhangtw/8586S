@@ -9,7 +9,7 @@
 
 void Hotter_heated_time_count_ISR(HOTER_CTRL_TypeDef * hotter)
 {
-	hotter->heated_times ++;
+//	hotter->heated_times ++;
 }
 
 
@@ -20,37 +20,37 @@ void HotterWorkingState_ISR(HOTER_CTRL_TypeDef * hotter)
 	hotter->minus_now =  hotter->real_temperature -hotter->target_temperature ;  
 	switch(hotter->work_state )
 	{
-		case heating: //加热
+		case HEATTING : //加热
 			if ( hotter->minus_now  >=0 )
 			{
-				 hotter->work_state =overheated;
+				 hotter->work_state =OVER_HEAT ;
 			
 			}
 			break ;
 
-		case overheated : //过热
+		case OVER_HEAT  : //过热
 
 			if (  hotter->minus_now  <0 )
 			{
 				
-				 hotter->work_state =balance;
+				 hotter->work_state =TEMP_BALANCE ;
 			}
 			break ;
 			
-		case notheating: 	//停止加热
+		case NOT_HEAT : 	//停止加热
 			if (  hotter->minus_now  <=0 )
 			{
 
-				hotter->work_state  = balance;
+				hotter->work_state  = TEMP_BALANCE ;
 			}
 			break ;
 			
 			
-		case balance ://平衡
+		case TEMP_BALANCE  ://平衡
 			if (  hotter->minus_now  > hotter->temp_distinguish_dif)
-				hotter->work_state  = notheating ; 
+				hotter->work_state  = NOT_HEAT  ; 
 			if (  hotter->minus_now  < -hotter->temp_distinguish_dif )
-				hotter->work_state  = heating ; 	
+				hotter->work_state  = HEATTING  ; 	
 			break;
 		
 		default :
@@ -118,11 +118,11 @@ void Hotter1321_init(void)
 //	hotter1321.adjust_temperature = 0;
 	hotter1321.hz50_count =0;
 	hotter1321 .sensor_err_adc = 2300;
-	hotter1321 .heated_times =0;
+//	hotter1321 .heated_times =0;
 	
 	hotter1321.sensor_err =0;
 	hotter1321.hotter_err =0;
-	hotter1321.work_state =notheating;
+	hotter1321.work_state =NOT_HEAT ;
 
 	hotter1321.Is_power_on =NO;
 	hotter1321 .minus_pre =0;

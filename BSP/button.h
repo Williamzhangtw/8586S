@@ -9,22 +9,21 @@
 
 typedef struct 
 {
-	uint8_t (*read_button)(void);
-	uint8_t state_pre;
-	uint8_t state_now;
+	uint8_t (*read_button)(void);//按键管脚
+	uint8_t state_pre;//按键之前的状态容器
+	uint8_t state_now;//按键现在的状态容器
 	
-	uint8_t Is_press;
+	uint8_t Is_press;//按键确定状态容器 YES表示按下，NO表示没有按下
 	
-	uint8_t Is_support_click;
+	uint8_t Is_support_click;//YES 表示支持点击，NO表示不支持点击
+	uint8_t Is_click;//YES表示按键点击了，NO表示没有点击
 	uint8_t click_dir;
-	uint8_t Is_click;
-	
 	
 	uint16_t continue_press_times;
 	uint8_t continue_press_dir;
 	
 
-	uint16_t times_10ms;
+//	uint16_t times_10ms;
 
 }BUTTON_CTRL_TypeDef;
 

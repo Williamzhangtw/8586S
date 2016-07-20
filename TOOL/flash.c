@@ -81,7 +81,7 @@ void FlshPara_Save(void)
 
 		HAL_FLASH_Program (FLASH_TYPEPROGRAM_HALFWORD, PARA_START_ADDR+ i,*ptemp++);
 	}
- 
+	memcpy(&hotter_flash,(Hotter_flash__TypeDef *)PARA_START_ADDR,size); 
  	HAL_FLASH_Lock();
 }
 

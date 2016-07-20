@@ -1,5 +1,5 @@
-//2016-7-15
-
+/*2016-7-15
+*/
 #include "../tool/msg_task.h"
 
 #define Msg_delayms_ID_Num 10	//消息总和
@@ -18,10 +18,9 @@ Msg_Delayms Msg_delayms[Msg_delayms_ID_Num] =      //消息，消息处理函数
 	button_1_msg , 								NO,					NO,			10,					BUTTON_1_ISR,
 	tm1650_1_msg, 								NO,		  			NO,			100,				Tm1650_1_show_ISR,	
 	rotary_1_msg, 								NO,					NO,			1,					Rotary_1_scan_ISR ,
-	hotter1321_adc_msg,							NO,					NO,			1,					Filter_hotter1321_adc_ISR,
+	hotter1321_adc_msg,							NO,					NO,			2,					Filter_hotter1321_adc_ISR,
 	hotter1321_poweron_msg,						NO,					NO,			50,					Hotter1321_power_on_scan_ISR,
 	hotter1321_realTemp_msg,					NO,					NO,			100,				Hotter1321_realTemp_ISR,
-//	hotterctrl_poweron_msg, 					NO,					NO,			50,					Solder_1_poweron_ISR,
 	hotter1321_heated_count_msg ,				NO,    				NO,         100,        		Hotter1321_heated_time_count_ISR,
 	hotter1321_hotter_state_msg,				NO,     			NO,         50,         		Hotter1321WorkingState_ISR,
 	
@@ -50,7 +49,7 @@ void delaymsTask_ISR(void)//轮询方式进行触发
 	{
 		if(Msg_delayms[i].Is_enable == YES)
 		{
-			if(temp[i]-- == 0)//起到原函数中的 延时功能
+			if(temp[i]-- <= 1)//起到原函数中的 延时功能
 			{
 				Msg_delayms[i].Is_ready = YES;
 				temp[i] = Msg_delayms[i].time;
@@ -86,26 +85,29 @@ void Msg_delayms_process(void)
 
 
 
-uint8_t hal_1ms_flag =0;
-uint8_t  hal_10ms_flag = 0;
-uint8_t  hal_100ms_flag = 0;
-uint8_t  hal_1s_flag = 0;
+uint16_t 	hal_1ms_flag 	=	0;
+uint16_t  	hal_10ms_flag	= 	0;
+uint16_t  	hal_100ms_flag 	= 	0;
+uint16_t  	hal_1s_flag 	= 	0;
 
 
 void HAL_SYSTICK_Callback()
 {
-  static  uint8_t StaticFlag_1ms=0;
-  static  uint8_t StaticFlag_10ms=0;
-  static uint8_t StaticFlag_100ms =0;
- 	delaymsTask_ISR();
-  StaticFlag_1ms++; 
- 	hal_1ms_flag =1;
+	static  	uint8_t 	StaticFlag_1ms		=0;
+	static  	uint8_t 	StaticFlag_10ms		=0;
+	static 	uint8_t 	StaticFlag_100ms	=0;
+	
+	delaymsTask_ISR();
+	hotter1321 .heated_times ++;
+	StaticFlag_1ms++; 
+	
+ 	hal_1ms_flag ++;
   if (StaticFlag_1ms == 10) 
   { 
     StaticFlag_1ms =0;
     StaticFlag_10ms ++;  
   /* USER CODE  10ms  */
-    hal_10ms_flag =1;
+    hal_10ms_flag ++;
 		
   }
   
@@ -115,7 +117,7 @@ void HAL_SYSTICK_Callback()
    StaticFlag_100ms ++; 
     /* USER CODE 100ms */    
 
-    hal_100ms_flag =1;		
+    hal_100ms_flag ++;		
    
   }
   
@@ -123,7 +125,7 @@ void HAL_SYSTICK_Callback()
   {
     StaticFlag_100ms =0;
     /* USER CODE 1s */
-    hal_1s_flag =1;
+    hal_1s_flag ++;
   }
 }
 

@@ -31,7 +31,7 @@
 //	 uint16_t power_off_time;
 	 uint8_t hz50_count;
 	 uint16_t sensor_err_adc;
-	 uint16_t heated_times;
+ 	 uint16_t heated_times;
 	 uint8_t heated_check_dir;
 //	 uint8_t Hoter_alarm_update_flag;
 	 uint8_t sensor_err;
@@ -58,11 +58,12 @@
  }HOTER_CTRL_TypeDef;
  
 
- typedef enum {
-	heating,
-	overheated,
-	notheating,
-	balance,
+ typedef enum 
+ {
+	HEATTING,
+	OVER_HEAT,
+	NOT_HEAT,
+	TEMP_BALANCE,
  }
 Hotter_state_enum;
  
