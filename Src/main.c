@@ -100,24 +100,23 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
  
-
+	TaskSystickInit();
+	TaskMainkInit();
 	solder1321_init();
+	
 
   while (1)
   {
  	
   /* USER CODE END WHILE */
 
-  /* USER CODE BEGIN 3 */
-//	 tm1650_1 .Is_num = YES ;
-//	 tm1650_1 .num =123;//显示OFF
-//	
-//	 tm1650_1 .dot_run_en =DISABLE ;	//不跑灯
-//	 tm1650_1 .blink_en  = NO ;//不闪
-//	 tm1650_1 .bottom_dot_en =NO;//不显示加热点
+  /* USER CODE BEGIN 3 */  
+// 	Msg_delayms_process();
+	
+// 	HotterCtrl(&solder1321);
+	 TaskISR(&task_main); 
+	 TaskProcess(&task_main); 
 	  
- 	Msg_delayms_process();
- 	HotterCtrl(&solder1321);
   }
   /* USER CODE END 3 */
 

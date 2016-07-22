@@ -4,7 +4,7 @@
 #include "stm32f0xx_hal.h"
 
 #define  ArrayNum(a)     (sizeof(a)/sizeof(a[0]))
- 
+
 /**************delayms_task*****************************/
 
 //1 定义消息
@@ -27,26 +27,53 @@ typedef enum          //在这里定义系统消息
 }MsgDelaymsID;
 
 
-//2.定义 消息参数体
+////2.定义 消息参数体
+
+
 typedef struct  
 {
 	uint8_t	id;
 	uint8_t    Is_enable;//控制该消息任务是否被执行
 	uint8_t    Is_ready;//控制该消息 是否时间到了 ，可以执行了
 	uint32_t  time;	
-//	void (*funproc)(void*);
 	void (*funproc)(void);
-}Msg_Delayms;
+	uint32_t  time_temp;	
+//	void (*funproc)(void*);
+}Msg_TypeDef;
+
+
+
+typedef struct  
+{
+	Msg_TypeDef *msg;
+	Msg_TypeDef *msg_temp;
+	uint8_t id_num;
+}Task_TypeDef;
+
 
 
 //消息体函数
 void Msg_delayms_process(void);
-void delaymsTask_ISR(void);
-void delaymsTask_CTRL(uint8_t id,uint8_t en);
+void TaskISR(Task_TypeDef * task);
+extern void TaskCtrl(Task_TypeDef * task,uint16_t id,uint8_t en);
+void TaskProcess( Task_TypeDef * task);
+
+//主函数消息
+typedef enum          //在这里定义系统消息
+{
+	SOLDER1321_MSG,
+	TASK_SYSTICK_MSG,
+}MsgMainID;
+void TaskMainkInit(void);
+
+
+
+extern Task_TypeDef task_systick ;
+extern Task_TypeDef task_main;
 
 void Msg_main_process(void);
 void mainTask_ISR(void);
-
+extern void TaskSystickInit(void);
 
 
 

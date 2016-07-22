@@ -16,24 +16,32 @@ void TEMP_IDLE_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	hotterCtrl -> tm1650 ->dot_run_en =DISABLE ;	//不跑灯
 	hotterCtrl -> tm1650 ->blink_en  = NO ;//不闪
 	hotterCtrl -> tm1650 ->bottom_dot_en =NO;//不显示加热点
-	hotterCtrl ->  state = TEMP_IDLE  ;	
+	hotterCtrl -> state = TEMP_IDLE  ;	
 }
 
 
 void TEMP_IDLE_operate(HOTTER_CTRL_Typedef *hotterCtrl)
-{	
-	if(hotterCtrl->hotter->Is_power_on)//solder开关检查
+{
+	
+	
+	if(hotterCtrl->hotter->Is_power_on)
 	{
-		hotterCtrl ->  state = TEMP_TARGET_SHOW_READY  ;
+		 hotterCtrl ->  state = TEMP_TARGET_SHOW_READY  ;
 	}
+	
+
+	
+
 }
+
+
 void TEMP_TARGET_SHOW_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 {
 	hal_100ms_flag =0;//用于后面程序计时用
 	hotterCtrl -> hotter->heat_en(DISABLE );//不加热
 	//显示
 	hotterCtrl->tm1650->Is_num = YES ;//显示数字
-	hotterCtrl->tm1650->num =hotterCtrl->hotter->target_temperature ;//内容：目标温度
+	hotterCtrl->tm1650->num = &hotterCtrl->hotter->target_temperature ;//内容：目标温度
 	hotterCtrl->tm1650->dot_run_en =DISABLE ;	//不跑灯
 	hotterCtrl->tm1650->blink_en  =ENABLE ;//闪烁
 	hotterCtrl->tm1650->bottom_dot_en =DISABLE ;//不显示加热点
@@ -58,7 +66,7 @@ void TEMP_CTRL_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	//显示
 	hotterCtrl->tm1650->Is_num = YES ;//显示数字类型
 	hotterCtrl->tm1650->dot_run_en =DISABLE ;	//不跑灯
-
+	hotterCtrl->tm1650->blink_en  =DISABLE ;	// 
 	//显示
 	hotterCtrl->state = TEMP_CTRL ;
 }
@@ -70,11 +78,11 @@ void TEMP_CTRL_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	//显示内容
 	if(hotterCtrl->hotter->work_state ==TEMP_BALANCE )
 	{
-		hotterCtrl->tm1650->num = hotterCtrl->hotter->target_temperature;
+		hotterCtrl->tm1650->num = &hotterCtrl->hotter->target_temperature;
 	}
 	else 
 	{
-		hotterCtrl->tm1650->num =hotterCtrl-> hotter->real_temperature;
+		hotterCtrl->tm1650->num =&hotterCtrl-> hotter->real_temperature;
 	}
 	//显示内容
 	
@@ -168,7 +176,7 @@ void TEMP_TARGET_SET_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	hotterCtrl -> hotter->heat_en(DISABLE );//不加热
 	//显示
 	hotterCtrl -> tm1650 ->Is_num = YES ;
-	hotterCtrl -> tm1650 ->num =hotterCtrl ->hotter->target_temperature; 
+	hotterCtrl -> tm1650 ->num =&hotterCtrl ->hotter->target_temperature; 
 	hotterCtrl -> tm1650 ->dot_run_en =DISABLE ;	//不跑灯
 	hotterCtrl -> tm1650 ->blink_en  =DISABLE  ;//不闪
 	hotterCtrl -> tm1650 ->bottom_dot_en =NO;//不显示加热点
@@ -231,11 +239,13 @@ void TEMP_ADJUST_WARNING_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	//显示
 	hotterCtrl -> tm1650 ->Is_num = NO ;
 	hotterCtrl -> tm1650 ->word =(uint8_t*)CAL ; 
-	hotterCtrl -> tm1650 ->dot_run_en =ENABLE  ;//不跑灯
+	hotterCtrl -> tm1650 ->dot_run_en =ENABLE  ;// 
 	hotterCtrl -> tm1650 ->blink_en  = NO ;//不闪
-	hotterCtrl -> tm1650 ->bottom_dot_en =NO;//不显示加热点
+	hotterCtrl -> tm1650 ->bottom_dot_en =NO ;//不显示加热点
 	//显示
 	hotterCtrl ->state = TEMP_ADJUST_WARNING ;
+	
+	hal_100ms_flag =0;
 }
 
 
@@ -254,9 +264,9 @@ void TEMP_ADJUST_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 {
 	//显示
 	hotterCtrl -> tm1650 ->Is_num = YES ;
-	hotterCtrl -> tm1650 ->num =hotterCtrl ->hotter ->adjust_temperature ; 
+	hotterCtrl -> tm1650 ->num =&hotterCtrl ->hotter ->adjust_temperature ; 
 	hotterCtrl -> tm1650 ->dot_run_en =DISABLE   ;//不跑灯
-	hotterCtrl -> tm1650 ->blink_en  = ENABLE ;//不闪
+	hotterCtrl -> tm1650 ->blink_en  = ENABLE ;// 闪
 	hotterCtrl -> tm1650 ->bottom_dot_en =NO;//不显示加热点
 	//显示
 	hotterCtrl -> hotter ->heat_en(DISABLE );//不加热
@@ -424,28 +434,27 @@ void HotterCtrl(HOTTER_CTRL_Typedef *hotterCtrl)
 
 HOTTER_CTRL_Typedef solder1321;
 
-
 void solder1321_init(void)	
 {	
-	solder1321 .state = TEMP_IDLE_READY; 
+	solder1321 .state =  TEMP_IDLE; 
 	solder1321 .button = 	&button_1 ;
 	solder1321 .rotary =	&rotary_1 ;
 	solder1321 .hotter =	&hotter1321 ;
 	solder1321 .tm1650 =	&tm1650_1 ;
 	
-	Rotary_1_init();delaymsTask_CTRL(rotary_1_msg,ENABLE );
-	Button_1_init();delaymsTask_CTRL(button_1_msg,ENABLE );
-	Tm1650_1_init();delaymsTask_CTRL(tm1650_1_msg,ENABLE );
+	Rotary_1_init();TaskCtrl(&task_systick,rotary_1_msg,ENABLE );
+	Button_1_init();TaskCtrl(&task_systick,button_1_msg,ENABLE );
+	Tm1650_1_init();TaskCtrl(&task_systick,tm1650_1_msg,ENABLE );
 	
 	Hotter1321_init();
  	FlshPara_Init();
 	
-	delaymsTask_CTRL(hotter1321_adc_msg ,ENABLE );
-	delaymsTask_CTRL(hotter1321_poweron_msg ,ENABLE );
-	delaymsTask_CTRL(hotter1321_realTemp_msg ,ENABLE );	
-	delaymsTask_CTRL(hotter1321_heated_count_msg ,ENABLE );
-	delaymsTask_CTRL(hotter1321_hotter_state_msg ,ENABLE );
-	delaymsTask_CTRL(hotterctrl_poweron_msg ,ENABLE );
+	TaskCtrl(&task_systick,hotter1321_adc_msg ,ENABLE );
+	TaskCtrl(&task_systick,hotter1321_poweron_msg ,ENABLE );
+	TaskCtrl(&task_systick,hotter1321_realTemp_msg ,ENABLE );	
+	TaskCtrl(&task_systick,hotter1321_heated_count_msg ,ENABLE );
+	TaskCtrl(&task_systick,hotter1321_hotter_state_msg ,ENABLE );
+	TaskCtrl(&task_systick,hotterctrl_poweron_msg ,ENABLE );
 
 	solder1321.tm1650->Is_num =NO;
 	solder1321.tm1650->dot_run_en =DISABLE ;	
@@ -455,7 +464,9 @@ void solder1321_init(void)
 }
 
 
+void Solder1321Ctrl(void)
+{
+	HotterCtrl(&solder1321);
+}
 
 
-
-/******************************** END OF FILE *********************************/

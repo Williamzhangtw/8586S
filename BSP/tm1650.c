@@ -112,27 +112,26 @@ void Tm1650_show_ISR(TM1650_STRUCT *tm1650)
 	{
 		if(tm1650->Is_num ==YES)//整数显示
 		{
-			if(tm1650->num>=0)
+			if(*tm1650->num>=0)
 			{
-				tm1650->disp_value[0] = CODE00[ tm1650->num %10];
-				tm1650->disp_value[1] = CODE00[  tm1650->num /10%10];
-				tm1650->disp_value[2] =CODE00[  tm1650->num /100%10];
+				tm1650->disp_value[0] = CODE00[ *tm1650->num %10];
+				tm1650->disp_value[1] = CODE00[ *tm1650->num /10%10];
+				tm1650->disp_value[2] = CODE00[ *tm1650->num /100%10];
 			}
 			else//负数显示
 			{
-
-				tm1650->num = __fabs (tm1650->num);
-				tm1650->disp_value[0] = CODE00[ tm1650->num %10];
-				tm1650->disp_value[1]= CODE00[ tm1650->num /10%10];
+				tm1650->num_fab = __fabs (*tm1650->num);
+				tm1650->disp_value[0]	=	CODE00[tm1650->num_fab%10];
+				tm1650->disp_value[1]	= CODE00[tm1650->num_fab/10%10];
 				tm1650->disp_value[2] =0x40;
 			}
 		}
 		else//文字显示
 		{
 			tm1650->word =  (uint8_t *)tm1650->word;
-			tm1650->disp_value[0] = *tm1650->word ++;
-			tm1650->disp_value[1] = *tm1650->word ++;
-			tm1650->disp_value[2] = *tm1650->word ;
+			tm1650->disp_value[0] = *tm1650->word ;
+			tm1650->disp_value[1] = *(tm1650->word +1);
+			tm1650->disp_value[2] = *(tm1650->word+2) ;
 		}
 
 	}

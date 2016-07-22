@@ -2,88 +2,116 @@
 */
 #include "../tool/msg_task.h"
 
-#define Msg_delayms_ID_Num 10	//消息总和
-
-
 //功能函数 接口interface//
 #include "../bsp/tm1650.h"
 #include "../cantor/hotterctrl.h"
 #include "../bsp/hotter.h"
 
+void TaskISR(Task_TypeDef * task)//轮询方式进行触发
+{
+	task ->msg_temp =task ->msg ;
+	for(uint8_t i=0;i<task->id_num;i++) //遍睨所有消息结构体
+	{
+		if(task ->msg_temp->Is_enable == YES)
+		{
+			if(task ->msg_temp->time_temp  <= 1)//起到原函数中的 延时功能
+			{
+				task ->msg_temp->Is_ready = YES;
+				task ->msg_temp->time_temp = task ->msg_temp->time ;
+			}
+			task ->msg_temp->time_temp --;
+		}
+		task ->msg_temp++;
+	}
+}
+
+void TaskCtrl(Task_TypeDef * task,uint16_t id,uint8_t en)
+{
+	task ->msg_temp =task ->msg ;
+	
+	for(uint8_t i=0;i<task->id_num ;i++)
+	{
+		if(task ->msg_temp->id   == id)
+		{
+			task ->msg_temp->Is_enable =en;
+		}
+		
+		task ->msg_temp++;
+	}
+	
+}
 
 
-Msg_Delayms Msg_delayms[Msg_delayms_ID_Num] =      //消息，消息处理函数
+void TaskProcess( Task_TypeDef * task)
+{
+	
+	task ->msg_temp = task ->msg;
+	for(uint8_t i=0; i< task->id_num  ;i++) 
+	{
+		
+		if(task ->msg_temp  ->Is_ready ==YES)
+		{	
+			 
+			task ->msg_temp->Is_ready = NO;	
+			if (task ->msg_temp->funproc!=NULL)
+			{
+				task ->msg_temp->funproc();					
+			}
+		}
+		task ->msg_temp++;
+	}
+}
+
+
+
+Task_TypeDef task_systick;
+Msg_TypeDef msg_systick[] =      //消息，消息处理函数
 {	
-	//id										Is_enable		Is_ready		time				(*funproc)
-	button_1_msg , 								NO,					NO,			10,					BUTTON_1_ISR,
-	tm1650_1_msg, 								NO,		  			NO,			100,				Tm1650_1_show_ISR,	
-	rotary_1_msg, 								NO,					NO,			1,					Rotary_1_scan_ISR ,
-	hotter1321_adc_msg,							NO,					NO,			2,					Filter_hotter1321_adc_ISR,
-	hotter1321_poweron_msg,						NO,					NO,			50,					Hotter1321_power_on_scan_ISR,
-	hotter1321_realTemp_msg,					NO,					NO,			100,				Hotter1321_realTemp_ISR,
-	hotter1321_heated_count_msg ,				NO,    				NO,         100,        		Hotter1321_heated_time_count_ISR,
-	hotter1321_hotter_state_msg,				NO,     			NO,         50,         		Hotter1321WorkingState_ISR,
+	//id							Is_enable	Is_ready	time	(*funproc)
+	{button_1_msg , 				NO,			NO,			10,		BUTTON_1_ISR,0},
+	{tm1650_1_msg, 					NO,		  	NO,			100,	Tm1650_1_show_ISR,0},	
+	{rotary_1_msg, 					NO,			NO,			1,		Rotary_1_scan_ISR,0} ,
+	{hotter1321_adc_msg,			NO,			NO,			2,		Filter_hotter1321_adc_ISR,0},
+	{hotter1321_poweron_msg,		NO,			NO,			80,		Hotter1321_power_on_scan_ISR,0},
+	{hotter1321_realTemp_msg,		NO,			NO,			100,	Hotter1321_realTemp_ISR,0},
+	{hotter1321_heated_count_msg ,	NO,    		NO,         100,    Hotter1321_heated_time_count_ISR,0},
+	{hotter1321_hotter_state_msg,	NO,     	NO,         50,     Hotter1321WorkingState_ISR,0},
 	
 };
 
 
-//---------------------------------------------------
-void Msg_delayms_Init(void)
+
+void TaskSystickInit(void)
 {
+	task_systick.msg = msg_systick;
+	task_systick.id_num = 8;
+}
 
-	for(uint8_t i=0;i<Msg_delayms_ID_Num;i++) //消息队列清空
-	{
-		Msg_delayms[i].Is_ready  = NULL;
-
-		
-	}
+void TaskSystickProcess(void)
+{
+	TaskProcess(&task_systick);
 }
 
 
 
-void delaymsTask_ISR(void)//轮询方式进行触发
+
+Task_TypeDef task_main;
+
+
+
+
+Msg_TypeDef msg_main[] =      //消息，消息处理函数
+{	
+	//id				Is_enable		Is_ready	time			(*funproc)
+	{SOLDER1321_MSG , 	YES,			NO,			1,				Solder1321Ctrl,0},
+	{TASK_SYSTICK_MSG, 	YES,		  	NO,			1,			TaskSystickProcess,0},	
+
+};
+void TaskMainkInit(void)
 {
-
-  static uint16_t temp[Msg_delayms_ID_Num]={0};
-	for(uint8_t i=0;i<Msg_delayms_ID_Num;i++) //遍睨所有消息结构体
-	{
-		if(Msg_delayms[i].Is_enable == YES)
-		{
-			if(temp[i]-- <= 1)//起到原函数中的 延时功能
-			{
-				Msg_delayms[i].Is_ready = YES;
-				temp[i] = Msg_delayms[i].time;
-			}
-		}
-	}
+	task_main.msg = msg_main;
+	task_main.id_num = 2;
 }
-
-void delaymsTask_CTRL(uint8_t id,uint8_t en)
-{
-	for(uint8_t i=0;i<Msg_delayms_ID_Num;i++)
-	{
-		if(Msg_delayms[i].id   == id)
-		Msg_delayms[i].Is_enable =en;
-	}
-}
-
-void Msg_delayms_process(void)
-{
- 
-	for(uint8_t  id=0;id<Msg_delayms_ID_Num;id++) 
-	{
-		if(Msg_delayms[id].Is_ready ==YES)
-		{
-			if (Msg_delayms[id].funproc!=NULL)
-			{
-				Msg_delayms[id].funproc();	
-				Msg_delayms[id].Is_ready = NO;
-			}
-		}
-	}
-}
-
-
 
 uint16_t 	hal_1ms_flag 	=	0;
 uint16_t  	hal_10ms_flag	= 	0;
@@ -97,7 +125,7 @@ void HAL_SYSTICK_Callback()
 	static	uint8_t 	StaticFlag_10ms		=0;
 	static	uint8_t 	StaticFlag_100ms	=0;
 	
-	delaymsTask_ISR();
+	TaskISR(&task_systick);
 	hotter1321 .heated_times ++;
 	StaticFlag_1ms++; 
 	

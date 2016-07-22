@@ -44,9 +44,11 @@ typedef struct
 	uint8_t Is_num;//显示类型 YES表示数字，否则为文字
 	
 	
-	int16_t num;//显示数字内容容器
+//	int16_t num;//显示数字内容容器
+	int16_t *num;//显示数字内容容器
 	uint8_t *word;//显示文字内容容器
 	
+	uint16_t num_fab;
 //	uint16_t times_100ms;//tm1650 _100ms计次容器
 	
 	//显示样式控制

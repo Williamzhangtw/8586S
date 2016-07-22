@@ -13,7 +13,7 @@ typedef   enum
     TEMP_IDLE,
 	
 	TEMP_TARGET_SHOW_READY,
-	TEMP_TARGET_SHOW,
+	TEMP_TARGET_SHOW, 
 	
 	TEMP_CTRL_READY,
     TEMP_CTRL,
@@ -29,6 +29,7 @@ typedef   enum
 	
 	TEMP_ADJUST_READY ,
     TEMP_ADJUST ,
+	
 } HOTTER_STATUS_ENUM;
 
 typedef struct 
@@ -44,4 +45,5 @@ typedef struct
 extern HOTTER_CTRL_Typedef solder1321; 
 extern void HotterCtrl(HOTTER_CTRL_Typedef *hotterCtrl) ;
 extern void solder1321_init(void);
+extern void Solder1321Ctrl(void);
 #endif
