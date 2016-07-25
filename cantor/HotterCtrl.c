@@ -8,6 +8,39 @@
 #include <math.h>
 
 
+void TEMP_CHECK_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+{
+	hotterCtrl -> hotter ->heat_en(DISABLE );//不加热
+	hotterCtrl -> tm1650 ->Is_num = NO ;//显示文字
+	hotterCtrl -> tm1650 ->word =(uint8_t*)CODE_Clean ;
+	hotterCtrl -> tm1650 ->dot_run_en =DISABLE ;	//不跑灯
+	hotterCtrl -> tm1650 ->blink_en  = NO ;//不闪
+	hotterCtrl -> tm1650 ->bottom_dot_en =NO;//不显示加热点
+	hotterCtrl -> state = TEMP_CHECK  ;	
+	hal_100ms_flag =0;
+}
+
+
+void TEMP_CHECK_operate(HOTTER_CTRL_Typedef *hotterCtrl)
+{
+	
+	if(hal_100ms_flag >3)
+	{
+		if(hotterCtrl->hotter->Is_power_on)
+		{
+			 hotterCtrl ->  state = TEMP_TARGET_SHOW_READY  ;
+		}
+		else
+		{
+			 hotterCtrl ->  state =TEMP_IDLE_READY  ;
+		}
+	}
+}
+
+
+
+
+
 void TEMP_IDLE_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 {
 	hotterCtrl -> hotter ->heat_en(DISABLE );//不加热
@@ -22,16 +55,14 @@ void TEMP_IDLE_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 
 void TEMP_IDLE_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 {
-	
-	
 	if(hotterCtrl->hotter->Is_power_on)
 	{
 		 hotterCtrl ->  state = TEMP_TARGET_SHOW_READY  ;
 	}
-	
-
-	
-
+	if(!hotterCtrl->hotter->Is_power_on)
+	{
+		hotterCtrl->state =TEMP_IDLE_READY ;
+	}
 }
 
 
@@ -47,6 +78,7 @@ void TEMP_TARGET_SHOW_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	hotterCtrl->tm1650->bottom_dot_en =DISABLE ;//不显示加热点
 	//显示
 	hotterCtrl->state = TEMP_TARGET_SHOW ;
+	 
 }
 
 
@@ -56,6 +88,10 @@ void TEMP_TARGET_SHOW_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	if(hal_100ms_flag>20)
 	{
 		hotterCtrl->state = TEMP_CTRL_READY  ;
+	}
+	if(!hotterCtrl->hotter->Is_power_on)
+	{
+		hotterCtrl->state =TEMP_IDLE_READY ;
 	}
 }
 void TEMP_CTRL_READY_operate(HOTTER_CTRL_Typedef *hotterCtrl)
@@ -161,6 +197,10 @@ void TEMP_CTRL_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 		hotterCtrl->state = TEMP_ADJUST_WARNING_READY  ;
 	}
 	//校温按键检查
+	if(!hotterCtrl->hotter->Is_power_on)
+	{
+		hotterCtrl->state =TEMP_IDLE_READY ;
+	}
 }
 
 
@@ -229,6 +269,10 @@ void TEMP_TARGET_SET_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 		FlshPara_Save();
 		hotterCtrl ->state = TEMP_CTRL_READY ;
 	}
+	if(!hotterCtrl->hotter->Is_power_on)
+	{
+		hotterCtrl->state =TEMP_IDLE_READY ;
+	}
 }
 
 
@@ -254,6 +298,10 @@ void TEMP_ADJUST_WARNING_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	if (hal_100ms_flag >15)
 	{ 		
 		hotterCtrl ->state = TEMP_ADJUST_READY ;
+	}
+	if(!hotterCtrl->hotter->Is_power_on)
+	{
+		hotterCtrl->state =TEMP_IDLE_READY ;
 	}
 }
 
@@ -313,6 +361,10 @@ void TEMP_ADJUST_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 	if(hal_100ms_flag >50)
 	{	
 		hotterCtrl -> state = TEMP_CTRL_READY ;
+	}
+	if(!hotterCtrl->hotter->Is_power_on)
+	{
+		hotterCtrl->state =TEMP_IDLE_READY ;
 	}	
 }
 
@@ -364,6 +416,10 @@ void TEMP_ALARM_operate(HOTTER_CTRL_Typedef *hotterCtrl)
 			hotterCtrl ->  state =TEMP_CTRL_READY ;
 		}
 	}
+	if(!hotterCtrl->hotter->Is_power_on)
+	{
+		hotterCtrl->state =TEMP_IDLE_READY ;
+	}
 }
 
 
@@ -375,6 +431,10 @@ void HotterCtrl(HOTTER_CTRL_Typedef *hotterCtrl)
 {
 	switch (hotterCtrl->state) 
 	{
+		case TEMP_CHECK:
+			TEMP_CHECK_operate(hotterCtrl);
+			break;
+		
 		case TEMP_IDLE:
 			TEMP_IDLE_operate(hotterCtrl);
 			break;
@@ -396,6 +456,10 @@ void HotterCtrl(HOTTER_CTRL_Typedef *hotterCtrl)
 			break ;
 		case TEMP_ADJUST:
 			TEMP_ADJUST_operate(hotterCtrl);
+			break;
+		
+		case TEMP_CHECK_READY:
+			TEMP_CHECK_READY_operate(hotterCtrl);
 			break;
 		
 		case TEMP_IDLE_READY:
@@ -424,19 +488,23 @@ void HotterCtrl(HOTTER_CTRL_Typedef *hotterCtrl)
 		default:
 			break;
 	}
-	if(!hotterCtrl->hotter->Is_power_on)
-	{
-		hotterCtrl->state =TEMP_IDLE_READY ;
-	}
+	
 }
 
 
 
 HOTTER_CTRL_Typedef solder1321;
 
+
+
+
+
 void solder1321_init(void)	
 {	
-	solder1321 .state =  TEMP_IDLE; 
+	
+	
+	
+	solder1321 .state =  TEMP_CHECK_READY; 
 	solder1321 .button = 	&button_1 ;
 	solder1321 .rotary =	&rotary_1 ;
 	solder1321 .hotter =	&hotter1321 ;
@@ -456,11 +524,7 @@ void solder1321_init(void)
 	TaskCtrl(&task_systick,hotter1321_hotter_state_msg ,ENABLE );
 	TaskCtrl(&task_systick,hotterctrl_poweron_msg ,ENABLE );
 
-	solder1321.tm1650->Is_num =NO;
-	solder1321.tm1650->dot_run_en =DISABLE ;	
-	solder1321.tm1650->blink_en  =DISABLE ;
-	solder1321.tm1650->bottom_dot_en =DISABLE ;
-	solder1321.tm1650 ->word =(uint8_t*)CODE_Clean ;
+
 }
 
 

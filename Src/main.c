@@ -111,9 +111,8 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */  
-// 	Msg_delayms_process();
-	
-// 	HotterCtrl(&solder1321);
+
+	  
 	 TaskISR(&task_main); 
 	 TaskProcess(&task_main); 
 	  

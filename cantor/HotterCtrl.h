@@ -9,6 +9,9 @@
 
 typedef   enum 
 {
+	TEMP_CHECK_READY,
+    TEMP_CHECK,
+	
 	TEMP_IDLE_READY,
     TEMP_IDLE,
 	

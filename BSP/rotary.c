@@ -19,43 +19,74 @@ void Rotary_scan(R0TARY_CTRL_TypeDef *rotary)
 	rotary->elec_leval_a_now= rotary->read_rotary_a() ;
 	rotary->elec_leval_b_now= rotary->read_rotary_b();
 	
-//	rotary->times_1ms ++;
-	
 	if((rotary->elec_leval_a_now!= rotary->elec_leval_a_pre)||(rotary->elec_leval_b_now!=rotary->elec_leval_b_pre))
 	{
 		switch(rotary->N)
 		{
-			case 0:rotary->Spin_direction =no_direction  ;if(rotary->elec_leval_a_now)rotary->temple|=0x02; rotary->temple|=rotary->elec_leval_b_now; rotary->elec_leval_a_pre = rotary->elec_leval_a_now ;rotary->elec_leval_b_pre = rotary->elec_leval_b_now ;rotary->N=1;break;
-			case 1:rotary->temple <<=2;if(rotary->elec_leval_a_now)rotary->temple|=0x02; rotary->temple|=rotary->elec_leval_b_now; rotary->elec_leval_a_pre = rotary->elec_leval_a_now ;rotary->elec_leval_b_pre = rotary->elec_leval_b_now ;rotary->N=2;break;
-			case 2:rotary->temple <<=2;if(rotary->elec_leval_a_now)rotary->temple|=0x02; rotary->temple|=rotary->elec_leval_b_now; rotary->elec_leval_a_pre = rotary->elec_leval_a_now ;rotary->elec_leval_b_pre = rotary->elec_leval_b_now ;rotary->N=3;break;
-			case 3:rotary->temple <<=2;if(rotary->elec_leval_a_now)rotary->temple|=0x02; rotary->temple|=rotary->elec_leval_b_now; rotary->elec_leval_a_pre = rotary->elec_leval_a_now ;rotary->elec_leval_b_pre = rotary->elec_leval_b_now ;rotary->N=4;break;
-			case 4: 
+			case 0:
+				rotary->Spin_direction =no_direction  ;
+				if(rotary->elec_leval_a_now)rotary->temple|=0x02; 
+					rotary->temple|=rotary->elec_leval_b_now; 
+					rotary->elec_leval_a_pre = rotary->elec_leval_a_now ;
+					rotary->elec_leval_b_pre = rotary->elec_leval_b_now ;
+					rotary->N=1;break;
+			case 1:rotary->temple <<=2;
+				if(rotary->elec_leval_a_now)rotary->temple|=0x02;
+					rotary->temple|=rotary->elec_leval_b_now;
+					rotary->elec_leval_a_pre = rotary->elec_leval_a_now ;
+					rotary->elec_leval_b_pre = rotary->elec_leval_b_now ;
+					rotary->N=2;break;
+			case 2:rotary->temple <<=2;
+				if(rotary->elec_leval_a_now)rotary->temple|=0x02;
+					rotary->temple|=rotary->elec_leval_b_now;
+					rotary->elec_leval_a_pre = rotary->elec_leval_a_now ;
+					rotary->elec_leval_b_pre = rotary->elec_leval_b_now ;
+					rotary->N=3;break;
+//			case 3:
+//				rotary->temple <<=2;
+//				if(rotary->elec_leval_a_now)rotary->temple|=0x02;
+//					rotary->temple|=rotary->elec_leval_b_now;
+//					rotary->elec_leval_a_pre = rotary->elec_leval_a_now ;
+//					rotary->elec_leval_b_pre = rotary->elec_leval_b_now ;
+//					rotary->N=4;break;
+			case 3: 
 				switch(rotary->temple)
 				{
-					case 0Xd2:rotary->Spin_direction =Spin_left ;break;//210--
-					case 0x4b:rotary->Spin_direction =Spin_left ;break;//75
+					case 0X0B:rotary->Spin_direction =Spin_left ;break;//210--
+					case 0x34:rotary->Spin_direction =Spin_left ;break;//75
 					case 0x2d:rotary->Spin_direction =Spin_left ;break;//45--
-					case 0xb4:rotary->Spin_direction =Spin_left ;break;//180--				
-					case 0xe1:rotary->Spin_direction =Spin_right ;break;//225--
-					case 0x87:rotary->Spin_direction =Spin_right ;break;//135--
-					case 0x1e:rotary->Spin_direction =Spin_right ;break;//30
-					case 0x78:rotary->Spin_direction =Spin_right ;break;//120---
-					default :rotary->Spin_direction =no_direction  ;break ;
+					
+					
+					case 0x1e:rotary->Spin_direction =Spin_right ;break;//225--
+					case 0x07:rotary->Spin_direction =Spin_right ;break;//135--
+					case 0x38:rotary->Spin_direction =Spin_right ;break;//30
+					
+					
+					default : break ;
 				}
-				rotary->N = 0; rotary->temple = 0; break ;//
-			default :rotary->N = 0; rotary->temple = 0; break ;//
+				rotary->N = 0; rotary->temple = 0; break ;
+//			case 4: 
+//				switch(rotary->temple)
+//				{
+//					case 0Xd2:rotary->Spin_direction =Spin_left ;break;//210--
+//					case 0x4b:rotary->Spin_direction =Spin_left ;break;//75
+//					case 0x2d:rotary->Spin_direction =Spin_left ;break;//45--
+//					case 0xb4:rotary->Spin_direction =Spin_left ;break;//180--				
+//					case 0xe1:rotary->Spin_direction =Spin_right ;break;//225--
+//					case 0x87:rotary->Spin_direction =Spin_right ;break;//135--
+//					case 0x1e:rotary->Spin_direction =Spin_right ;break;//30
+//					case 0x78:rotary->Spin_direction =Spin_right ;break;//120---
+//					default : break ;
+//				}
+//				rotary->N = 0; rotary->temple = 0; break ;
+			default :rotary->N = 0; rotary->temple = 0; break ;
 		}
 	}
 }
 
 
 
-/* USER CODE BEGIN PV */
 
-
-
-
-/* USER CODE END PV */
 
 
 

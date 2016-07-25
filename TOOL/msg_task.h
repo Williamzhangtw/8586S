@@ -74,7 +74,7 @@ extern Task_TypeDef task_main;
 void Msg_main_process(void);
 void mainTask_ISR(void);
 extern void TaskSystickInit(void);
-
+extern void TaskSystickProcess(void);
 
 
 
