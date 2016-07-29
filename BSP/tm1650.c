@@ -6,6 +6,7 @@ const	uint8_t		CODE_Clean[4]={0x00,0x00,0x00};//
 const	uint8_t		CODE01[4]={0x40,0x40,0x40};//" - - - "
 const 	uint8_t  	S_E[4]={0x79,0x40,0x6D};//" S - E(0xF5) "
 const 	uint8_t  	H_E[4]={0x79,0x40,0x76};//" H - E(0xF5) "
+const   uint8_t 	SLP[4]={0x6D,0x06,0x09};
 const 	uint8_t  	OFF[4]={0x71,0x71,0x3F};//" OFF "
 const 	uint8_t  	CAL[4]={0x38,0x77,0x39};//" CAL "
 const 	uint8_t  	MENU01[4]={0x06,0x3F,0x5C,};//"-01"
@@ -31,14 +32,14 @@ void FD650_START(TM1650_STRUCT *tm1650)
 {
 	tm1650 ->clk(GPIO_PIN_SET);//tm1650 ->clk(GPIO_PIN_SET);;//时钟
 	tm1650 ->dio(GPIO_PIN_SET);//tm1650 ->dio(GPIO_PIN_SET);;
-	tm1650 ->dio(GPIO_PIN_RESET); ;
-	tm1650 ->clk(GPIO_PIN_RESET); ;
+	tm1650 ->dio(GPIO_PIN_RESET); 
+	tm1650 ->clk(GPIO_PIN_RESET); 
 }
 //************ STOP信号********************************
 void FD650_STOP(TM1650_STRUCT *tm1650)
 {
 	tm1650 ->clk(GPIO_PIN_SET); ;
-	tm1650 ->dio(GPIO_PIN_RESET); ;
+	tm1650 ->dio(GPIO_PIN_RESET); 
 	tm1650 ->dio(GPIO_PIN_SET); ;
 }
 //************写1个字节给TM1650***************************
@@ -171,41 +172,26 @@ void Tm1650_show_ISR(TM1650_STRUCT *tm1650)
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+TM1650_STRUCT tm1650_1;
 
 void tm1650_dio_1(GPIO_PinState en)
 {
-	HAL_GPIO_WritePin(TM1651_DIO_GPIO_Port,TM1651_DIO_Pin,en);
+	HAL_GPIO_WritePin(TM1651_DIO_1_GPIO_Port,TM1651_DIO_1_Pin,en);
 }
 
 
 void tm1650_clk_1(GPIO_PinState en)
 {
-	HAL_GPIO_WritePin(TM1651_CLK_GPIO_Port,TM1651_CLK_Pin,en);
+	HAL_GPIO_WritePin(TM1651_CLK_1_GPIO_Port,TM1651_CLK_1_Pin,en);
 }
 
 
 uint8_t tm1650_read_dio_1(void)
 {
-	HAL_GPIO_WritePin(TM1651_DIO_GPIO_Port,TM1651_DIO_Pin,GPIO_PIN_SET );
-	return  HAL_GPIO_ReadPin(TM1651_DIO_GPIO_Port ,TM1651_DIO_Pin);
+	HAL_GPIO_WritePin(TM1651_DIO_1_GPIO_Port,TM1651_DIO_1_Pin,GPIO_PIN_SET );
+	return  HAL_GPIO_ReadPin(TM1651_DIO_1_GPIO_Port ,TM1651_DIO_1_Pin);
 }
 
-
-
-TM1650_STRUCT tm1650_1;
 
 void Tm1650_1_init(void)
 {
@@ -220,24 +206,9 @@ void Tm1650_1_init(void)
 }
 
 
-
-
-/************Number Display************/
-uint16_t  TM1650_BreathLightPWM(void)
+void Tm1650_1_show_ISR(void)
 {
-  static uint16_t led0pwmval=0;
-	static uint8_t dir=1;
-	if(dir)led0pwmval++;
-
-	else --led0pwmval;
-
-	if(led0pwmval==4)
-	{
-		dir=0;
-	}
-	if(led0pwmval==0)dir=1;
-
-	return   led0pwmval;
+	Tm1650_show_ISR(&tm1650_1);
 }
 
 
@@ -247,9 +218,46 @@ uint16_t  TM1650_BreathLightPWM(void)
 
 
 
-void Tm1650_1_show_ISR(void)
+
+
+
+TM1650_STRUCT tm1650_2;
+
+void tm1650_dio_2(GPIO_PinState en)
 {
-	Tm1650_show_ISR(&tm1650_1);
+	HAL_GPIO_WritePin(TM1651_DIO_2_GPIO_Port,TM1651_DIO_2_Pin,en);
+}
+
+
+void tm1650_clk_2(GPIO_PinState en)
+{
+	HAL_GPIO_WritePin(TM1651_CLK_2_GPIO_Port,TM1651_CLK_2_Pin,en);
+}
+
+
+uint8_t tm1650_read_dio_2(void)
+{
+	HAL_GPIO_WritePin(TM1651_DIO_2_GPIO_Port,TM1651_DIO_2_Pin,GPIO_PIN_SET );
+	return  HAL_GPIO_ReadPin(TM1651_DIO_2_GPIO_Port ,TM1651_DIO_2_Pin);
+}
+
+
+void Tm1650_2_init(void)
+{
+
+	tm1650_2.clk = tm1650_clk_2;
+	tm1650_2 .dio = tm1650_dio_2;
+	tm1650_2 .read_dio = tm1650_read_dio_2;
+	tm1650_2 .blink_dir =0;
+	tm1650_2 .dot_run_bit=0;
+	//函数
+	FD650_send(&tm1650_2,0x48,0x11);//设定8段显示，设定显示亮度0xab;a(1-7-0亮度依次递增)
+}
+
+
+void Tm1650_2_show_ISR(void)
+{
+	Tm1650_show_ISR(&tm1650_2);
 }
 
 

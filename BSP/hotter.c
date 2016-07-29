@@ -1,4 +1,4 @@
-//verify date:2016/7/16pm
+//verify date:2016/7/28pm
 #include "hotter.h"
 
 /* USER CODE BEGIN Includes */
@@ -7,10 +7,6 @@
  #include "../tool/flash.h"
 
 
-void Hotter_heated_time_count_ISR(HOTER_CTRL_TypeDef * hotter)
-{
-//	hotter->heated_times ++;
-}
 
 
 
@@ -62,8 +58,12 @@ void HotterWorkingState_ISR(HOTER_CTRL_TypeDef * hotter)
 
 
 
-//hotter1321
-static uint16_t solder_adc_array[128]; 
+
+
+void HotterRealTemp_ISR(HOTER_CTRL_TypeDef * hotter)
+{
+		hotter->real_temperature   = hotter->real_adc *hotter->Ks+hotter->Bs- hotter ->adjust_temperature ; 
+}
 HOTER_CTRL_TypeDef hotter1321 ;
 /*heated
 */
@@ -82,25 +82,15 @@ void Heat_hotter1321(BOOL  en)
 /* get adc
 */
 
-uint16_t  Get_hotter1321_adc (void)
-{
-  uint16_t adc;
-	HAL_ADC_Start(&hadc) ;
-	HAL_ADC_PollForConversion(&hadc,10);  
-	adc = HAL_ADC_GetValue(&hadc);
-  return adc;
-}
 
-void  Filter_hotter1321_adc_ISR (void)
-{
-	hotter1321.real_adc  = avg_filter (Get_hotter1321_adc(),solder_adc_array) ;
-}
 
-void  Hotter1321_realTemp_ISR (void)
-{
-	hotter1321.real_temperature   = hotter1321.real_adc *hotter1321.Ks+hotter1321 .Bs-hotter_flash.adjust_temperature ; 
-}
 
+
+
+void Hotter1321_realTemp_ISR (void)
+{
+	HotterRealTemp_ISR(&hotter1321);
+}
 
 
 void Hotter1321_init(void)
@@ -144,9 +134,18 @@ void Hotter1321WorkingState_ISR(void )
 	HotterWorkingState_ISR(&hotter1321 );
 }
 
-void Hotter1321_heated_time_count_ISR(void)
+
+uint16_t  Get_hotter1321_adc (void)
 {
-	Hotter_heated_time_count_ISR(&hotter1321 );
+	uint16_t adc;
+	HAL_ADC_Start(&hadc) ;
+	HAL_ADC_PollForConversion(&hadc,10);  
+	adc = HAL_ADC_GetValue(&hadc);
+	return adc;
+}
+void Filter_hotter1321_adc_ISR (void)
+{
+	hotter1321.real_adc  = AvgFilter (&avg_1 , Get_hotter1321_adc());
 }
 
 /*ISR 大于20ms 执行一次即可。在此程序中选 100ms也不用担心轮回后出现的相等，因为100ms内最多只能中断响应5次
@@ -164,5 +163,110 @@ void Hotter1321_power_on_scan_ISR(void)
 		data_pre = hotter1321.hz50_count;
 	}
 }
+
+
+HOTER_CTRL_TypeDef hotterK ;
+/*heated
+*/
+void Heat_hotterK(BOOL  en)
+{
+  if(en)// heated
+  {
+    HAL_GPIO_WritePin(AirHOT_GPIO_Port,AirHOT_Pin,GPIO_PIN_RESET);
+  }
+  else // not heated
+  {
+    HAL_GPIO_WritePin(AirHOT_GPIO_Port,AirHOT_Pin,GPIO_PIN_SET);
+  }
+}
+
+/* get adc
+*/
+
+
+
+
+
+
+void HotterK_realTemp_ISR (void)
+{
+	HotterRealTemp_ISR(&hotterK);
+}
+
+
+void HotterK_init(void)
+{
+
+	hotterK .Ks = 0.253;
+	hotterK .Bs =40;
+	hotterK.Lmax =480;
+	hotterK.Lmin =0,
+	hotterK.Cmin =-99;
+	hotterK.Cmax =99;
+	hotterK.real_adc = 0;
+	hotterK.real_temperature = 25;
+	
+	hotterK.target_temperature = 300;
+	hotterK.adjust_temperature = 0;
+	
+	hotterK.hz50_count =0;
+	hotterK .sensor_err_adc = 2300;
+//	hotter1321 .heated_times =0;
+	
+	hotterK.sensor_err =0;
+	hotterK.hotter_err =0;
+	hotterK.work_state =NOT_HEAT ;
+	hotterK.Is_reset_position = 0;
+	hotterK.Is_power_on =NO;
+	hotterK .minus_pre =0;
+	hotterK .minus_now =0;
+	hotterK .temp_distinguish_dif =5;
+	hotterK.heat_en  = Heat_hotterK;
+
+//	hotter1321 .adc2temp =Hotter1321Adc2temp;
+//	hotter1321 .adc_reflash_ISR = Filter_hotter1321_adc_ISR;
+//	hotter1321 .power_on_scan_ISR =Hotter1321_power_on_scan_ISR;
+
+
+//开机执行函数
+	hotterK.heat_en (DISABLE );
+}
+
+void HotterKWorkingState_ISR(void )
+{
+	HotterWorkingState_ISR(&hotterK );
+}
+
+
+uint16_t  Get_hotterK_adc (void)
+{
+	uint16_t adc;
+	HAL_ADC_Start(&hadc) ;
+	HAL_ADC_PollForConversion(&hadc,10);  
+	adc = HAL_ADC_GetValue(&hadc);
+	return adc;
+}
+void Filter_hotterK_adc_ISR (void)
+{
+	hotterK.real_adc  = AvgFilter (&avg_1 , Get_hotterK_adc());
+}
+
+/*ISR 大于20ms 执行一次即可。在此程序中选 100ms也不用担心轮回后出现的相等，因为100ms内最多只能中断响应5次
+*/
+void HotterK_power_on_scan_ISR(void)
+{
+	static uint8_t data_pre =0 ;
+	if(hotterK.hz50_count == data_pre)
+	{		
+		hotterK.Is_power_on = NO;
+	}
+	else
+	{
+		hotterK.Is_power_on = YES;
+		data_pre = hotterK.hz50_count;
+	}
+}
+
+
 
 

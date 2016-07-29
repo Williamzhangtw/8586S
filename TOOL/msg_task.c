@@ -68,15 +68,23 @@ Task_TypeDef task_systick;
 Msg_TypeDef msg_systick[] =      //消息，消息处理函数
 {	
 	//id							Is_enable	Is_ready	time	(*funproc)
-	{button_1_msg , 				NO,			NO,			10,		BUTTON_1_ISR,0},
 	{tm1650_1_msg, 					NO,		  	NO,			100,	Tm1650_1_show_ISR,0},	
+	{tm1650_2_msg, 					NO,		  	NO,			100,	Tm1650_2_show_ISR,0},
+	{button_1_msg , 				NO,			NO,			10,		BUTTON_1_ISR,0},	
 	{rotary_1_msg, 					NO,			NO,			1,		Rotary_1_scan_ISR,0} ,
-	{hotter1321_adc_msg,			NO,			NO,			2,		Filter_hotter1321_adc_ISR,0},
-	{hotter1321_poweron_msg,		NO,			NO,			80,		Hotter1321_power_on_scan_ISR,0},
-	{hotter1321_realTemp_msg,		NO,			NO,			100,	Hotter1321_realTemp_ISR,0},
-	{hotter1321_heated_count_msg ,	NO,    		NO,         100,    Hotter1321_heated_time_count_ISR,0},
-	{hotter1321_hotter_state_msg,	NO,     	NO,         50,     Hotter1321WorkingState_ISR,0},
 	
+//	{hotter1321_adc_msg,			NO,			NO,			2,		Filter_hotter1321_adc_ISR,0},
+//	{hotter1321_poweron_msg,		NO,			NO,			50,		Hotter1321_power_on_scan_ISR,0},
+//	{hotter1321_realTemp_msg,		NO,			NO,			100,	Hotter1321_realTemp_ISR,0},
+//	{hotter1321_hotter_state_msg,	NO,     	NO,         50,     Hotter1321WorkingState_ISR,0},
+//	{hotter1321_hotter_power_on_msg,NO,		NO,			100,	Solder1321_PowerOn_ISR},
+	
+	{FAN_CTRL_MSG ,					NO,			NO,			100,	FanCtrl_ISR,0},
+	{hotterK_adc_msg,				NO,			NO,			1,		Filter_hotterK_adc_ISR,0},
+	{hotterK_poweron_msg,			NO,			NO,			50,		HotterK_power_on_scan_ISR,0},
+	{hotterK_realTemp_msg,			NO,			NO,			1,	HotterK_realTemp_ISR,0},
+	{hotterK_hotter_state_msg,		NO,     	NO,         50,     HotterKWorkingState_ISR,0},
+	{airK_power_on_msg,	NO,			NO,			100,	airK_PowerOn_ISR},
 };
 
 
@@ -84,7 +92,7 @@ Msg_TypeDef msg_systick[] =      //消息，消息处理函数
 void TaskSystickInit(void)
 {
 	task_systick.msg = msg_systick;
-	task_systick.id_num = 8;
+	task_systick.id_num =  ArrayNum(msg_systick);
 }
 
 void TaskSystickProcess(void)
@@ -103,14 +111,16 @@ Task_TypeDef task_main;
 Msg_TypeDef msg_main[] =      //消息，消息处理函数
 {	
 	//id				Is_enable		Is_ready	time			(*funproc)
-	{SOLDER1321_MSG , 	YES,			NO,			1,				Solder1321Ctrl,0},
+//	{SOLDER1321_MSG , 	YES,			NO,			1,				Solder1321Ctrl,0},
+	{AIRK_MSG , 		YES,			NO,			1,				airKCtrl,0},
+
 	{TASK_SYSTICK_MSG, 	YES,		  	NO,			1,			TaskSystickProcess,0},	
 
 };
 void TaskMainkInit(void)
 {
 	task_main.msg = msg_main;
-	task_main.id_num = 2;
+	task_main.id_num = ArrayNum(msg_main);
 }
 
 uint16_t 	hal_1ms_flag 	=	0;

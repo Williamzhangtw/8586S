@@ -10,20 +10,33 @@
 //1 定义消息
 typedef enum          //在这里定义系统消息
 {
-
-	tm1650_1_msg =0,	
+	tm1650_1_msg =0,
+	tm1650_2_msg,	
 	button_1_msg,
 	rotary_1_msg,   
 	
 	Status_Transformation_msg,
 	
+
+
+	
 	hotter1321_adc_msg,
 	hotter1321_poweron_msg,
 	hotter1321_realTemp_msg,
-	hotter1321_heated_count_msg,
 	hotter1321_hotter_state_msg,
+	//hotter1321_hotter_power_on_msg,
 	
-	hotterctrl_poweron_msg,
+	hotterK_adc_msg,
+	hotterK_poweron_msg,
+	hotterK_realTemp_msg,
+	hotterK_hotter_state_msg,
+	
+	airK_power_on_msg,
+	
+		
+	FAN_CTRL_MSG,
+	
+	
 }MsgDelaymsID;
 
 
@@ -62,6 +75,7 @@ void TaskProcess( Task_TypeDef * task);
 typedef enum          //在这里定义系统消息
 {
 	SOLDER1321_MSG,
+	AIRK_MSG,
 	TASK_SYSTICK_MSG,
 }MsgMainID;
 void TaskMainkInit(void);

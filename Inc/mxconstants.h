@@ -67,20 +67,28 @@ typedef  uint8_t BOOL;
 
 #define SolderHOT_Pin GPIO_PIN_0
 #define SolderHOT_GPIO_Port GPIOF
-#define Solder_ADC_Pin GPIO_PIN_1
-#define Solder_ADC_GPIO_Port GPIOA
+#define AirHOT_Pin GPIO_PIN_1
+#define AirHOT_GPIO_Port GPIOF
+#define Thermal_ADC_Pin GPIO_PIN_0
+#define Thermal_ADC_GPIO_Port GPIOA
 #define SET_KEY_Pin GPIO_PIN_2
 #define SET_KEY_GPIO_Port GPIOA
+#define TM1651_DIO_1_Pin GPIO_PIN_3
+#define TM1651_DIO_1_GPIO_Port GPIOA
+#define TM1651_CLK_1_Pin GPIO_PIN_4
+#define TM1651_CLK_1_GPIO_Port GPIOA
 #define ROTARY_A_Pin GPIO_PIN_5
 #define ROTARY_A_GPIO_Port GPIOA
 #define ROTARY_B_Pin GPIO_PIN_6
 #define ROTARY_B_GPIO_Port GPIOA
+#define AIR_ON_OFF_Pin GPIO_PIN_7
+#define AIR_ON_OFF_GPIO_Port GPIOA
 #define HZ_50_Pin GPIO_PIN_1
 #define HZ_50_GPIO_Port GPIOB
-#define TM1651_CLK_Pin GPIO_PIN_9
-#define TM1651_CLK_GPIO_Port GPIOA
-#define TM1651_DIO_Pin GPIO_PIN_10
-#define TM1651_DIO_GPIO_Port GPIOA
+#define TM1651_CLK_2_Pin GPIO_PIN_9
+#define TM1651_CLK_2_GPIO_Port GPIOA
+#define TM1651_DIO_2_Pin GPIO_PIN_10
+#define TM1651_DIO_2_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 #define KEY_ENTER_Pin ROTARY_C_Pin

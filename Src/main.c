@@ -102,15 +102,15 @@ int main(void)
  
 	TaskSystickInit();
 	TaskMainkInit();
-	solder1321_init();
-	
+//	solder1321_init();
+	airK_init ();
 
   while (1)
   {
  	
   /* USER CODE END WHILE */
 
-  /* USER CODE BEGIN 3 */  
+  /* USER CODE BEGIN 3 */
 
 	  
 	 TaskISR(&task_main); 

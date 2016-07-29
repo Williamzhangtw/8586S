@@ -12,8 +12,11 @@
 typedef struct 
 {
 	uint8_t id;	
-	int16_t adjust_temperature;
-	int16_t target_temperature;
+	int16_t hotter1321_adjust_temperature;
+	int16_t hotter1321_target_temperature;
+	
+	int16_t hotterK_adjust_temperature;
+	int16_t hotterK_target_temperature;
 
 
  

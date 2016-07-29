@@ -7,6 +7,11 @@
 //Solder_ADC_Pin  //接发热丝 热电偶 经过运放放大后的输出脚
 //HZ_50_Pin //28V交流脚 过零检测脚
 
+
+
+
+
+
  typedef struct 
  {
 //	 float  Kl;  // pure, K value of linear equation of the sensing head in the air.
@@ -37,7 +42,9 @@
 	 uint8_t sensor_err;
 	 uint8_t hotter_err;
 	 uint8_t work_state;//heating,stop heating,cooling,keep constant temperature
-//	 uint8_t Is_reset_position;
+	 
+	 uint8_t Is_reset_position;
+	 
 	 uint8_t Is_power_on;//dev control switch on
 //	 uint8_t Is_supply_eletric;// supply the power for heating or cooling
 	int16_t temperature_pre;
@@ -49,6 +56,7 @@
 	 
 	 
 	 void (*heat_en)(uint8_t);//加热函数
+
 	 
 	 
 //	 void (*adc_reflash_ISR)(void);//1ms执行一次
@@ -78,6 +86,12 @@ extern 	void 	Hotter1321_init	(void);
 extern 	void	Filter_hotter1321_adc_ISR (void);
 extern 	void	Hotter1321_power_on_scan_ISR(void); 
 extern 	void	Hotter1321_realTemp_ISR (void);
-extern 	void 	Hotter1321_heated_time_count_ISR(void);
 extern 	void 	Hotter1321WorkingState_ISR(void );
+ 
+extern HOTER_CTRL_TypeDef hotterK ;
+extern 	void 	HotterK_init	(void); 
+extern 	void	Filter_hotterK_adc_ISR (void);
+extern 	void	HotterK_power_on_scan_ISR(void); 
+extern 	void	HotterK_realTemp_ISR (void);
+extern 	void 	HotterKWorkingState_ISR(void );
 #endif

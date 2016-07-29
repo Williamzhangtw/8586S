@@ -70,7 +70,7 @@ void MX_ADC_Init(void)
 
     /**Configure for the selected ADC regular channel to be converted. 
     */
-  sConfig.Channel = ADC_CHANNEL_1;
+  sConfig.Channel = ADC_CHANNEL_0;
   sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
   sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
   if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
@@ -93,12 +93,12 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     __HAL_RCC_ADC1_CLK_ENABLE();
   
     /**ADC GPIO Configuration    
-    PA1     ------> ADC_IN1 
+    PA0     ------> ADC_IN0 
     */
-    GPIO_InitStruct.Pin = Solder_ADC_Pin;
+    GPIO_InitStruct.Pin = Thermal_ADC_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(Solder_ADC_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(Thermal_ADC_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN ADC1_MspInit 1 */
 
@@ -118,9 +118,9 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
     __HAL_RCC_ADC1_CLK_DISABLE();
   
     /**ADC GPIO Configuration    
-    PA1     ------> ADC_IN1 
+    PA0     ------> ADC_IN0 
     */
-    HAL_GPIO_DeInit(Solder_ADC_GPIO_Port, Solder_ADC_Pin);
+    HAL_GPIO_DeInit(Thermal_ADC_GPIO_Port, Thermal_ADC_Pin);
 
   }
   /* USER CODE BEGIN ADC1_MspDeInit 1 */

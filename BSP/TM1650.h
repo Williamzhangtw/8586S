@@ -31,7 +31,7 @@ extern const uint8_t  _2_[4];
 extern const uint8_t _888[4] ;
 extern const uint8_t xianfu[4] ;
 extern const uint8_t CODE_Clean_Dot[4] ;
-
+extern const uint8_t SLP[4];
 
 
 typedef struct 
@@ -76,9 +76,17 @@ typedef struct
 
 
 
+extern TM1650_STRUCT tm1650_2;
+extern void Tm1650_2_show_ISR(void);
+extern void Tm1650_2_init(void);
+
 extern TM1650_STRUCT tm1650_1;
-extern void Tm1650_1_show_ISR(void);
 extern void Tm1650_1_init(void);
+extern void Tm1650_1_show_ISR(void);
+
+
+
+
 
 #endif
 

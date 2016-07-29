@@ -42,3 +42,4 @@ memu\hotterctrl.o: ..\cantor\../tool/flash.h
 memu\hotterctrl.o: ..\cantor\../tool/../bsp/hotter.h
 memu\hotterctrl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 memu\hotterctrl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+memu\hotterctrl.o: ..\cantor\../tool/adc_filter.h

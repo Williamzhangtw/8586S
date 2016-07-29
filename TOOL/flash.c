@@ -6,7 +6,7 @@
 
 
 
-const Hotter_flash__TypeDef hotter_flash_default ={88,0,300};
+const Hotter_flash__TypeDef hotter_flash_default ={88,0,300,0,300};
 
 Hotter_flash__TypeDef hotter_flash;
 
@@ -67,8 +67,10 @@ void FlshPara_Save(void)
 	size = sizeof(Hotter_flash__TypeDef);
 	
 	hotter_flash .id =88;
-	hotter_flash.target_temperature = hotter1321 .target_temperature; 
-	hotter_flash.adjust_temperature = hotter1321 .adjust_temperature; 
+	hotter_flash.hotter1321_target_temperature = hotter1321 .target_temperature; 
+	hotter_flash.hotter1321_adjust_temperature  = hotter1321 .adjust_temperature; 
+	hotter_flash.hotterK_target_temperature = hotterK .target_temperature; 
+	hotter_flash.hotterK_adjust_temperature  = hotterK .adjust_temperature;	
 	
 	HAL_FLASH_Unlock();
 	EraseInitStruct.TypeErase   = FLASH_TYPEERASE_PAGES;
@@ -117,10 +119,13 @@ void FlshPara_Init(void)
 		}
 		HAL_FLASH_Lock();
 		memcpy(&hotter_flash,(Hotter_flash__TypeDef *)PARA_START_ADDR,size); 
+		
 	}
 	
-	hotter1321 .adjust_temperature = hotter_flash.adjust_temperature;
-	hotter1321 .target_temperature = hotter_flash.target_temperature   ;
+	hotter1321 .adjust_temperature = hotter_flash.hotter1321_adjust_temperature ;
+	hotter1321 .target_temperature = hotter_flash.hotter1321_target_temperature ;
+	hotterK .adjust_temperature = hotter_flash.hotterK_adjust_temperature ;
+	hotterK .target_temperature = hotter_flash.hotterK_target_temperature ;
 
 }
 

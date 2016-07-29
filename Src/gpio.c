@@ -66,22 +66,30 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(SolderHOT_GPIO_Port, SolderHOT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOF, SolderHOT_Pin|AirHOT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, TM1651_CLK_Pin|TM1651_DIO_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, TM1651_DIO_1_Pin|TM1651_CLK_1_Pin|AIR_ON_OFF_Pin|TM1651_CLK_2_Pin 
+                          |TM1651_DIO_2_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = SolderHOT_Pin;
+  /*Configure GPIO pins : PFPin PFPin */
+  GPIO_InitStruct.Pin = SolderHOT_Pin|AirHOT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(SolderHOT_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PAPin PAPin PAPin */
   GPIO_InitStruct.Pin = SET_KEY_Pin|ROTARY_A_Pin|ROTARY_B_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PAPin PAPin PAPin */
+  GPIO_InitStruct.Pin = TM1651_DIO_1_Pin|TM1651_CLK_1_Pin|AIR_ON_OFF_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PtPin */
@@ -91,7 +99,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(HZ_50_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PAPin PAPin */
-  GPIO_InitStruct.Pin = TM1651_CLK_Pin|TM1651_DIO_Pin;
+  GPIO_InitStruct.Pin = TM1651_CLK_2_Pin|TM1651_DIO_2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -110,7 +118,8 @@ void MX_GPIO_Init(void)
 	
 	 if (GPIO_Pin == HZ_50_Pin)
   {
-		hotter1321.hz50_count ++;	
+		hotter1321.hz50_count ++;
+		hotterK.hz50_count++;	  
 	}
   
 }
